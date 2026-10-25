@@ -76,7 +76,7 @@ The paper states these boundaries, the pending Chicago human adjudication, and t
 
 1. Muzakkiruddin Ahmed Mohammed
 2. Ahsan Shahid
-3. **Selimhan Dagtas** — sedagtas@ualr.edu
+3. Selimhan Dagtas
 4. John Talburt
 5. Abdelrahman Elfikky
 
