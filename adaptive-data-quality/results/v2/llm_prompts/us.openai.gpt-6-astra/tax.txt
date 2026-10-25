@@ -1,0 +1,78 @@
+Dataset: tax
+Description: Synthetic tax records (one per person): salary, tax rate and exemptions by US state.
+Batch size: about 20,000 records. Statistics below come from a training sample of earlier batches.
+The records also contain identifying columns (f_name, l_name, area_code, phone, city, zip); together with the columns below they make up the whole record.
+
+Column: salary
+  description: annual salary in US dollars
+  type: numerical
+  missing: 0% of records
+  statistics: min 5000, max 100000, mean 52462.2, median 50000, std 28958, unique values 20
+  quantiles: p01 5000, p05 10000, p10 15000, p20 20000, p25 25000, p30 30000, p40 40000, p50 50000, p60 60000, p70 75000, p75 80000, p80 85000, p90 95000, p95 95250, p99 100000
+  example values: 25000, 95000, 20000, 15000, 100000, 40000, 25000, 5000, 15000, 75000, 35000, 85000, 10000, 20000, 15000
+
+Column: rate
+  description: state income tax rate in percent
+  type: numerical
+  missing: 0.1% of records
+  statistics: min 0, max 9.3, mean 4.25528, median 4.75, std 2.81035, unique values 278
+  quantiles: p01 0, p05 0, p10 0, p20 0, p25 2.10969, p30 3, p40 3.9, p50 4.75, p60 5.3, p70 6, p75 6.25, p80 6.84, p90 7.8, p95 8.98, p99 9.3
+  example values: 0, 0, 5, 5.3, 9, 2.70369, 2.62513, 7.8, 0, 0, 6.12321, 6.92364, 2.9475, 5, 4.63
+
+Column: single_exemp
+  description: state tax exemption for single filers, US dollars
+  type: numerical
+  missing: 0.09% of records
+  statistics: min 0, max 12750, mean 834.933, median 0, std 1714.18, unique values 28
+  quantiles: p01 0, p05 0, p10 0, p20 0, p25 0, p30 0, p40 0, p50 0, p60 0, p70 700, p75 1040, p80 2000, p90 3300, p95 3300, p99 6000
+  example values: 2000, 3300, 0, 0, 900, 1000, 2400, 0, 0, 0, 0, 3300, 0, 2475, 2400
+
+Column: married_exemp
+  description: state tax exemption for married filers, US dollars
+  type: numerical
+  missing: 0% of records
+  statistics: min 0, max 24500, mean 1645.37, median 0, std 3367.33, unique values 28
+  quantiles: p01 0, p05 0, p10 0, p20 0, p25 0, p30 0, p40 0, p50 0, p60 0, p70 318, p75 2000, p80 4000, p90 6600, p95 6600, p99 12000
+  example values: 0, 0, 0, 206, 0, 0, 4500, 6600, 318, 0, 0, 0, 6200, 0, 0
+
+Column: child_exemp
+  description: state tax exemption per child, US dollars
+  type: numerical
+  missing: 0.135% of records
+  statistics: min 0, max 3300, mean 616.489, median 0, std 1068.02, unique values 26
+  quantiles: p01 0, p05 0, p10 0, p20 0, p25 0, p30 0, p40 0, p50 0, p60 0, p70 300, p75 1000, p80 1300, p90 2850, p95 3300, p99 3300
+  example values: 0, 0, 0, 0, 0, 0, 0, 1500, 0, 2400, 3300, 3000, 0, 0, 0
+
+Column: gender
+  description: F or M
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 2
+  most common values (share of records): F (50.750%), M (49.250%)
+  example values: F, F, F, M, F, F, F, M, M, M, F, F, F, M, M
+
+Column: state
+  description: US state of the address (two-letter code)
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 53
+  most common values (share of records): MO (2.105%), SC (2.095%), FL (2.090%), ME (2.060%), WY (2.050%), MN (2.040%), GA (2.040%), OK (2.035%), UT (2.030%), MA (1.995%), ID (1.995%), NM (1.990%), CA (1.985%), TX (1.985%), VT (1.975%), AR (1.970%), NC (1.970%), MT (1.955%), WV (1.950%), TN (1.945%)
+  example values: VT, KY, NH, WY, TX, WV, MS, MO, VT, AL, TX, TX, IN, WV, OH
+
+Column: marital_status
+  description: M = married, S = single
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 2
+  most common values (share of records): M (50.110%), S (49.890%)
+  example values: M, S, M, S, S, M, M, M, S, M, M, S, M, S, M
+
+Column: has_child
+  description: Y = has at least one child, N = no children
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 2
+  most common values (share of records): Y (50.200%), N (49.800%)
+  example values: N, Y, N, Y, Y, Y, N, N, N, N, Y, Y, Y, Y, N
+
+Propose the validation rules for the columns above (and for whole records where useful). Return JSON only.

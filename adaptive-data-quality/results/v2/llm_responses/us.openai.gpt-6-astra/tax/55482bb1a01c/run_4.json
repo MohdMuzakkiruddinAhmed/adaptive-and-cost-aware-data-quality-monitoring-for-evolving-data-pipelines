@@ -1,0 +1,273 @@
+{
+  "dataset": "tax",
+  "run": 4,
+  "model_id": "us.openai.gpt-6-astra",
+  "mock": false,
+  "prompt_hash": "c7b6464057aeaba2",
+  "created_at": "2026-10-06T01:02:52+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 2,
+  "output_tokens": 2431,
+  "cost_usd": 0.133727,
+  "prompt": "Dataset: tax\nDescription: Synthetic tax records (one per person): salary, tax rate and exemptions by US state.\nBatch size: about 50,000 records. Statistics below come from a training sample of earlier batches.\nThe records also contain identifying columns (f_name, l_name, area_code, phone, city, zip); together with the columns below they make up the whole record.\n\nColumn: salary\n  description: n/a\n  type: numerical\n  missing: 0% of records\n  statistics: min 5000, max 100000, mean 52251.3, median 50000, std 28878.7, unique values 20\n  quantiles: p01 5000, p05 5000, p10 10000, p20 20000, p25 25000, p30 30000, p40 40000, p50 50000, p60 60000, p70 70000, p75 75000, p80 85000, p90 90000, p95 95000, p99 100000\n  example values: 80000, 95000, 55000, 80000, 70000, 75000, 80000, 85000, 50000, 30000, 85000, 55000, 45000, 60000, 85000\n\nColumn: rate\n  description: n/a\n  type: numerical\n  missing: 0.106% of records\n  statistics: min 0, max 9.3, mean 4.25366, median 4.75, std 2.79128, unique values 278\n  quantiles: p01 0, p05 0, p10 0, p20 0, p25 2.20577, p30 3, p40 3.9, p50 4.75, p60 5.3, p70 6, p75 6.25, p80 6.84, p90 7.8, p95 8.98, p99 9.3\n  example values: 3.875, 4.63, 2.54091, 4.5, 5, 0, 6.25, 3.02174, 8.98, 4.63, 7, 2.2, 2.66667, 8.98, 6\n\nColumn: single_exemp\n  description: n/a\n  type: numerical\n  missing: 0.088% of records\n  statistics: min 0, max 12750, mean 828.245, median 0, std 1722.15, unique values 28\n  quantiles: p01 0, p05 0, p10 0, p20 0, p25 0, p30 0, p40 0, p50 0, p60 0, p70 159, p75 1040, p80 2000, p90 3300, p95 3300, p99 6000\n  example values: 0, 0, 0, 0, 3300, 0, 0, 0, 1370, 1370, 3300, 1300, 0, 0, 2700\n\nColumn: married_exemp\n  description: n/a\n  type: numerical\n  missing: 0% of records\n  statistics: min 0, max 24500, mean 1659.58, median 0, std 3412.01, unique values 28\n  quantiles: p01 0, p05 0, p10 0, p20 0, p25 0, p30 0, p40 0, p50 0, p60 0, p70 318, p75 2080, p80 4000, p90 6600, p95 6600, p99 12000\n  example values: 0, 0, 4200, 6600, 0, 0, 0, 0, 0, 220, 0, 0, 0, 0, 0\n\nColumn: child_exemp\n  description: n/a\n  type: numerical\n  missing: 0.1% of records\n  statistics: min 0, max 3300, mean 597.304, median 0, std 1049.3, unique values 26\n  quantiles: p01 0, p05 0, p10 0, p20 0, p25 0, p30 0, p40 0, p50 0, p60 0, p70 272, p75 1000, p80 1300, p90 2475, p95 3300, p99 3300\n  example values: 0, 0, 3300, 0, 0, 0, 0, 0, 0, 0, 2850, 1500, 0, 1000, 0\n\nColumn: gender\n  description: n/a\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 2\n  most common values (share of records): F (50.180%), M (49.820%)\n  example values: M, M, M, M, F, M, F, M, F, F, M, M, F, F, F\n\nColumn: state\n  description: n/a\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 53\n  most common values (share of records): AZ (2.060%), AR (2.038%), MS (2.026%), KY (2.024%), KS (2.010%), SC (2.008%), AL (2.006%), NJ (2.004%), VT (1.982%), MT (1.968%), NH (1.966%), MO (1.962%), TX (1.960%), VA (1.952%), CA (1.948%), PR (1.948%), OH (1.944%), MN (1.944%), ND (1.938%), IA (1.936%)\n  example values: NM, MN, MN, LA, RI, NE, UT, IN, IN, IL, WA, CA, OK, TX, IA\n\nColumn: marital_status\n  description: n/a\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 2\n  most common values (share of records): M (50.018%), S (49.982%)\n  example values: M, S, S, M, S, M, S, M, M, M, S, M, S, S, S\n\nColumn: has_child\n  description: n/a\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 2\n  most common values (share of records): N (50.384%), Y (49.616%)\n  example values: N, Y, N, Y, Y, N, Y, N, Y, Y, Y, Y, Y, Y, N\n\nPropose the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\n  \"rules\": [\n    {\n      \"column\": \"salary\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Salary must not be missing.\",\n      \"reason\": \"Salary is a core input to the tax record and is populated throughout the sample.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"salary\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Salary must be numeric.\",\n      \"reason\": \"Salary represents a monetary amount.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"salary\",\n      \"rule_type\": \"range\",\n      \"min\": 0,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Salary must be nonnegative.\",\n      \"reason\": \"Salary is compensation, not net business income. Zero and salaries above the observed maximum can be legitimate, so the sample bounds should not be enforced.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"rate\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Tax rate must not be missing; a zero rate must be represented explicitly as zero.\",\n      \"reason\": \"The applicable tax rate is a core attribute of these records, and zero already represents jurisdictions or circumstances with no tax.\",\n      \"confidence\": 0.94\n    },\n    {\n      \"column\": \"rate\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"A supplied tax rate must be numeric.\",\n      \"reason\": \"Tax rates are numeric quantities used in tax calculations.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"rate\",\n      \"rule_type\": \"range\",\n      \"min\": 0,\n      \"max\": 100,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"A supplied tax rate must be between 0 and 100, inclusive, in percentage points.\",\n      \"reason\": \"The observed scale indicates percentages rather than fractions. Negative rates or rates above 100% are implausible for ordinary state income tax; the observed 9.3 maximum is not a permanent ceiling.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"single_exemp\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"The single-filer exemption amount must not be missing; no exemption should be represented as zero.\",\n      \"reason\": \"This is an exemption schedule amount, with zero already widely used to represent no exemption.\",\n      \"confidence\": 0.92\n    },\n    {\n      \"column\": \"single_exemp\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"A supplied single-filer exemption must be numeric.\",\n      \"reason\": \"The exemption is a monetary amount.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"single_exemp\",\n      \"rule_type\": \"range\",\n      \"min\": 0,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"A supplied single-filer exemption must be nonnegative.\",\n      \"reason\": \"An exemption cannot be negative. Tax-law changes can legitimately raise the amount above the sample maximum.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"married_exemp\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"The married-filer exemption amount must not be missing.\",\n      \"reason\": \"This schedule amount is consistently populated, including explicit zeros where there is no exemption.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"column\": \"married_exemp\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"The married-filer exemption must be numeric.\",\n      \"reason\": \"The exemption is a monetary amount.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"married_exemp\",\n      \"rule_type\": \"range\",\n      \"min\": 0,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"The married-filer exemption must be nonnegative.\",\n      \"reason\": \"An exemption cannot be negative. No fixed maximum or exact relationship to the single-filer exemption is established.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"child_exemp\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"The child exemption amount must not be missing; no exemption should be represented as zero.\",\n      \"reason\": \"The dataset represents exemption amounts numerically and already uses explicit zeros.\",\n      \"confidence\": 0.92\n    },\n    {\n      \"column\": \"child_exemp\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"A supplied child exemption must be numeric.\",\n      \"reason\": \"The exemption is a monetary amount.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"child_exemp\",\n      \"rule_type\": \"range\",\n      \"min\": 0,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"A supplied child exemption must be nonnegative.\",\n      \"reason\": \"An exemption cannot be negative, but legitimate policy changes may increase it beyond the observed maximum.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"gender\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Gender must not be missing.\",\n      \"reason\": \"Gender is consistently populated in this synthetic record schema. The two observed codes alone do not establish an exhaustive domain for future values.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"column\": \"state\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"State must not be missing.\",\n      \"reason\": \"The jurisdiction is essential to interpreting state tax rates and exemption amounts.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"state\",\n      \"rule_type\": \"pattern\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": \"[A-Z]{2}\",\n      \"condition\": \"State must consist of exactly two uppercase ASCII letters.\",\n      \"reason\": \"The field uses two-letter jurisdiction codes. This format accommodates territories such as PR and does not incorrectly restrict the 53 observed jurisdictions to the 50 states.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"marital_status\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Marital status must not be missing.\",\n      \"reason\": \"Marital status is relevant to interpreting exemption eligibility and is fully populated in the sample. The observed codes do not establish that other marital statuses are invalid.\",\n      \"confidence\": 0.97\n    },\n    {\n      \"column\": \"has_child\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"The has_child indicator must not be missing.\",\n      \"reason\": \"The indicator records whether the person has a child and is consistently populated.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"column\": \"has_child\",\n      \"rule_type\": \"category\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": [\"Y\", \"N\"],\n      \"pattern\": null,\n      \"condition\": \"The has_child indicator must be Y or N.\",\n      \"reason\": \"This is a boolean yes/no attribute encoded using Y and N, not an open-ended category.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"_records\",\n      \"rule_type\": \"uniqueness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Within a batch, no two records may be identical across every column, including all identifying columns.\",\n      \"reason\": \"The dataset contains one record per person. Exact full-record duplicates are likely repeated ingestion, while sharing tax attributes alone is legitimate.\",\n      \"confidence\": 0.98\n    }\n  ]\n}",
+  "rules": [
+    {
+      "column": "salary",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Salary must not be missing.",
+      "reason": "Salary is a core input to the tax record and is populated throughout the sample.",
+      "confidence": 0.99
+    },
+    {
+      "column": "salary",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Salary must be numeric.",
+      "reason": "Salary represents a monetary amount.",
+      "confidence": 1.0
+    },
+    {
+      "column": "salary",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Salary must be nonnegative.",
+      "reason": "Salary is compensation, not net business income. Zero and salaries above the observed maximum can be legitimate, so the sample bounds should not be enforced.",
+      "confidence": 0.99
+    },
+    {
+      "column": "rate",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Tax rate must not be missing; a zero rate must be represented explicitly as zero.",
+      "reason": "The applicable tax rate is a core attribute of these records, and zero already represents jurisdictions or circumstances with no tax.",
+      "confidence": 0.94
+    },
+    {
+      "column": "rate",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "A supplied tax rate must be numeric.",
+      "reason": "Tax rates are numeric quantities used in tax calculations.",
+      "confidence": 1.0
+    },
+    {
+      "column": "rate",
+      "rule_type": "range",
+      "min": 0,
+      "max": 100,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "A supplied tax rate must be between 0 and 100, inclusive, in percentage points.",
+      "reason": "The observed scale indicates percentages rather than fractions. Negative rates or rates above 100% are implausible for ordinary state income tax; the observed 9.3 maximum is not a permanent ceiling.",
+      "confidence": 0.99
+    },
+    {
+      "column": "single_exemp",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "The single-filer exemption amount must not be missing; no exemption should be represented as zero.",
+      "reason": "This is an exemption schedule amount, with zero already widely used to represent no exemption.",
+      "confidence": 0.92
+    },
+    {
+      "column": "single_exemp",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "A supplied single-filer exemption must be numeric.",
+      "reason": "The exemption is a monetary amount.",
+      "confidence": 1.0
+    },
+    {
+      "column": "single_exemp",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "A supplied single-filer exemption must be nonnegative.",
+      "reason": "An exemption cannot be negative. Tax-law changes can legitimately raise the amount above the sample maximum.",
+      "confidence": 0.99
+    },
+    {
+      "column": "married_exemp",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "The married-filer exemption amount must not be missing.",
+      "reason": "This schedule amount is consistently populated, including explicit zeros where there is no exemption.",
+      "confidence": 0.98
+    },
+    {
+      "column": "married_exemp",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "The married-filer exemption must be numeric.",
+      "reason": "The exemption is a monetary amount.",
+      "confidence": 1.0
+    },
+    {
+      "column": "married_exemp",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "The married-filer exemption must be nonnegative.",
+      "reason": "An exemption cannot be negative. No fixed maximum or exact relationship to the single-filer exemption is established.",
+      "confidence": 0.99
+    },
+    {
+      "column": "child_exemp",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "The child exemption amount must not be missing; no exemption should be represented as zero.",
+      "reason": "The dataset represents exemption amounts numerically and already uses explicit zeros.",
+      "confidence": 0.92
+    },
+    {
+      "column": "child_exemp",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "A supplied child exemption must be numeric.",
+      "reason": "The exemption is a monetary amount.",
+      "confidence": 1.0
+    },
+    {
+      "column": "child_exemp",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "A supplied child exemption must be nonnegative.",
+      "reason": "An exemption cannot be negative, but legitimate policy changes may increase it beyond the observed maximum.",
+      "confidence": 0.99
+    },
+    {
+      "column": "gender",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Gender must not be missing.",
+      "reason": "Gender is consistently populated in this synthetic record schema. The two observed codes alone do not establish an exhaustive domain for future values.",
+      "confidence": 0.9
+    },
+    {
+      "column": "state",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "State must not be missing.",
+      "reason": "The jurisdiction is essential to interpreting state tax rates and exemption amounts.",
+      "confidence": 0.99
+    },
+    {
+      "column": "state",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "[A-Z]{2}",
+      "condition": "State must consist of exactly two uppercase ASCII letters.",
+      "reason": "The field uses two-letter jurisdiction codes. This format accommodates territories such as PR and does not incorrectly restrict the 53 observed jurisdictions to the 50 states.",
+      "confidence": 0.99
+    },
+    {
+      "column": "marital_status",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Marital status must not be missing.",
+      "reason": "Marital status is relevant to interpreting exemption eligibility and is fully populated in the sample. The observed codes do not establish that other marital statuses are invalid.",
+      "confidence": 0.97
+    },
+    {
+      "column": "has_child",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "The has_child indicator must not be missing.",
+      "reason": "The indicator records whether the person has a child and is consistently populated.",
+      "confidence": 0.98
+    },
+    {
+      "column": "has_child",
+      "rule_type": "category",
+      "min": null,
+      "max": null,
+      "allowed_values": [
+        "Y",
+        "N"
+      ],
+      "pattern": null,
+      "condition": "The has_child indicator must be Y or N.",
+      "reason": "This is a boolean yes/no attribute encoded using Y and N, not an open-ended category.",
+      "confidence": 0.99
+    },
+    {
+      "column": "_records",
+      "rule_type": "uniqueness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Within a batch, no two records may be identical across every column, including all identifying columns.",
+      "reason": "The dataset contains one record per person. Exact full-record duplicates are likely repeated ingestion, while sharing tax attributes alone is legitimate.",
+      "confidence": 0.98
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "51aea4963117be39",
+    "prompt": "c7b6464057aeaba2",
+    "llm_settings": "ce15f35afa9bf847",
+    "generator_code": "36be4bbf49975e7c",
+    "key": "55482bb1a01c"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "55c94eee898d3465"
+}

@@ -1,0 +1,152 @@
+\section{Monitoring Method}
+\label{sec:method}
+
+The framework processes each batch through profiling, rule construction, selection, execution, classification, and persistence (Figure~\ref{fig:loop}). Raw profile drift is available before selection and contributes to the risk score. After the selected checks run, their evidence supports gated drift estimation and batch labelling. These are two related drift calculations with different information available to them; the classifier's gated signal is not assumed to exist before check execution.
+
+Each monitoring phase is timed separately for the cost analysis in Section~\ref{sec:res:h3}. Warm-up calibration establishes the initial reference and failure baselines. Thereafter, the monitor updates state after each batch. The numerical adaptation, category policies, and scheduler settings described below are those used in the frozen evaluation.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  box/.style={draw=black!65,rounded corners=2pt,align=center,
+    font=\fontsize{8}{9}\selectfont,minimum height=10mm,text width=26mm,
+    inner sep=3.5pt,fill=blue!3},
+  store/.style={draw=black!55,rounded corners=2pt,align=center,
+    font=\fontsize{8}{9}\selectfont,minimum height=10mm,inner sep=4pt,fill=black!3},
+  arr/.style={-{Stealth[length=2mm]},line width=.7pt,draw=black!75},
+  state/.style={arr,dashed,draw=black!55}]
+\node[box] (read) at (0,0) {Read\\batch $B_t$};
+\node[box] (prof) at (3.6,0) {Compute\\batch profile};
+\node[box] (raw) at (7.2,0) {Raw profile drift\\for risk scoring};
+\node[box] (build) at (10.8,0) {Build rules\\and adapt bounds};
+\node[box,fill=green!4] (select) at (10.8,-1.8) {Select checks\\from current risk};
+\node[box,fill=green!4] (execute) at (10.8,-3.6) {Execute\\selected checks};
+\node[box,fill=orange!5] (gate) at (7.2,-3.6) {Gated drift and\\failure evidence};
+\node[box,fill=orange!5] (label) at (3.6,-3.6) {Assign one of\\four batch labels};
+\node[box] (persist) at (0,-3.6) {Persist profiles\\and outcomes};
+\node[store,text width=56mm] (history) at (3.3,-1.8)
+  {Historical state\\prior profiles, calibrated baselines,\\last observed check outcomes};
+\node[store,text width=53mm] (candidates) at (9.0,1.6)
+  {Candidate rules\\LLM and dictionary-only proposals};
+\draw[arr] (read)--(prof);
+\draw[arr] (prof)--(raw);
+\draw[arr] (raw)--(build);
+\draw[arr] (build)--(select);
+\draw[arr] (select)--(execute);
+\draw[arr] (execute)--(gate);
+\draw[arr] (gate)--(label);
+\draw[arr] (label)--(persist);
+\draw[arr] (persist.north) |- (history.west);
+\draw[state] (candidates.south) -| (build.north);
+\draw[state] (history.north) -- ++(0,.55) -| (raw.south);
+\draw[state] (history.east) -- (select.west);
+\draw[state] (history.south east) -- ++(0,-.45) -| (gate.north);
+\draw[state] (history.north east) -- ++(0,.20) -| (build.south west);
+\end{tikzpicture}
+\caption{Monitoring phases and information flow for one batch. Solid arrows show processing order and persistence; dashed arrows show candidate or historical inputs. Scheduling uses raw profile drift before execution. Gated drift and failure evidence are formed after execution, using the checks available under the selected configuration. Rule admission uses warm-up batches, while numerical and category updates use the historical state.}
+\Description{Nine processing boxes form a clockwise loop: read batch, compute profile, raw drift, build rules and adapt bounds, select checks, execute checks, gated drift and failure evidence, assign a four-way label, and persist. Candidate proposals feed rule construction. Historical profiles, baselines and outcomes feed drift, construction and selection.}
+\label{fig:loop}
+\end{figure}
+
+\subsection{Profiling}
+
+For each numerical column, the profile stores count, missing share, mean, standard deviation, median, median absolute deviation, and fifteen quantiles between the 1st and 99th percentiles. For categorical columns it stores missing share, cardinality, and relative category frequencies. Batch-level information includes record count and exact-duplicate share. These summaries describe both the current distribution and the recent history needed by subsequent phases.
+
+Profiles are retained rather than repeatedly rereading historical raw batches. This reduces the work needed for reference comparisons and allows checks to reuse statistics already computed for the current batch. Profiling itself still scans the incoming data, so it remains part of the monitoring cost even when the scheduler skips optional checks. All current profiles enter history, including those from batches labelled degradation. The drift gate filters a comparison sample; it does not quarantine historical updates.
+
+\subsection{Rule Sources}
+\label{sec:method:rules}
+
+The rule suite combines four sources.
+
+\emph{Static rules} check completeness of monitored values, numerical type, and exact-record uniqueness. A column with an established physical domain can use that domain in place of a learned statistical range. In this study, Chicago coordinates use the bounding box derived from the official city boundary~\cite{ChicagoBoundary}. This is a coarse physical constraint; the temporal alarm-verification procedure separately uses polygon membership.
+
+\emph{Statistical rules} define numerical ranges and categorical membership from observed profiles. Their thresholds depend on the fixed or adaptive policy under comparison. They provide broad, data-driven coverage but do not necessarily encode domain meaning. A negative quantity, for example, can lie inside a wide statistical range even when it violates the chosen retail-data contract.
+
+\emph{LLM rules} are candidate conditions proposed from dataset and column descriptions, types, fifteen example values per column, and summary statistics. Controlled-experiment examples and statistics come from the development pool, not evaluated batches (Section~\ref{sec:design:splits}); values reserved for valid-novelty tests are excluded from prompt samples. The response follows a fixed JSON schema containing completeness, range, category, pattern, uniqueness, or type rules, with a reason and confidence for each proposal. Claude Opus 5.5 and GPT-6 Astra are the primary and secondary model families recorded in the artifact, each providing five generations per dataset through Amazon Bedrock.
+
+\emph{Manual comparison rules}, as named in the original configuration, are dictionary-only model-authored rules. Llama 4 Maverick, a third model family, receives only the data dictionary: no record examples, statistics, or injected-error description. This separates its information source from the two main generators, but does not make it a human expert baseline. We identify it as the dictionary-only comparison when interpreting results.
+
+Static and statistical suites are constructed directly. Proposed LLM and dictionary-only rules undergo the admission procedure below before they join a deployed suite. The different sources can overlap, so the evaluation measures both their individual coverage and the effect of combining them.
+
+\subsection{Rule Admission}
+\label{sec:method:admission}
+
+Admission checks whether a proposal can execute and whether its behaviour is compatible with the observed warm-up. The procedure has four stages. A \emph{syntax} stage rejects an unknown column, unsupported form, reversed range, or non-compiling regular expression. An \emph{execution} stage checks the candidate on an actual warm-up batch. A \emph{statistical} stage requires its pooled warm-up flag share to be at most 0.5\%. A \emph{redundancy} stage removes a condition already implied by a retained rule for the same column.
+
+A range or category proposal that exceeds the flag-rate ceiling receives one relaxation attempt. Range limits move to the warm-up 0.1st and 99.9th percentiles; category sets are extended with values accounting for at least 0.1\% of warm-up records. The modified candidate is admitted only if it then passes. Candidates are processed in decreasing model-confidence order, which determines which compatible condition is retained when proposals overlap.
+
+The main coverage analysis uses logical redundancy, such as dropping a wider range already implied by a narrower retained range. An earlier empirical rule dropped any candidate whose observed warm-up failures were covered by a kept rule. It could incorrectly remove a closed state-code list because a looser two-letter pattern happened to have the same historical behaviour. Logical implication preserves the distinction between agreement on observed values and equivalence on future values. The external benchmark runner retains empirical redundancy for single-column proposals; its distinct setting is stated in the design.
+
+Both LLM and dictionary-only proposals pass through the same main admission procedure. This makes their treatment symmetric after generation, although their prompt information differs. Passing admission does not prove semantic correctness or usefulness: a permissive condition may pass while missing errors, and relaxing a domain rule to contaminated history can weaken its intended meaning. Held-out detection and false-positive measurements therefore remain necessary.
+
+\subsection{Adaptive Thresholds}
+\label{sec:method:adapt}
+
+Let $\mathcal{H}_t$ contain the profiles of the $k=5$ batches preceding $B_t$. For one numerical column, take the median across historical batch means, standard deviations, medians, and interquartile ranges, denoted $\mu_H$, $\sigma_H$, $m_H$, and $q_H$. The interquartile range is the difference between the 75th and 25th percentiles and measures the spread of the central half of the data. With current-batch median $m_t$ and interquartile range $q_t$, set
+\begin{equation}
+s_t = \frac{q_t}{q_H}, \qquad
+\mu_t = m_t + (\mu_H-m_H)\,s_t, \qquad
+\sigma_t = \sigma_H\,s_t,
+\label{eq:adapt}
+\end{equation}
+and validate against $[\mu_t-3\sigma_t,\ \mu_t+3\sigma_t]$. When $q_H=0$, the implementation sets $s_t=1$ to avoid division by zero.
+
+The scale ratio $s_t$ expands or contracts the historical range, while $m_t$ moves its location. The term $\mu_H-m_H$ preserves the historical offset between mean and median, which matters for asymmetric distributions. If current location and spread are unchanged, the rule reduces to $\mu_H\pm3\sigma_H$. This adjusts range endpoints under a location-and-scale approximation; it does not estimate an entirely new distribution.
+
+Medians and interquartile ranges reduce the influence of isolated extremes, and taking medians across historical profiles limits the influence of one unusual batch. These choices do not guarantee resistance to sustained or structured contamination. The current batch contributes to its own validation range, so this is an in-batch adaptive policy rather than a forecast based only on past data. A previous-batch variant in the evaluation isolates that distinction.
+
+Development considered drift-weighted interpolation of historical and current means, which lagged behind gradual change, and mean aggregation across historical profiles, which was sensitive to one extreme legitimate batch. The frozen formula uses robust location and scale summaries with median aggregation. These development choices are documented to explain the implemented policy, not counted as additional confirmatory comparisons.
+
+For a categorical column, the monitored valid set retains every warm-up category and adds categories observed in at least two of the previous five batches. Retention avoids repeatedly rejecting rare known values that temporarily disappear from the rolling window. Recurrence allows valid novelty to enter, but supplies no independent evidence that a recurring new value belongs to the domain. The category guard addresses that admission question separately.
+
+\subsection{Gated Drift Scores and Thresholds}
+\label{sec:method:drift}
+
+For numerical columns, drift is the average absolute difference over thirteen quantiles from the 5th to 95th percentiles, normalised by the reference interquartile range and clipped at 1. This is a quantile approximation to Wasserstein distance~\cite{Ramdas2017}; omitting extreme tails reduces the influence of isolated outliers. For categorical columns, the score is base-2 Jensen--Shannon divergence~\cite{Lin1991} over the twenty most frequent reference categories plus an other bucket. The controlled reference is the warm-up; the chronological replay also uses the previous five months.
+
+Errors can alter either score. The \emph{gate} therefore removes records that fail the gate's completeness, type, uniqueness, recurrence-category, or coarse numerical checks before classification drift is measured. Its coarse numerical bounds are $\bar{\mu}_H\pm6\bar{\sigma}_H$, where the barred quantities are \emph{means} across historical batch means and standard deviations. They differ from the median aggregates in Equation~\eqref{eq:adapt}. The category gate uses recurrence without the monitored suite's additional warm-up retention, keeping its evaluation form aligned with leave-one-out calibration.
+
+With complete gating, all those check families contribute. Under selective execution, an executed family can be evaluated in the gate's own form even if its monitored threshold differs; skipped standard-check families cannot supply new evidence. The coarse numerical gate is always computed. Fewer than 50 retained records produces an insufficient-evidence status rather than evidence of no drift. The gate can reduce error-induced distribution change, but its interpretation remains conditional on which errors its checks recognise.
+
+Each column has a warm-up-calibrated threshold. Scoring each warm-up batch against the other four produces five leave-one-out scores. A prediction bound is
+\[
+\bar{x}+t_{1-\alpha/C,\,4}\sqrt{1+1/5}\;s,
+\]
+where $\bar{x}$ and $s$ summarise those scores, $C$ is the number of monitored columns, and $\alpha=0.05$ is the nominal batch-level false-drift budget. The column-wise allocation $\alpha/C$ accounts for checking multiple columns.
+
+Five scores alone can underestimate ordinary variability, particularly with discrete or heavy-tailed data. The implementation also pools warm-up records, randomly divides them into five pseudo-batches 200 times, and scores each pseudo-batch against the other four, yielding 1,000 scores. The final threshold is the larger of the prediction bound and the $(1-\alpha/C)$ resampled quantile. During development, this reduced stable-batch false drift from 15--17\% to 2--5\% on two datasets. Resampling improves empirical calibration; it does not create additional independent historical periods or guarantee the nominal rate under arbitrary dependence.
+
+\subsection{Batch Labels}
+\label{sec:method:labels}
+
+A drift indication occurs when at least one usable gated column score exceeds its threshold. A degradation indication occurs when the observed failure signal exceeds its warm-up baseline. In the all-check batch-labelling experiment, that signal is the share of records failing any executed rule, compared with the mean plus three standard deviations of leave-one-out warm-up failure shares.
+
+The two indications determine the four labels: neither gives stable; drift alone gives drift; increased failures alone gives degradation; and both give drift with degradation. The rule-failure signal supplies information that a distribution comparison lacks, but it is still limited by rule coverage. Absence of a detected increase does not establish that every record is correct.
+
+When checks can be skipped, the pooled failed-record share can fall merely because fewer checks ran. The monitor then uses per-check failure baselines, declaring degradation when an executed check exceeds its own warm-up mean plus three standard deviations. Variability is floored at the binomial sampling deviation. A skipped check supplies no new failure observation. This makes the classifier respect the available execution evidence rather than treating unexecuted checks as successful.
+
+\subsection{Category Guard}
+\label{sec:method:guard}
+
+The guard augments recurrence with a domain decision before a new category is admitted. Five policy families are evaluated: frozen warm-up membership; recurrence alone; recurrence constrained by admitted dictionary-only rules; recurrence constrained by admitted LLM rules; and recurrence with a per-value LLM judgement. Primary and secondary model variants are reported where applicable.
+
+The per-value policy asks whether the specific candidate belongs to the column's domain. An invalid judgement blocks admission; an unsure or missing cached judgement falls back to recurrence. Values already observed in warm-up bypass model queries. This policy therefore relies on reasonably trustworthy initial membership and does not correct invalid warm-up categories.
+
+For constraint-based guards, violating a closed list or pattern blocks admission regardless of recurrence. Passing a pattern without a closed domain is recorded as unresolved: a three-letter code can be well formed yet nonexistent. Cached per-value judgements are collected for recurring candidates before replay without exposing injected labels. The experiment evaluates the admission decisions, not the latency of a live query service. It is separate from the main factorial configuration and is not silently assumed to repair every adaptive result.
+
+\subsection{Risk Score and Check Selection}
+\label{sec:method:risk}
+
+Before checks execute on $B_t$, each column $i$ and the record-level unit receive
+\begin{equation}
+R_i=0.25\,F_i+0.25\,D_i+0.15\,S_i+0.20\,H_i+0.15\,I_i.
+\label{eq:risk}
+\end{equation}
+$F_i$ is the excess of the latest observed check-failure rate over its warm-up baseline, clipped to $[0,1]$ and maximised over the unit's checks. In its standardised form the excess is $\mathrm{clip}((f-\mu)/(3\sigma),0,1)$. A skipped check retains its last observed rate. $D_i$ is the raw profile-drift score divided by its scheduling threshold and clipped at 1. It is available before execution and is distinct from classification's later gated score.
+
+$S_i$ indicates column disappearance or type change. $H_i$ is the share of the previous five batches in which the unit was anomalous. $I_i$ is a fixed downstream-importance value: 1.0 for designated key fields and 0.5 otherwise. Together these terms combine recent failures, current change, schema evidence, persistence, and importance. The weights are prespecified starting values rather than an optimised universal cost model; sensitivity analysis varies them.
+
+Basic completeness, type, and range checks always run. Standard category, uniqueness, pattern, and cross-column checks run when the unit's risk is at least 0.20. If any unit reaches 0.75, every check runs. A standard check not executed for five batches is refreshed regardless of risk. Refresh limits observation staleness, but an incident can still begin and end while its relevant check is skipped. The scheduling evaluation therefore measures detection loss alongside check and byte savings.
+

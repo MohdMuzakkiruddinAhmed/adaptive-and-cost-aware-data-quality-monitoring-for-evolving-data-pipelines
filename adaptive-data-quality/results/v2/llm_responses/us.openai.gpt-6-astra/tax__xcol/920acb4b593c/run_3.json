@@ -1,0 +1,166 @@
+{
+  "dataset": "tax__xcol",
+  "run": 3,
+  "model_id": "us.openai.gpt-6-astra",
+  "mock": false,
+  "prompt_hash": "c96eb43c69428dd3",
+  "created_at": "2026-10-19T07:36:36+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 2,
+  "output_tokens": 1273,
+  "cost_usd": 0.070037,
+  "prompt": "Dataset: tax\nDescription: Synthetic tax records (one per person): salary, tax rate and exemptions by US state.\nStatistics below come from a training sample of 20,000 records.\n\nColumns:\n  salary: annual salary in US dollars; numeric, min 5000, median 50000, max 100000, share of zeros 0.0%; missing 0.0%\n  rate: state income tax rate in percent; numeric, min 0, median 4.75, max 9.3, share of zeros 21.5%; missing 0.0%\n  single_exemp: state tax exemption for single filers, US dollars; numeric, min 0, median 0, max 12750, share of zeros 63.1%; missing 0.0%\n  married_exemp: state tax exemption for married filers, US dollars; numeric, min 0, median 0, max 24500, share of zeros 63.7%; missing 0.0%\n  child_exemp: state tax exemption per child, US dollars; numeric, min 0, median 0, max 3300, share of zeros 62.9%; missing 0.0%\n  gender: F or M; text, 2 distinct values; most common: F (50.7%), M (49.2%); missing 0.0%\n  state: US state of the address (two-letter code); text, 53 distinct values; most common: MO (2.1%), SC (2.1%), FL (2.1%), ME (2.1%), WY (2.1%), MN (2.0%), GA (2.0%), OK (2.0%); missing 0.0%\n  marital_status: M = married, S = single; text, 2 distinct values; most common: M (50.1%), S (49.9%); missing 0.0%\n  has_child: Y = has at least one child, N = no children; text, 2 distinct values; most common: Y (50.2%), N (49.8%); missing 0.0%\n  zip: US postal code of the person's address; text, 14,287 distinct values; most common: 01907 (0.2%), 02852 (0.1%), 96734 (0.0%), 02916 (0.0%), 02817 (0.0%), 02905 (0.0%), 02842 (0.0%), 02881 (0.0%); missing 0.0%\n  city: city of the address; text, 8,348 distinct values; most common: WASHINGTON (1.8%), LAS VEGAS (0.6%), HONOLULU (0.6%), WILMINGTON (0.5%), SAN JUAN (0.4%), PROVIDENCE (0.3%), PHOENIX (0.3%), SALT LAKE CITY (0.3%); missing 0.0%\n  area_code: telephone area code; text, 273 distinct values; most common: 207 (2.1%), 307 (2.1%), 907 (2.0%), 208 (2.0%), 505 (2.0%), 802 (2.0%), 406 (2.0%), 304 (2.0%); missing 0.0%\n\nExample records:\nsalary,rate,single_exemp,married_exemp,child_exemp,gender,state,marital_status,has_child,zip,city,area_code\r\n70000,4.397808,3300,0,3300,F,VT,S,Y,05304,BRATTLEBORO,802\r\n25000,6.25,0,2000,0,M,OK,M,N,74129,TULSA,405\r\n65000,6.0,0,5400,3000,M,GA,M,Y,31546,JESUP,229\r\n45000,6.25,1000,0,0,F,OK,S,N,74832,CARNEY,580\r\n95000,5.95,110,0,110,M,DE,S,Y,19885,WILMINGTON,302\r\n100000,9.0,1370,0,1370,F,DC,S,Y,20097,WASHINGTON,202\r\n30000,0.0,0,0,0,F,WA,S,Y,98502,OLYMPIA,253\r\n65000,3.4,1000,0,0,F,IN,S,N,46952,MARION,812\r\n30000,1.5418718,0,2600,0,M,OH,M,N,45880,PAYNE,216\r\n50000,6.84,103,0,0,M,NE,S,N,68409,MURRAY,308\r\n80000,3.4,0,2000,1000,F,IN,M,Y,47837,CARBON,574\r\n55000,6.1499996,0,4000,2000,F,WV,M,Y,26230,PICKENS,304\r\n40000,7.8,3300,0,0,M,ID,S,N,83531,FENN,208\r\n10000,3.0,2000,0,2000,M,WV,S,Y,25063,DUCK,304\r\n35000,5.0545335,700,0,0,F,WI,S,N,53575,OREGON,608\n\nPropose cross-column rules for this dataset. Return JSON only.",
+  "response_text": "{\n  \"rules\": [\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"zip\"],\n      \"dependent\": \"state\",\n      \"condition\": \"Records with the same ZIP code should identify the same address state.\",\n      \"reason\": \"ZIP codes identify postal delivery areas associated with a state in standardized address data.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"rule_type\": \"conditional\",\n      \"if\": {\"column\": \"marital_status\", \"values\": [\"M\"]},\n      \"then\": {\"column\": \"single_exemp\", \"allowed_values\": [0]},\n      \"condition\": \"Married people must have zero single-filer exemption.\",\n      \"reason\": \"These records represent exemptions applicable to each person, so the single-filer exemption does not apply to married records.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"rule_type\": \"conditional\",\n      \"if\": {\"column\": \"marital_status\", \"values\": [\"S\"]},\n      \"then\": {\"column\": \"married_exemp\", \"allowed_values\": [0]},\n      \"condition\": \"Single people must have zero married-filer exemption.\",\n      \"reason\": \"A single filer is not eligible for the married-filer exemption.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"rule_type\": \"conditional\",\n      \"if\": {\"column\": \"has_child\", \"values\": [\"N\"]},\n      \"then\": {\"column\": \"child_exemp\", \"allowed_values\": [0]},\n      \"condition\": \"People without children must have zero child exemption.\",\n      \"reason\": \"The applied child exemption requires a child; a state's provision for child exemptions alone does not establish eligibility.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"state\", \"salary\", \"marital_status\"],\n      \"dependent\": \"single_exemp\",\n      \"condition\": \"The same state, salary, and marital status should produce the same single-filer exemption.\",\n      \"reason\": \"Within the synthetic tax schedule, state policy sets the exemption, filing status determines applicability, and salary can account for income-based limitations.\",\n      \"confidence\": 0.95\n    },\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"state\", \"salary\", \"marital_status\"],\n      \"dependent\": \"married_exemp\",\n      \"condition\": \"The same state, salary, and marital status should produce the same married-filer exemption.\",\n      \"reason\": \"Within the synthetic tax schedule, the married exemption follows state policy, filing eligibility, and any salary-based limitations.\",\n      \"confidence\": 0.95\n    },\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"state\", \"salary\", \"marital_status\", \"has_child\"],\n      \"dependent\": \"child_exemp\",\n      \"condition\": \"The same state, salary, marital status, and child-presence indicator should produce the same per-child exemption.\",\n      \"reason\": \"The per-child amount follows state policy and eligibility rather than the person's identity or the number of children. Income and filing status can affect exemption limitations.\",\n      \"confidence\": 0.94\n    },\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"state\", \"salary\", \"marital_status\", \"has_child\"],\n      \"dependent\": \"rate\",\n      \"condition\": \"Records with the same state, salary, marital status, and child-presence indicator should have the same state income tax rate.\",\n      \"reason\": \"Under the dataset's synthetic tax schedule, these fields capture jurisdiction, income, and represented filing circumstances that can affect the applicable rate.\",\n      \"confidence\": 0.94\n    },\n    {\n      \"rule_type\": \"conditional\",\n      \"if\": {\n        \"column\": \"state\",\n        \"values\": [\"AK\", \"FL\", \"NV\", \"SD\", \"TX\", \"WA\", \"WY\"]\n      },\n      \"then\": {\"column\": \"rate\", \"allowed_values\": [0]},\n      \"condition\": \"Salary records in these states must have a zero state income tax rate.\",\n      \"reason\": \"These states do not impose an individual state income tax on salary; taxes on other income types are outside this salary-based dataset.\",\n      \"confidence\": 0.99\n    }\n  ]\n}",
+  "rules": [
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "zip"
+      ],
+      "dependent": "state",
+      "condition": "Records with the same ZIP code should identify the same address state.",
+      "reason": "ZIP codes identify postal delivery areas associated with a state in standardized address data.",
+      "confidence": 0.98
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "marital_status",
+        "values": [
+          "M"
+        ]
+      },
+      "then": {
+        "column": "single_exemp",
+        "allowed_values": [
+          0
+        ]
+      },
+      "condition": "Married people must have zero single-filer exemption.",
+      "reason": "These records represent exemptions applicable to each person, so the single-filer exemption does not apply to married records.",
+      "confidence": 0.99
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "marital_status",
+        "values": [
+          "S"
+        ]
+      },
+      "then": {
+        "column": "married_exemp",
+        "allowed_values": [
+          0
+        ]
+      },
+      "condition": "Single people must have zero married-filer exemption.",
+      "reason": "A single filer is not eligible for the married-filer exemption.",
+      "confidence": 0.99
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "has_child",
+        "values": [
+          "N"
+        ]
+      },
+      "then": {
+        "column": "child_exemp",
+        "allowed_values": [
+          0
+        ]
+      },
+      "condition": "People without children must have zero child exemption.",
+      "reason": "The applied child exemption requires a child; a state's provision for child exemptions alone does not establish eligibility.",
+      "confidence": 0.99
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "salary",
+        "marital_status"
+      ],
+      "dependent": "single_exemp",
+      "condition": "The same state, salary, and marital status should produce the same single-filer exemption.",
+      "reason": "Within the synthetic tax schedule, state policy sets the exemption, filing status determines applicability, and salary can account for income-based limitations.",
+      "confidence": 0.95
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "salary",
+        "marital_status"
+      ],
+      "dependent": "married_exemp",
+      "condition": "The same state, salary, and marital status should produce the same married-filer exemption.",
+      "reason": "Within the synthetic tax schedule, the married exemption follows state policy, filing eligibility, and any salary-based limitations.",
+      "confidence": 0.95
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "salary",
+        "marital_status",
+        "has_child"
+      ],
+      "dependent": "child_exemp",
+      "condition": "The same state, salary, marital status, and child-presence indicator should produce the same per-child exemption.",
+      "reason": "The per-child amount follows state policy and eligibility rather than the person's identity or the number of children. Income and filing status can affect exemption limitations.",
+      "confidence": 0.94
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "salary",
+        "marital_status",
+        "has_child"
+      ],
+      "dependent": "rate",
+      "condition": "Records with the same state, salary, marital status, and child-presence indicator should have the same state income tax rate.",
+      "reason": "Under the dataset's synthetic tax schedule, these fields capture jurisdiction, income, and represented filing circumstances that can affect the applicable rate.",
+      "confidence": 0.94
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "state",
+        "values": [
+          "AK",
+          "FL",
+          "NV",
+          "SD",
+          "TX",
+          "WA",
+          "WY"
+        ]
+      },
+      "then": {
+        "column": "rate",
+        "allowed_values": [
+          0
+        ]
+      },
+      "condition": "Salary records in these states must have a zero state income tax rate.",
+      "reason": "These states do not impose an individual state income tax on salary; taxes on other income types are outside this salary-based dataset.",
+      "confidence": 0.99
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "4109b3b18a449123",
+    "prompt": "c96eb43c69428dd3",
+    "llm_settings": "ce15f35afa9bf847",
+    "generator_code": "9d9f99592c67a343",
+    "key": "920acb4b593c"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "43b2e563fd56735e"
+}

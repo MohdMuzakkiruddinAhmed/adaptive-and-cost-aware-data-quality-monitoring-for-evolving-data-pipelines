@@ -1,0 +1,25 @@
+# Section 14 sensitivity analysis of the frozen v2.2 protocol (analysis/sensitivity.py).
+#
+# One setting is changed at a time; every other setting stays at its frozen value (configs/experiment.yaml,
+# configs/protocol.yaml). The values of defect_rate, outlier_sigma, calibration_z, risk_weights and
+# risk_thresholds are read from configs/experiment.yaml "sensitivity" (fixed before the protocol was frozen).
+# The three dials below were added after freezing because v2 introduced or exposed these parameters; they are
+# reported as such. Nothing in this file is used by the confirmatory experiments.
+added_dials:
+  range_k: [2.5, 3.0, 3.5, 4.0]                  # statistical range rule mu +/- k sd (experiment.yaml range_k = 3)
+  history_window: [3, 5, 8, 10]                   # adaptive history window k (experiment.yaml adaptive.history_window = 5)
+  drift_alpha: [0.01, 0.025, 0.05, 0.10, 0.20]   # batch-level false-drift budget (protocol.yaml drift_threshold.alpha = 0.05)
+
+# what each dial is evaluated on (scenarios: protocol.yaml)
+h1a:                                              # record-level detection, every check on every batch
+  scenarios: [A_stable, B_drift]
+  methods: [adaptive, fixed_pooled, ewma, rolling_mad_cal]   # proposed, primary comparator, two strongest rolling
+  dials: [defect_rate, outlier_sigma, range_k, history_window]
+h1b:                                              # batch labels (rq1_classification comparators)
+  scenarios: [A_stable, B_drift, C_degradation, D_drift_degradation]
+  comparators: [proposed, gated_fixed_pooled]
+  dials: [drift_alpha, calibration_z]
+h3:                                               # risk-based selection vs run-all (rq3_scheduling)
+  scenarios: [C_degradation, D_drift_degradation, H1_sparse_duplicates, H2_sparse_category, H3_short_incident, H4_recovery]
+  sustained: [C_degradation, D_drift_degradation]
+  dials: [risk_weights, risk_thresholds]

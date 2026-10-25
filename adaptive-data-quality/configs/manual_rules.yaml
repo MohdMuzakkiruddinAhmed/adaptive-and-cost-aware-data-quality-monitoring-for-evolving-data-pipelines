@@ -1,0 +1,208 @@
+# Manual domain rules (RQ2 / H2a manual condition, H2b manual category guard).
+# WRITTEN BY experiments/v2/manual_author.py: an independent author model saw only the data dictionary
+# (rules/llm_author.py). Edit by hand only to replace them with a human expert's rules, and record that in
+# 'author'. The v2.0 draft is kept in configs/manual_rules_draft_v2.0.yaml.
+author: us.meta.llama4-maverick-17b-instruct-v1:0 (independent author model, data dictionary only; 2026-10-19; rules/llm_author.py)
+# v2.2: true = the manual rules pass the same warm-up admission test as the LLM rules in every run (rules/manual_rules.py
+# admitted_manual_rules); RQ2a also reports the rules as written (manual_raw), RQ2b as recurrence_manual_raw
+validate_manual: true
+author_details:
+  model_id: us.meta.llama4-maverick-17b-instruct-v1:0
+  temperature: 0.0
+  system_prompt_hash: 3257ed6ec2b36651
+  datasets:
+    bts_airline:
+      prompt_hash: a96f043f3611ca21
+      cost_usd: 0.0011733300000000002
+      from_cache: false
+      parse_error: null
+    online_retail:
+      prompt_hash: 755187cbe1c3d22a
+      cost_usd: 0.0008917800000000001
+      from_cache: false
+      parse_error: null
+    chicago_food:
+      prompt_hash: aab3bc871a85a08f
+      cost_usd: 0.00107475
+      from_cache: false
+      parse_error: null
+rules:
+  bts_airline:
+  - column: _records
+    rule_type: uniqueness
+    condition: Each record represents a unique flight
+    provenance: 'Dataset description: one record per flight'
+  - column: DepDelay
+    rule_type: type
+    condition: Departure delay must be numeric
+    provenance: Data type specified as numeric
+  - column: TaxiOut
+    rule_type: type
+    condition: Taxi-out time must be numeric
+    provenance: Data type specified as numeric
+  - column: TaxiOut
+    rule_type: range
+    min: 0
+    condition: Taxi-out time must be non-negative
+    provenance: Time cannot be negative
+  - column: AirTime
+    rule_type: type
+    condition: Airborne time must be numeric
+    provenance: Data type specified as numeric
+  - column: AirTime
+    rule_type: range
+    min: 0
+    condition: Airborne time must be non-negative
+    provenance: Time cannot be negative
+  - column: Distance
+    rule_type: type
+    condition: Distance must be numeric
+    provenance: Data type specified as numeric
+  - column: Distance
+    rule_type: range
+    min: 0
+    condition: Distance must be non-negative
+    provenance: Distance cannot be negative
+  - column: Reporting_Airline
+    rule_type: completeness
+    condition: Reporting airline must not be missing
+    provenance: Essential information for flight reporting
+  - column: Reporting_Airline
+    rule_type: pattern
+    pattern: ^[A-Z]{2}$
+    condition: Reporting airline is a two-character IATA code
+    provenance: IATA airline code standard
+  - column: Origin
+    rule_type: completeness
+    condition: Origin airport must not be missing
+    provenance: Essential information for flight reporting
+  - column: Origin
+    rule_type: pattern
+    pattern: ^[A-Z]{3}$
+    condition: Origin airport is a three-letter IATA code
+    provenance: IATA airport code standard
+  - column: OriginState
+    rule_type: completeness
+    condition: Origin state must not be missing
+    provenance: Essential information for flight reporting
+  - column: OriginState
+    rule_type: pattern
+    pattern: ^[A-Z]{2}$
+    condition: Origin state is a two-letter US state or territory code
+    provenance: US state and territory code standard (ISO 3166-2:US)
+  online_retail:
+  - column: Quantity
+    rule_type: completeness
+    condition: Quantity must not be missing
+    provenance: Data dictionary and general data quality principles
+  - column: Quantity
+    rule_type: range
+    min: 0
+    condition: Quantity must be non-negative
+    provenance: 'Domain knowledge: quantity cannot be negative'
+  - column: Quantity
+    rule_type: type
+    condition: Quantity must be numeric
+    provenance: Data dictionary
+  - column: Price
+    rule_type: completeness
+    condition: Price must not be missing
+    provenance: Data dictionary and general data quality principles
+  - column: Price
+    rule_type: range
+    min: 0
+    condition: Price must be non-negative
+    provenance: 'Domain knowledge: price cannot be negative'
+  - column: Price
+    rule_type: type
+    condition: Price must be numeric
+    provenance: Data dictionary
+  - column: Country
+    rule_type: completeness
+    condition: Country must not be missing
+    provenance: Data dictionary and general data quality principles
+  - column: StockCode
+    rule_type: completeness
+    condition: StockCode must not be missing
+    provenance: Data dictionary and general data quality principles
+  - column: StockCode
+    rule_type: pattern
+    pattern: ^[0-9]{5}[A-Z]?$
+    condition: StockCode must be 5 digits optionally followed by a letter
+    provenance: 'Data description: ''usually five digits, sometimes followed by a letter'''
+  - column: _records
+    rule_type: uniqueness
+    condition: Each record must be unique
+    provenance: 'Data description: one record per invoice line'
+  chicago_food:
+  - column: Latitude
+    rule_type: range
+    min: 41.644
+    max: 42.023
+    condition: Latitude must be within the range of Chicago's latitude
+    provenance: Chicago's geographical coordinates
+  - column: Longitude
+    rule_type: range
+    min: -87.94
+    max: -87.52
+    condition: Longitude must be within the range of Chicago's longitude
+    provenance: Chicago's geographical coordinates
+  - column: Risk
+    rule_type: category
+    allowed_values:
+    - Risk 1 (High)
+    - Risk 2 (Medium)
+    - Risk 3 (Low)
+    condition: Risk category must be one of the predefined categories
+    provenance: Typical risk categorization used by health departments
+  - column: Results
+    rule_type: category
+    allowed_values:
+    - Pass
+    - Pass w/ Conditions
+    - Fail
+    condition: Inspection result must be one of the predefined outcomes
+    provenance: Typical inspection outcomes used by health departments
+  - column: Facility Type
+    rule_type: completeness
+    condition: Facility type must not be missing
+    provenance: Data dictionary and common data quality practices
+  - column: Facility Type
+    rule_type: pattern
+    pattern: ^[a-zA-Z0-9 /&-]+$
+    condition: Facility type must match a typical pattern for establishment types
+    provenance: Common patterns for text fields describing establishment types
+  - column: _records
+    rule_type: uniqueness
+    condition: Each inspection must be unique
+    provenance: Data description stating one record per inspection
+  - column: Latitude
+    rule_type: completeness
+    condition: Latitude must not be missing
+    provenance: Data dictionary and common data quality practices
+  - column: Longitude
+    rule_type: completeness
+    condition: Longitude must not be missing
+    provenance: Data dictionary and common data quality practices
+  - column: Latitude
+    rule_type: type
+    condition: Latitude must be numeric
+    provenance: Data type specified in the data dictionary
+  - column: Longitude
+    rule_type: type
+    condition: Longitude must be numeric
+    provenance: Data type specified in the data dictionary
+rejected:
+  bts_airline:
+  - column: DepDelay
+    rule_type: range
+    condition: Departure delay is not restricted to a specific range
+    provenance: Dataset includes early departures (negative delay)
+    error: range without min and max
+  online_retail:
+  - column: Country
+    rule_type: category
+    condition: Country must be a valid country name
+    provenance: List of country names from ISO 3166-1
+    error: category rule without allowed_values
+  chicago_food: []

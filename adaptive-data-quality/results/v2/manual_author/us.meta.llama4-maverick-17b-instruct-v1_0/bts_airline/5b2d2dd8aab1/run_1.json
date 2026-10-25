@@ -1,0 +1,176 @@
+{
+  "dataset": "bts_airline",
+  "run": 1,
+  "model_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+  "mock": false,
+  "prompt_hash": "a96f043f3611ca21",
+  "created_at": "2026-10-19T07:13:54+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 672,
+  "output_tokens": 927,
+  "cost_usd": 0.0011733300000000002,
+  "prompt": "Dataset: BTS Airline On-Time Performance, Jan-Jun 2024\nDomain: Transportation\nSource: https://www.transtats.bts.gov (Reporting Carrier On-Time Performance)\nDescription: US domestic flights reported by certified carriers (non-cancelled, non-diverted), Jan-Jun 2024. One record per flight.\n\nColumns to validate:\n  DepDelay (numeric): Departure delay in minutes; negative means early\n  TaxiOut (numeric): Taxi-out time in minutes\n  AirTime (numeric): Airborne time in minutes\n  Distance (numeric): Distance between airports in miles\n  Reporting_Airline (text / categorical): Two-character IATA code of the reporting carrier\n  Origin (text / categorical): Three-letter IATA code of the origin airport\n  OriginState (text / categorical): Two-letter US state or territory code of the origin airport\nIdentifying columns (not validated): FlightDate, Flight_Number_Reporting_Airline, Dest, CRSDepTime\n\nWrite the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\"rules\": [\n  {\"column\": \"_records\", \"rule_type\": \"uniqueness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Each record represents a unique flight\", \"provenance\": \"Dataset description: one record per flight\"},\n  {\"column\": \"DepDelay\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Departure delay must be numeric\", \"provenance\": \"Data type specified as numeric\"},\n  {\"column\": \"DepDelay\", \"rule_type\": \"range\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Departure delay is not restricted to a specific range\", \"provenance\": \"Dataset includes early departures (negative delay)\"},\n  {\"column\": \"TaxiOut\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Taxi-out time must be numeric\", \"provenance\": \"Data type specified as numeric\"},\n  {\"column\": \"TaxiOut\", \"rule_type\": \"range\", \"min\": 0, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Taxi-out time must be non-negative\", \"provenance\": \"Time cannot be negative\"},\n  {\"column\": \"AirTime\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Airborne time must be numeric\", \"provenance\": \"Data type specified as numeric\"},\n  {\"column\": \"AirTime\", \"rule_type\": \"range\", \"min\": 0, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Airborne time must be non-negative\", \"provenance\": \"Time cannot be negative\"},\n  {\"column\": \"Distance\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Distance must be numeric\", \"provenance\": \"Data type specified as numeric\"},\n  {\"column\": \"Distance\", \"rule_type\": \"range\", \"min\": 0, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Distance must be non-negative\", \"provenance\": \"Distance cannot be negative\"},\n  {\"column\": \"Reporting_Airline\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Reporting airline must not be missing\", \"provenance\": \"Essential information for flight reporting\"},\n  {\"column\": \"Reporting_Airline\", \"rule_type\": \"pattern\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": \"^[A-Z]{2}$\", \"condition\": \"Reporting airline is a two-character IATA code\", \"provenance\": \"IATA airline code standard\"},\n  {\"column\": \"Origin\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Origin airport must not be missing\", \"provenance\": \"Essential information for flight reporting\"},\n  {\"column\": \"Origin\", \"rule_type\": \"pattern\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": \"^[A-Z]{3}$\", \"condition\": \"Origin airport is a three-letter IATA code\", \"provenance\": \"IATA airport code standard\"},\n  {\"column\": \"OriginState\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Origin state must not be missing\", \"provenance\": \"Essential information for flight reporting\"},\n  {\"column\": \"OriginState\", \"rule_type\": \"pattern\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": \"^[A-Z]{2}$\", \"condition\": \"Origin state is a two-letter US state or territory code\", \"provenance\": \"US state and territory code standard (ISO 3166-2:US)\"}\n]}",
+  "rules": [
+    {
+      "column": "_records",
+      "rule_type": "uniqueness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Each record represents a unique flight",
+      "provenance": "Dataset description: one record per flight"
+    },
+    {
+      "column": "DepDelay",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Departure delay must be numeric",
+      "provenance": "Data type specified as numeric"
+    },
+    {
+      "column": "DepDelay",
+      "rule_type": "range",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Departure delay is not restricted to a specific range",
+      "provenance": "Dataset includes early departures (negative delay)"
+    },
+    {
+      "column": "TaxiOut",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Taxi-out time must be numeric",
+      "provenance": "Data type specified as numeric"
+    },
+    {
+      "column": "TaxiOut",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Taxi-out time must be non-negative",
+      "provenance": "Time cannot be negative"
+    },
+    {
+      "column": "AirTime",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Airborne time must be numeric",
+      "provenance": "Data type specified as numeric"
+    },
+    {
+      "column": "AirTime",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Airborne time must be non-negative",
+      "provenance": "Time cannot be negative"
+    },
+    {
+      "column": "Distance",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Distance must be numeric",
+      "provenance": "Data type specified as numeric"
+    },
+    {
+      "column": "Distance",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Distance must be non-negative",
+      "provenance": "Distance cannot be negative"
+    },
+    {
+      "column": "Reporting_Airline",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Reporting airline must not be missing",
+      "provenance": "Essential information for flight reporting"
+    },
+    {
+      "column": "Reporting_Airline",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^[A-Z]{2}$",
+      "condition": "Reporting airline is a two-character IATA code",
+      "provenance": "IATA airline code standard"
+    },
+    {
+      "column": "Origin",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Origin airport must not be missing",
+      "provenance": "Essential information for flight reporting"
+    },
+    {
+      "column": "Origin",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^[A-Z]{3}$",
+      "condition": "Origin airport is a three-letter IATA code",
+      "provenance": "IATA airport code standard"
+    },
+    {
+      "column": "OriginState",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Origin state must not be missing",
+      "provenance": "Essential information for flight reporting"
+    },
+    {
+      "column": "OriginState",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^[A-Z]{2}$",
+      "condition": "Origin state is a two-letter US state or territory code",
+      "provenance": "US state and territory code standard (ISO 3166-2:US)"
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "prompt": "a96f043f3611ca21",
+    "author_code": "4712ffdc07ac2cfe",
+    "key": "5b2d2dd8aab1"
+  },
+  "temperature": 0.0,
+  "max_tokens": 8000,
+  "system_prompt_hash": "3257ed6ec2b36651"
+}

@@ -1,0 +1,58 @@
+{
+  "dataset": "beers__xcol",
+  "run": 2,
+  "model_id": "us.openai.gpt-6-astra",
+  "mock": false,
+  "prompt_hash": "a2e06926184b98ef",
+  "created_at": "2026-10-19T20:48:23+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 2,
+  "output_tokens": 324,
+  "cost_usd": 0.017842,
+  "prompt": "Dataset: beers\nDescription: US craft beers: serving size in ounces, alcohol by volume, bitterness, style, brewery location.\nStatistics below come from a training sample of 500 records.\n\nColumns:\n  ounces: n/a; text, 17 distinct values; most common: 12.0 oz. (23.0%), 12.0 oz (18.8%), 12.0 ounce (15.4%), 16.0 oz. (11.6%), 16.0 ounce (9.2%), 16.0 oz (9.0%), 12.0 OZ. (4.2%), 12.0 oz. Alumi-Tek (4.0%); missing 0.0%\n  abv: n/a; numeric, min 0.035, median 0.056, max 0.099, share of zeros 0.0%; missing 2.6%\n  ibu: n/a; numeric, min 4, median 35, max 120, share of zeros 0.0%; missing 0.0%\n  style: n/a; text, 77 distinct values; most common: American IPA (18.2%), American Pale Ale (APA) (9.0%), American Blonde Ale (5.2%), American Amber / Red Ale (4.8%), American Double / Imperial IPA (4.2%), American Pale Wheat Ale (3.4%), American Brown Ale (3.2%), Witbier (2.6%); missing 0.0%\n  city: n/a; text, 244 distinct values; most common: Portland (2.6%), Grand Rapids (2.6%), Brooklyn (2.2%), Seattle (2.2%), Denver (2.2%), Chicago (2.2%), Austin (2.0%), Indianapolis (1.8%); missing 0.0%\n  state: n/a; text, 48 distinct values; most common: CO (10.7%), MI (7.3%), TX (7.1%), CA (6.1%), IN (5.0%), OR (5.0%), NY (4.2%), PA (4.2%); missing 4.6%\n  brewery_id: n/a; text, 296 distinct values; most common: 10 (2.6%), 166 (1.8%), 25 (1.8%), 46 (1.4%), 45 (1.4%), 141 (1.2%), 365 (1.2%), 80 (1.2%); missing 0.0%\n  brewery_name: n/a; text, 294 distinct values; most common: Brewery Vivant (2.6%), Oskar Blues Brewery (2.6%), Sun King Brewing Company (1.8%), Sixpoint Craft Ales (1.4%), Tallgrass Brewing Company (1.4%), Cigar City Brewing Company (1.2%), Great River Brewery (1.2%), Hopworks Urban Brewery (1.2%); missing 0.0%\n\nExample records:\nounces,abv,ibu,style,city,state,brewery_id,brewery_name\n12.0 oz.,0.062,68,American IPA,Duluth,MN,75,Bent Paddle Brewing Company\n12.0 oz. Alumi-Tek,0.055,N/A,Cream Ale,Jacksonville,FL,378,Bold City Brewery\n12.0 oz. Alumi-Tek,0.06%,N/A,K\u00f6lsch,Portland,ME,323,D.L. Geary Brewing Company\n16.0 ounce,0.075,N/A,American IPA,Chicago,IL,256,Finch's Beer Company\n12.0 ounce,0.055,18,Munich Helles Lager,Frankenmuth,MI,253,Frankenmuth Brewery\n12.0 oz.,0.042%,20,American Pale Wheat Ale,Chicago,IL,88,Goose Island Brewing Company\n12.0 oz,0.083%,N/A,Tripel,Denver CO,,6,Great Divide Brewing Company\n12.0 oz. Alumi-Tek,0.07,68,American Pale Ale (APA),Windsor,CO,168,High Hops Brewery\n12.0 oz.,0.065,N/A,American Porter,Austin,TX,136,Hops & Grains Brewing Company\n12.0 OZ.,0.04,8,Fruit / Vegetable Beer,Bridgewater Corners,VT,268,Long Trail Brewing Company\n12.0 oz.,0.062%,55,American IPA,Marietta GA,,475,Red Hare Brewing Company\n12.0 ounce,0.061,31,Herbed / Spiced Beer,Chicago,IL,44,Revolution Brewing Company\n16.0 oz,0.052,24,Dortmunder / Export Lager,Indianapolis IN,,25,Sun King Brewing Company\n12.0 ounce,0.054000000000000006%,26,American Amber / Red Lager,Dripping Springs,TX,38,Twisted X Brewing Company\n16.0 oz.,0.047%,25,Maibock / Helles Bock,Austin,TX,126,Uncle Billy's Brewery and Smokeh...\n\nPropose cross-column rules for this dataset. Return JSON only.",
+  "response_text": "{\n  \"rules\": [\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"brewery_id\"],\n      \"dependent\": \"brewery_name\",\n      \"condition\": \"Records with the same brewery_id must have the same brewery_name.\",\n      \"reason\": \"The brewery identifier references a specific brewery entry, whose name should be consistent across its beers.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"brewery_id\"],\n      \"dependent\": \"city\",\n      \"condition\": \"Records with the same brewery_id must have the same brewery city.\",\n      \"reason\": \"City is a location attribute of the referenced brewery entry, not a property that varies by beer or serving size.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"rule_type\": \"dependency\",\n      \"determinant\": [\"brewery_id\"],\n      \"dependent\": \"state\",\n      \"condition\": \"Records with the same brewery_id must have the same brewery state.\",\n      \"reason\": \"State belongs to the referenced brewery location and should remain consistent across beers associated with that entry.\",\n      \"confidence\": 0.98\n    }\n  ]\n}",
+  "rules": [
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "brewery_id"
+      ],
+      "dependent": "brewery_name",
+      "condition": "Records with the same brewery_id must have the same brewery_name.",
+      "reason": "The brewery identifier references a specific brewery entry, whose name should be consistent across its beers.",
+      "confidence": 0.99
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "brewery_id"
+      ],
+      "dependent": "city",
+      "condition": "Records with the same brewery_id must have the same brewery city.",
+      "reason": "City is a location attribute of the referenced brewery entry, not a property that varies by beer or serving size.",
+      "confidence": 0.98
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "brewery_id"
+      ],
+      "dependent": "state",
+      "condition": "Records with the same brewery_id must have the same brewery state.",
+      "reason": "State belongs to the referenced brewery location and should remain consistent across beers associated with that entry.",
+      "confidence": 0.98
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "1c77f36a530786b5",
+    "prompt": "a2e06926184b98ef",
+    "llm_settings": "ce15f35afa9bf847",
+    "generator_code": "99d0a809af0b22fb",
+    "key": "f473dd42d5bf"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "43b2e563fd56735e"
+}

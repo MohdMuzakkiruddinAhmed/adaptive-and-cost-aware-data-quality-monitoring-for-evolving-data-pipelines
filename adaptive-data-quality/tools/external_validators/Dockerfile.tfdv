@@ -1,0 +1,28 @@
+# TFDV sidecar image: Ubuntu 24.04 + TensorFlow Data Validation, the same stack setup_wsl.sh installs in WSL.
+# TFDV publishes Linux wheels for x86_64 only, so on Apple Silicon the image is built and run as linux/amd64
+# (Docker Desktop runs it through Rosetta). Built by setup_macos.sh; started by experiments/v2/run_tools.py
+# (protocol.yaml external_tools.runner.tfdv: docker), which mounts the project at the same path as on the host.
+FROM ubuntu:24.04
+
+ARG TFDV_VERSION=1.21.0
+# build-essential + python3-dev: pyfarmhash (a TFDV dependency) ships no wheel and is compiled from source.
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    TF_CPP_MIN_LOG_LEVEL=2
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends python3 python3-venv python3-pip python3-dev build-essential \
+      ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+# Same venv path as protocol.yaml external_tools.docker.venvs.tfdv
+RUN python3 -m venv /opt/adq-tools/tfdv \
+ && /opt/adq-tools/tfdv/bin/pip install --upgrade pip \
+ && /opt/adq-tools/tfdv/bin/pip install "tensorflow-data-validation==${TFDV_VERSION}"
+
+# Unprivileged default user; run_tools.py passes --user with the host uid/gid so outputs belong to you.
+RUN useradd --create-home --uid 1001 adq
+USER adq
+WORKDIR /home/adq

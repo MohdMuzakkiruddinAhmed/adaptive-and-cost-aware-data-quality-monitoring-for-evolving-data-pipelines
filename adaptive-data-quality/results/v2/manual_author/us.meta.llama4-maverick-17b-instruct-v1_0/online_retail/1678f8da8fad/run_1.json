@@ -1,0 +1,136 @@
+{
+  "dataset": "online_retail",
+  "run": 1,
+  "model_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+  "mock": false,
+  "prompt_hash": "755187cbe1c3d22a",
+  "created_at": "2026-10-19T07:13:58+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 616,
+  "output_tokens": 678,
+  "cost_usd": 0.0008917800000000001,
+  "prompt": "Dataset: UCI Online Retail II\nDomain: E-commerce / Retail\nSource: https://archive.ics.uci.edu/dataset/502/online+retail+ii\nDescription: Invoice lines of a UK-based online gift-ware retailer, Dec 2009 - Dec 2011 (sales only; cancellations and returns removed). One record per invoice line.\n\nColumns to validate:\n  Quantity (numeric): Units sold on this invoice line\n  Price (numeric): Unit price in pounds sterling\n  Country (text / categorical): Customer's country\n  StockCode (text / categorical): Product code, usually five digits, sometimes followed by a letter\nIdentifying columns (not validated): Invoice, InvoiceDate\n\nWrite the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\"rules\": [\n  {\"column\": \"Quantity\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Quantity must not be missing\", \"provenance\": \"Data dictionary and general data quality principles\"},\n  {\"column\": \"Quantity\", \"rule_type\": \"range\", \"min\": 0, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Quantity must be non-negative\", \"provenance\": \"Domain knowledge: quantity cannot be negative\"},\n  {\"column\": \"Quantity\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Quantity must be numeric\", \"provenance\": \"Data dictionary\"},\n  {\"column\": \"Price\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Price must not be missing\", \"provenance\": \"Data dictionary and general data quality principles\"},\n  {\"column\": \"Price\", \"rule_type\": \"range\", \"min\": 0, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Price must be non-negative\", \"provenance\": \"Domain knowledge: price cannot be negative\"},\n  {\"column\": \"Price\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Price must be numeric\", \"provenance\": \"Data dictionary\"},\n  {\"column\": \"Country\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Country must not be missing\", \"provenance\": \"Data dictionary and general data quality principles\"},\n  {\"column\": \"Country\", \"rule_type\": \"category\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Country must be a valid country name\", \"provenance\": \"List of country names from ISO 3166-1\"},\n  {\"column\": \"StockCode\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"StockCode must not be missing\", \"provenance\": \"Data dictionary and general data quality principles\"},\n  {\"column\": \"StockCode\", \"rule_type\": \"pattern\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": \"^[0-9]{5}[A-Z]?$\", \"condition\": \"StockCode must be 5 digits optionally followed by a letter\", \"provenance\": \"Data description: 'usually five digits, sometimes followed by a letter'\"},\n  {\"column\": \"_records\", \"rule_type\": \"uniqueness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Each record must be unique\", \"provenance\": \"Data description: one record per invoice line\"}\n]}",
+  "rules": [
+    {
+      "column": "Quantity",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must not be missing",
+      "provenance": "Data dictionary and general data quality principles"
+    },
+    {
+      "column": "Quantity",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must be non-negative",
+      "provenance": "Domain knowledge: quantity cannot be negative"
+    },
+    {
+      "column": "Quantity",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must be numeric",
+      "provenance": "Data dictionary"
+    },
+    {
+      "column": "Price",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must not be missing",
+      "provenance": "Data dictionary and general data quality principles"
+    },
+    {
+      "column": "Price",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must be non-negative",
+      "provenance": "Domain knowledge: price cannot be negative"
+    },
+    {
+      "column": "Price",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must be numeric",
+      "provenance": "Data dictionary"
+    },
+    {
+      "column": "Country",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Country must not be missing",
+      "provenance": "Data dictionary and general data quality principles"
+    },
+    {
+      "column": "Country",
+      "rule_type": "category",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Country must be a valid country name",
+      "provenance": "List of country names from ISO 3166-1"
+    },
+    {
+      "column": "StockCode",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "StockCode must not be missing",
+      "provenance": "Data dictionary and general data quality principles"
+    },
+    {
+      "column": "StockCode",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^[0-9]{5}[A-Z]?$",
+      "condition": "StockCode must be 5 digits optionally followed by a letter",
+      "provenance": "Data description: 'usually five digits, sometimes followed by a letter'"
+    },
+    {
+      "column": "_records",
+      "rule_type": "uniqueness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Each record must be unique",
+      "provenance": "Data description: one record per invoice line"
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "prompt": "755187cbe1c3d22a",
+    "author_code": "4712ffdc07ac2cfe",
+    "key": "1678f8da8fad"
+  },
+  "temperature": 0.0,
+  "max_tokens": 8000,
+  "system_prompt_hash": "3257ed6ec2b36651"
+}

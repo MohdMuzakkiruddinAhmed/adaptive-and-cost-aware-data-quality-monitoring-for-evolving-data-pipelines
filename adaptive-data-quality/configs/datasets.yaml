@@ -1,0 +1,127 @@
+# Datasets (project description, Section 4).
+#
+# For each dataset:
+#   files            glob patterns under data/original used to find the raw files
+#   clean_filters    rows kept when building the relatively clean source data (Section 6)
+#   key_columns      identifying columns kept with every record (used by the uniqueness rule)
+#   numeric          numerical columns used in the experiments
+#   categorical      categorical columns used in the experiments
+#   drift_numeric    numerical columns that receive the controlled distribution drift
+#   drift_categorical  categorical columns whose category mix receives the controlled drift
+#   batch_size       records per batch (T1..T20)
+#   description / column_descriptions   semantic metadata given to the LLM rule generator (Section 8.3)
+#   semantic_defects realistic domain violations for the semantic-defect scenarios (Experiment 3b):
+#                    values that are impossible in the domain but not statistically unusual, or
+#                    plausible-looking codes/typos that are not valid. Verified absent from the clean data.
+#   importance       downstream importance I_i in [0, 1] for the risk score (Section 11); "_records"
+#                    is the record-level unit checked by the uniqueness rule. These are documented
+#                    judgement calls (1.0 = key business field, 0.5 = supporting field).
+
+datasets:
+
+  bts_airline:
+    name: "BTS Airline On-Time Performance, Jan-Jun 2024"
+    domain: Transportation
+    source: "https://www.transtats.bts.gov (Reporting Carrier On-Time Performance)"
+    license: "US Government work (public domain)"
+    loader: bts
+    files: ["**/On_Time_Reporting_Carrier_On_Time_Performance*.zip", "**/On_Time_Reporting_Carrier_On_Time_Performance*.csv"]
+    load_columns: [FlightDate, Reporting_Airline, Flight_Number_Reporting_Airline, Origin, Dest, OriginState,
+                   CRSDepTime, DepDelay, TaxiOut, AirTime, Distance, Cancelled, Diverted]
+    clean_filters: ["Cancelled == 0", "Diverted == 0"]   # cancelled/diverted flights have no delay or air time
+    key_columns: [FlightDate, Reporting_Airline, Flight_Number_Reporting_Airline, Origin, Dest, CRSDepTime]
+    numeric: [DepDelay, TaxiOut, AirTime, Distance]
+    categorical: [Reporting_Airline, Origin, OriginState]
+    drift_numeric: [DepDelay, TaxiOut, AirTime, Distance]
+    drift_categorical: [Reporting_Airline]
+    batch_size: 50000
+    importance: {DepDelay: 1.0, TaxiOut: 0.5, AirTime: 0.5, Distance: 0.5,
+                 Reporting_Airline: 1.0, Origin: 0.5, OriginState: 0.5, _records: 0.5}
+    description: "US domestic flights reported by certified carriers (non-cancelled, non-diverted), Jan-Jun 2024. One record per flight."
+    column_descriptions:
+      FlightDate: "Scheduled flight date"
+      Reporting_Airline: "Two-character IATA code of the reporting carrier"
+      Flight_Number_Reporting_Airline: "Flight number"
+      Origin: "Three-letter IATA code of the origin airport"
+      Dest: "Three-letter IATA code of the destination airport"
+      OriginState: "Two-letter US state or territory code of the origin airport"
+      CRSDepTime: "Scheduled departure time, local, HHMM"
+      DepDelay: "Departure delay in minutes; negative means early"
+      TaxiOut: "Taxi-out time in minutes"
+      AirTime: "Airborne time in minutes"
+      Distance: "Distance between airports in miles"
+    semantic_defects:
+      - {column: TaxiOut, uniform: [-10, -1], what: "negative taxi-out time"}
+      - {column: AirTime, uniform: [-60, 0], what: "zero or negative airborne time"}
+      - {column: Distance, uniform: [-400, 10], what: "negative or near-zero route distance"}
+      - {column: Reporting_Airline, values: [ZZ, XQ, QY], what: "well-formed but non-existent carrier code"}
+      - {column: Origin, values: [ZZZ, QQX, XQZ], what: "well-formed but non-existent airport code"}
+      - {column: OriginState, values: [XX, ZQ, QZ], what: "well-formed but non-existent state code"}
+
+  online_retail:
+    name: "UCI Online Retail II"
+    domain: E-commerce / Retail
+    source: "https://archive.ics.uci.edu/dataset/502/online+retail+ii"
+    license: "CC BY 4.0"
+    loader: retail
+    files: ["**/online_retail_II.xlsx", "**/online_retail_II.csv"]
+    clean_filters: ["~Invoice.str.startswith('C')", "Quantity > 0", "Price > 0"]   # drop cancellations/returns
+    key_columns: [Invoice, InvoiceDate]
+    numeric: [Quantity, Price]
+    categorical: [Country, StockCode]
+    drift_numeric: [Quantity, Price]
+    drift_categorical: [Country]
+    batch_size: 30000
+    importance: {Quantity: 1.0, Price: 1.0, Country: 0.5, StockCode: 0.5, _records: 1.0}   # duplicate lines = double billing
+    description: "Invoice lines of a UK-based online gift-ware retailer, Dec 2009 - Dec 2011 (sales only; cancellations and returns removed). One record per invoice line."
+    column_descriptions:
+      Invoice: "Six-digit invoice number"
+      InvoiceDate: "Invoice date and time"
+      StockCode: "Product code, usually five digits, sometimes followed by a letter"
+      Quantity: "Units sold on this invoice line"
+      Price: "Unit price in pounds sterling"
+      Country: "Customer's country"
+    semantic_defects:
+      - {column: Quantity, values: [0, -1, -2, -5, -10], what: "zero or negative quantity on a sales line"}
+      - {column: Price, uniform: [-5, -0.01], what: "negative unit price"}
+      - {column: Country, values: [Untied Kingdom, Frnace, Germny], what: "misspelled country"}
+      - {column: StockCode, values: ["99999Z", "00000", "1234567"], what: "well-formed but non-existent product code"}
+
+  chicago_food:
+    name: "City of Chicago Food Inspections"
+    domain: Public Health / Regulatory
+    source: "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5"
+    license: "City of Chicago Data Portal terms of use"
+    loader: chicago
+    files: ["**/Food_Inspections*.csv"]
+    clean_filters: []
+    key_columns: [Inspection ID, Inspection Date]
+    numeric: [Latitude, Longitude]
+    categorical: [Risk, Results, Facility Type]
+    # v2.1: coordinates have a physical domain, the city. Every method checks them against the city's bounding box
+    # (City of Chicago "Boundaries - City", qqq8-j68g; ingestion/geo.py) instead of a k-sigma range: a band around the
+    # mean position flags legitimate establishments at the city's edges (dev run 3 chronological replay: 99% of the
+    # sampled coordinate alarms were inside the city limits). Bounds rounded outwards to 4 decimals (about 10 m).
+    domain_ranges: {Latitude: [41.6445, 42.0231], Longitude: [-87.9402, -87.5241]}
+    # documented value domains (City of Chicago data portal, Food Inspections column descriptions): used ONLY to give
+    # chronological-replay alarms an objective verdict (experiments/v2/temporal_chicago.py), never by a monitor
+    documented_domains:
+      Risk: ["Risk 1 (High)", "Risk 2 (Medium)", "Risk 3 (Low)", "All"]
+      Results: ["Pass", "Pass w/ Conditions", "Fail", "Out of Business", "No Entry", "Not Ready", "Business Not Located"]
+    drift_numeric: []                 # coordinates: a location shift would not be a plausible legitimate change
+    drift_categorical: [Risk, Results]
+    batch_size: 10000
+    importance: {Latitude: 0.5, Longitude: 0.5, Risk: 1.0, Results: 1.0, "Facility Type": 0.5, _records: 0.5}
+    description: "Food establishment inspections by the City of Chicago Department of Public Health, 2010 onwards. One record per inspection."
+    column_descriptions:
+      Inspection ID: "Unique inspection identifier"
+      Inspection Date: "Date of the inspection"
+      Risk: "Risk category of the establishment"
+      Results: "Outcome of the inspection"
+      Facility Type: "Type of establishment"
+      Latitude: "Latitude of the establishment"
+      Longitude: "Longitude of the establishment"
+    semantic_defects:
+      - {column: Risk, values: ["Risk 4 (Very Low)", "Risk 1 (high)"], what: "non-existent or mis-cased risk category"}
+      - {column: Results, values: ["Pass w/ Conditons", "Passed"], what: "misspelled or non-standard result"}
+      - {column: Facility Type, values: [Resturant, Grocery stor], what: "misspelled facility type"}

@@ -1,0 +1,110 @@
+%% Adaptive and Cost-Aware Data Quality Monitoring for Evolving Data Pipelines
+%% Target venue: ACM Journal of Data and Information Quality (JDIQ), acmart / acmsmall.
+%% Format follows the official "ACM Journals Primary Article Template" on Overleaf.
+%% JDIQ is an ACM journal, so it uses the single-column journal layout and the Libertine typeface
+%% (two-column "sigconf" is the ACM conference-proceedings layout, not the journal layout).
+%%   Submission for review (what the template requires):   \documentclass[manuscript,screen,review]{acmart}
+%%   Double-anonymous review, if the journal asks for it:   \documentclass[manuscript,screen,review,anonymous]{acmart}
+%%   Published journal look (acmsmall, for proofreading):  \documentclass[acmsmall,screen]{acmart}
+\documentclass[manuscript,screen,review]{acmart}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
+\sisetup{group-separator={,},group-minimum-digits=4}
+\setlength{\emergencystretch}{2em}
+
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\acmJournal{JDIQ}
+\acmYear{2026}
+\acmVolume{1}
+\acmNumber{1}
+\acmArticle{1}
+\acmMonth{10}
+
+\newcommand{\pp}{\,pp}
+\makeatletter
+\newcommand\inputtable[1]{\@@input #1 }
+\makeatother
+
+\begin{document}
+
+\title{Adaptive and Cost-Aware Data Quality Monitoring for Evolving Data Pipelines}
+\subtitle{Separating Legitimate Drift from Degradation under a Frozen Evaluation Protocol}
+
+\author{Muzakkiruddin Ahmed Mohammed}
+\authornote{Both authors contributed equally to this research.}
+\email{mmohammed6@ualr.edu}
+\affiliation{%
+  \institution{University of Arkansas at Little Rock}
+  \city{Little Rock}
+  \state{Arkansas}
+  \country{USA}}
+
+\author{Ahsan Shahid}
+\authornotemark[2]
+\email{axshahid@ualr.edu}
+\affiliation{%
+  \institution{University of Arkansas at Little Rock}
+  \city{Little Rock}
+  \state{Arkansas}
+  \country{USA}}
+
+\author{Selimhan Dagtas}
+\email{sedagtas@ualr.edu}
+\affiliation{%
+  \institution{University of Arkansas at Little Rock}
+  \city{Little Rock}
+  \state{Arkansas}
+  \country{USA}}
+
+\author{John Talburt}
+\email{jrtalburt@ualr.edu}
+\affiliation{%
+  \institution{University of Arkansas at Little Rock}
+  \city{Little Rock}
+  \state{Arkansas}
+  \country{USA}}
+
+\author{Abdelrahman Elfikky}
+\email{aelfikky1@ualr.edu}
+\affiliation{%
+  \institution{University of Arkansas at Little Rock}
+  \city{Little Rock}
+  \state{Arkansas}
+  \country{USA}}
+
+\renewcommand{\shortauthors}{Mohammed et al.}
+
+\input{sections/00_abstract}
+
+%% CCS concepts: generate the CCSXML block at https://dl.acm.org/ccs before submission.
+\ccsdesc[500]{Information systems~Data cleaning}
+\ccsdesc[300]{Information systems~Extraction, transformation and loading}
+\ccsdesc[300]{Computing methodologies~Anomaly detection}
+
+\keywords{data quality monitoring, data validation, concept drift, adaptive thresholds, large language models, rule generation, risk-based validation, data pipelines}
+
+\maketitle
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_problem}
+\input{sections/04_method}
+\input{sections/05_design}
+\input{sections/06_results}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+\begin{acks}
+The rule-generation step of the method calls large language models (Claude Opus 5.5 and GPT-6 Astra through Amazon Bedrock), and the manual comparison rules were written by a third model (Llama 4 Maverick), as described in Sections~\ref{sec:method} and~\ref{sec:design}. Claude (Anthropic) was also used to assist with the experiment code and with drafting this manuscript. Codex was used to assist with language revision and figure-generation code for the present manuscript. The authors are responsible for verifying the code, experimental provenance, references, and final text.
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

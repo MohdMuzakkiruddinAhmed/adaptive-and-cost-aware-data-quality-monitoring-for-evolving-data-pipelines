@@ -1,0 +1,79 @@
+\section{Background and Related Work}
+\label{sec:related}
+
+This study draws on six connected areas: declarative data validation, history-aware validation, error detection and constraint discovery, distribution drift, LLM-based rule generation, and risk-based validation. Each area supplies a different kind of evidence about an incoming batch. A schema expresses expected structure, history describes previously observed behaviour, and domain rules express conditions that need not be recoverable from frequencies alone. Table~\ref{tab:positioning} summarises how these ideas inform the three research questions.
+
+\subsection{Quality Dimensions and Declarative Validation}
+
+Data quality is usually understood in relation to an intended use, rather than as a single property of a table. Foundational work distinguishes dimensions including accuracy, completeness, consistency and representational suitability~\cite{WangStrong1996,Batini2009,FanGeerts2012}. A monitor operationalises a subset of these dimensions through executable conditions: required values must be present, records must satisfy a specified uniqueness requirement, and values must belong to an accepted type or domain. Passing these checks establishes compliance with the chosen conditions; it does not establish that every recorded fact is correct. A valid inspection-result code, for example, can still describe an inspection inaccurately.
+
+Declarative validation separates such conditions from their physical execution. Deequ expresses constraints over Spark tables, translates the required measurements into aggregation queries, and supports incremental computation and anomaly detection over historical quality metrics~\cite{Schelter2018,Schelter2019}. Its constraint suggestions reduce initial authoring effort, while explicit constraints allow engineers to encode requirements that profiles cannot infer reliably. This distinction matters here because statistical expectations and physical limits have different reasons to change.
+
+TFDV combines descriptive statistics, schema inference and anomaly reporting, including comparisons between training, serving or successive data spans~\cite{Breck2019,Caveness2020}. Its schema can be reviewed and refined as data evolve. Data Sentinel illustrates declarative validation at production scale~\cite{Swami2020}. Deequ and TFDV already provide temporal and distributional monitoring capabilities; our comparison concerns their evaluated configurations and calibration choices, rather than an assumption that these frameworks only execute fixed rules.
+
+Tool surveys document differences in profiling, measurement and monitoring support~\cite{Ehrlinger2022}, while production-ML studies explain why validation is needed throughout a pipeline's lifecycle~\cite{Sculley2015,Breck2017,Polyzotis2018}. Within that broader setting, this paper asks how to adjust expectations and allocate checks while preserving the distinction between legitimate distribution change and increased rule violations.
+
+\subsection{History-Aware Validation}
+
+History-aware methods reduce the need to specify every expected property manually. Auto-Validate learns data-domain patterns for string columns using evidence from data lakes~\cite{SongHe2021}. Redyuk et al.\ represent batches by descriptive quality statistics and apply novelty detection to identify deviations from previously accepted partitions~\cite{Redyuk2021}. Their method also adapts to temporal changes, making it directly relevant to recurring ingestion. Shankar et al.\ study automatic and precise validation for machine-learning pipelines~\cite{Shankar2023}. Together, these approaches show that history can supply validation evidence when detailed domain specifications are unavailable.
+
+Auto-Validate-by-History (AVH) is particularly close to the present work~\cite{Tu2023}. It derives constraints from historical pipeline statistics and selects a set that balances coverage of generated errors against a false-positive budget. Its formulation recognises that retaining every plausible constraint can create an unacceptable aggregate alert rate. The AVH-inspired comparator used here follows a narrower historical-statistics design: it does not reproduce the published constraint-selection optimiser. Its results therefore characterise that local baseline under our four-class task, rather than the full AVH system.
+
+Historical learning depends on what the accepted history represents. Previous successful ingestion can be evidence of operational acceptability, but it is not an independent guarantee of correctness. If an error persists, a moving numerical range or a category set learned by recurrence may gradually accommodate it. Related observations in the data-poisoning literature show how contaminated observations can alter learned behaviour~\cite{Biggio2012,Steinhardt2017}; the persistence scenarios here do not require an adversarial source. RQ1 examines this dependence through fixed, rolling, robust, exponentially weighted and current-batch policies, with common replay inputs and explicit decision criteria.
+
+\subsection{Error Detection and Constraint Discovery}
+
+Error detection asks which records or cells violate the intended meaning of the data. Abedjan et al.\ show that detectors have different strengths across error families and that combining signals is important~\cite{Abedjan2016}. Raha configures multiple detection strategies using limited user supervision~\cite{Mahdavi2019}; Baran addresses correction using contextual representations and transfer learning~\cite{MahdaviAbedjan2020}; and HoloDetect learns error detectors from a small labelled set with data augmentation~\cite{Heidari2019}. Their supervision and output granularity differ from an unsupervised batch alarm, so their tasks should not be treated as interchangeable.
+
+Constraint discovery supplies another source of evidence. Functional dependencies capture relationships such as one attribute determining another~\cite{Papenbrock2015}; conditional functional dependencies restrict relationships to relevant subsets~\cite{Fan2008}; and denial constraints express combinations of values that should not coexist~\cite{Chu2013}. Such relations can expose errors that single-column ranges and category lists cannot detect. A city and a postal code may each be individually valid while their combination is inconsistent. Ilyas and Chu provide a broader treatment of how these signals support data cleaning~\cite{IlyasChu2019}.
+
+The connection here is twofold. First, the error-labelled Tax and Beers tables test whether monitoring rules transfer beyond the controlled injection process. They are datasets from the Raha benchmark collection, not evaluations of Raha itself. Second, the Tax experiment compares learned cross-column dependencies with structures proposed by an LLM. This separates the value of relational information from the source that proposes the rule. Since these benchmarks are replayed in shuffled batches, they assess error coverage and localisation rather than naturally occurring temporal drift.
+
+\subsection{Drift Detection}
+
+Concept-drift research studies changing data-generating processes and how detection or learning procedures should respond~\cite{Gama2014,Webb2016,Lu2019}. Adaptive-window methods compare observations over time~\cite{BifetGavalda2007}, while dataset-shift studies examine tests on features and representations~\cite{Rabanser2019}. Our monitor uses distribution distances on batch profiles: a quantile approximation related to Wasserstein distance for numerical columns~\cite{Ramdas2017}, and Jensen--Shannon divergence for categorical frequencies~\cite{Lin1991}.
+
+Distance choice and calibration answer different questions. A distance quantifies how much observed distributions differ; a threshold determines when that difference warrants an indication. Statistical process control supplies established historical baselines, including exponentially weighted moments~\cite{Roberts1959}. Median absolute deviation and interquartile fences provide robust alternatives when means and standard deviations poorly describe skewed data~\cite{Leys2013,Tukey1977}. Comparing calibrated versions is important because an apparent advantage can otherwise arise from different initial flag rates rather than adaptation.
+
+Distribution change does not, by itself, establish a quality decline. A valid seasonal shift and an upstream error can both alter a profile. A change preserving common summary statistics can also violate a domain condition. RQ1 therefore combines drift evidence with a separate rule-failure signal. The gate in Section~\ref{sec:method:drift} limits the influence of records that fail available checks before classification drift is scored. Its interpretation remains conditional on those checks: filtering is a practical separation mechanism, not proof that every retained observation is valid.
+
+\subsection{Rule Generation with Large Language Models}
+
+Foundation models have been investigated for data-wrangling tasks, including error detection and transformation~\cite{Narayan2022}. Recent work uses them to translate domain knowledge into executable validation conditions. These studies differ in what they supply to the model, how they verify proposals, and which outcomes define success.
+
+LeDQeR generates candidate rules from observed dirty tuples in the syntax of an existing data quality tool, then filters them for execution, correctness, coverage and redundancy~\cite{Glock2026}. It is close to the proposal-and-admission design considered here. The distinction is the evidence available to admission: our controlled-experiment candidates use descriptions and development examples, and are screened on a run's historical batches. A low historical flag rate establishes compatibility with those batches, rather than an independent correctness label.
+
+LLM-DQR combines database schemas, natural-language requirements and sample records to generate rules for electronic health records~\cite{Xie2025}. Its validation loop includes deduplication, sandbox execution and iterative debugging. The study illustrates the value of domain context for complex rule construction, while its clinical coverage measures are not directly comparable with our record-level FPR or injected semantic recall. Quality by Prompt translates stated requirements into Great Expectations rules using a fine-tuned model~\cite{Abughazala2026}. Its focus on requirement translation differs from discovering missing constraints from historical data.
+
+PrismaDV conditions test generation on downstream program code and dataset profiles, and uses task and test outcomes to adapt prompts through SIFTA~\cite{Chen2026}. It therefore already studies adaptive, task-aware validation. Our work examines a different mechanism: changing numerical ranges and category membership without downstream-task outcome supervision. SPADE synthesises and filters assertions using prompt-version histories and labelled outputs of LLM pipelines~\cite{Shankar2024SPADE}. Its assertion-selection problem is relevant to admission redundancy and coverage, although its generated-output setting differs from the tabular input batches evaluated here.
+
+These studies establish that model proposals require execution and validation evidence. RQ2 builds on this premise by testing the additional coverage of admitted rules, the admission screen, and category-domain judgements. It distinguishes the ability to suggest a useful constraint from the ability to preserve that constraint while learning from later batches. Offline rule generation and per-value category checking are also separate configurations; success in one does not establish the performance of the other.
+
+\subsection{Risk-Based Validation}
+
+Risk-based validation directs effort toward data problems with greater likelihood or downstream impact~\cite{FoidlFelderer2019}. This motivates using observed failures, distribution changes and field importance to decide which checks deserve immediate execution. RQ3 turns that principle into an evaluated scheduling policy and compares it with periodic and random schedules at matched standard-check execution rates.
+
+Selective execution and efficient execution address different costs. Sharing or incrementally computing metrics reduces work required by a check~\cite{Schelter2018}; scheduling avoids some checks altogether. A monitor that profiles every batch may retain substantial overhead even when optional checks are skipped. Accordingly, this study reports check counts, estimated bytes touched and phase-level runtime, including reuse of profile statistics. It also measures missed incidents, since a skipped check can withhold the evidence needed to raise its own future risk.
+
+\subsection{Positioning}
+
+The paper retains a focused objective: adaptive and cost-aware quality monitoring for evolving batch pipelines. Its components draw on established validation, drift and rule-generation ideas. The contribution lies in evaluating their behaviour together and separately under a common protocol, including conditions where benefits do not transfer. RQ1 tests adaptation and four-class labelling; RQ2 tests domain-rule coverage and category admission; and RQ3 tests the detection--cost trade-off. This positioning does not require a claim that earlier systems lack adaptation or that proposal filtering is itself new.
+
+\begin{table}[t]
+\caption{Position of this study relative to prior work. The third column identifies the connection examined here, rather than asserting that an entire research area has not addressed it.}
+\label{tab:positioning}
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.2\linewidth}p{0.24\linewidth}XX@{}}
+\toprule
+Line of work & Representative work & Connection to this study & Evaluated component \\
+\midrule
+Declarative validation & Deequ, TFDV, Data Sentinel & Explicit constraints and calibrated temporal comparisons & Rule execution; configured tool baselines \\
+History-aware validation & Auto-Validate, Redyuk et al., Shankar et al., AVH & Expectations learned from recurring batches & Threshold policies; AVH-inspired baseline \\
+Error detection and constraint discovery & Raha, Baran, HoloDetect, FD and CFD discovery & Complementary error signals and relational consistency & Error-labelled benchmarks; cross-column rules \\
+Drift detection & Gama et al., Lu et al., Rabanser et al. & Distribution change and its distinction from rule failure & Gated drift; four batch labels \\
+LLM rule generation & LeDQeR, LLM-DQR, Quality by Prompt, PrismaDV, SPADE & Candidate generation, filtering and domain context & Admission; semantic coverage; category guard \\
+Risk-based validation & Foidl and Felderer & Prioritising validation effort and accounting for overhead & Risk score; matched schedules; phase timing \\
+\bottomrule
+\end{tabularx}
+\end{table}
+

@@ -1,0 +1,360 @@
+{
+  "experiment_id": "exp5_ablation_20260927T160451+0000",
+  "date": "2026-09-27T16:04:51+00:00",
+  "datasets": {
+    "bts_airline": {
+      "name": "BTS Airline On-Time Performance, Jan-Jun 2024",
+      "batch_size": 50000
+    },
+    "online_retail": {
+      "name": "UCI Online Retail II",
+      "batch_size": 30000
+    },
+    "chicago_food": {
+      "name": "City of Chicago Food Inspections",
+      "batch_size": 10000
+    }
+  },
+  "dataset_version": "raw files listed in data/original/download_manifest.json",
+  "random_seed": 42,
+  "number_of_records": 7242300,
+  "injected_defects": {
+    "types": [
+      "missing",
+      "duplicate",
+      "invalid_category",
+      "outlier"
+    ],
+    "rates": {
+      "drift_none": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "drift_gradual": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.1,
+        0.12,
+        0.14,
+        0.16,
+        0.18,
+        0.2,
+        0.22,
+        0.24,
+        0.26,
+        0.28,
+        0.3
+      ],
+      "defects_baseline": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01
+      ],
+      "defects_degrading": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.03,
+        0.03,
+        0.03,
+        0.05,
+        0.05,
+        0.05,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ]
+    }
+  },
+  "drift_levels": {
+    "A_stable": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "B_drift": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.02,
+      0.04,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.14,
+      0.16,
+      0.18,
+      0.2,
+      0.22,
+      0.24,
+      0.26,
+      0.28,
+      0.3
+    ],
+    "C_degradation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "D_drift_degradation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.02,
+      0.04,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.14,
+      0.16,
+      0.18,
+      0.2,
+      0.22,
+      0.24,
+      0.26,
+      0.28,
+      0.3
+    ]
+  },
+  "rules_executed": 38431,
+  "parameters": {
+    "range_k": 3,
+    "adaptive": {
+      "history_window": 5,
+      "category_min_batches": 2
+    },
+    "classification": {
+      "calibration_z": 3
+    },
+    "warmup_batches": 5,
+    "n_batches": 20
+  },
+  "runtime_s": 165.99016480000046,
+  "detection_results": {
+    "ALL|1 Static": {
+      "precision": 0.3585800248094817,
+      "recall": 0.9998809523809524,
+      "f1": 0.5278581317113963,
+      "fpr": 0.05115404986191503
+    },
+    "ALL|2 LLM only": {
+      "precision": 0.9422076910365907,
+      "recall": 0.7730224867724867,
+      "f1": 0.8488269511826877,
+      "fpr": 0.0013543676465024778
+    },
+    "ALL|3 Adaptive": {
+      "precision": 0.49103694812650034,
+      "recall": 0.9956878306878307,
+      "f1": 0.6577135467635957,
+      "fpr": 0.029516891764082776
+    },
+    "ALL|4 Adaptive + Cost": {
+      "precision": 0.47717103942457206,
+      "recall": 0.927526455026455,
+      "f1": 0.630155267432482,
+      "fpr": 0.029066129459387885
+    },
+    "ALL|5 Full proposed system": {
+      "precision": 0.4687988999021569,
+      "recall": 0.9364836860670195,
+      "f1": 0.6248174181632096,
+      "fpr": 0.03034924778370471
+    },
+    "bts_airline|1 Static": {
+      "precision": 0.3015941404566997,
+      "recall": 1.0,
+      "f1": 0.4634227077126779,
+      "fpr": 0.06623084780388151
+    },
+    "bts_airline|2 LLM only": {
+      "precision": 0.9956280141884658,
+      "recall": 0.8027817460317461,
+      "f1": 0.886912560767868,
+      "fpr": 0.00010430144138009307
+    },
+    "bts_airline|3 Adaptive": {
+      "precision": 0.40491099188731905,
+      "recall": 1.0,
+      "f1": 0.5764222704861505,
+      "fpr": 0.04203370786516854
+    },
+    "bts_airline|4 Adaptive + Cost": {
+      "precision": 0.3887983757149578,
+      "recall": 0.9346666666666666,
+      "f1": 0.5491597740745273,
+      "fpr": 0.04202349336057201
+    },
+    "bts_airline|5 Full proposed system": {
+      "precision": 0.390252532141357,
+      "recall": 0.9404761904761904,
+      "f1": 0.5516123652644951,
+      "fpr": 0.04202689819543751
+    },
+    "chicago_food|1 Static": {
+      "precision": 0.46639460314816356,
+      "recall": 1.0,
+      "f1": 0.6361106378145056,
+      "fpr": 0.03272216547497447
+    },
+    "chicago_food|2 LLM only": {
+      "precision": 0.6350378360966887,
+      "recall": 0.705436507936508,
+      "f1": 0.6679375851227934,
+      "fpr": 0.011546929973896267
+    },
+    "chicago_food|3 Adaptive": {
+      "precision": 0.6111272939120302,
+      "recall": 0.9990476190476191,
+      "f1": 0.7583589372853786,
+      "fpr": 0.01818181818181818
+    },
+    "chicago_food|4 Adaptive + Cost": {
+      "precision": 0.5998014281895597,
+      "recall": 0.9349404761904762,
+      "f1": 0.7307790727429222,
+      "fpr": 0.017841334695267278
+    },
+    "chicago_food|5 Full proposed system": {
+      "precision": 0.483041954515216,
+      "recall": 0.9596031746031746,
+      "f1": 0.6426089229606226,
+      "fpr": 0.029372375439791168
+    },
+    "online_retail|1 Static": {
+      "precision": 0.4705431858936043,
+      "recall": 0.9996428571428572,
+      "f1": 0.6398851859378174,
+      "fpr": 0.032170014754284416
+    },
+    "online_retail|2 LLM only": {
+      "precision": 0.9981150609286643,
+      "recall": 0.745952380952381,
+      "f1": 0.8538044897634757,
+      "fpr": 4.029054590852344e-05
+    },
+    "online_retail|3 Adaptive": {
+      "precision": 0.694300662713638,
+      "recall": 0.9873809523809524,
+      "f1": 0.8153020684005734,
+      "fpr": 0.012433889456361367
+    },
+    "online_retail|4 Adaptive + Cost": {
+      "precision": 0.699639713595111,
+      "recall": 0.9131547619047619,
+      "f1": 0.7922637952849433,
+      "fpr": 0.011212121212121211
+    },
+    "online_retail|5 Full proposed system": {
+      "precision": 0.7016894901333174,
+      "recall": 0.9221230158730159,
+      "f1": 0.796944261058191,
+      "fpr": 0.01121212121212121
+    }
+  },
+  "cost": {
+    "total_rule_runtime_ms": 63546.167400012564,
+    "records_scanned": 65180700,
+    "cloud_cost": "not measured (local run)"
+  },
+  "output_paths": {
+    "batch_results": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\raw\\exp5_batch_results.csv",
+    "table": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\tables\\exp5_ablation.csv",
+    "figures": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\figures"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.0.5",
+    "git_commit": null
+  }
+}

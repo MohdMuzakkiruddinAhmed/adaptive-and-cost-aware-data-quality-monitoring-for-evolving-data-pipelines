@@ -1,0 +1,144 @@
+{
+  "dataset": "chicago_food",
+  "run": 1,
+  "model_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+  "mock": false,
+  "prompt_hash": "aab3bc871a85a08f",
+  "created_at": "2026-10-19T07:14:02+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 616,
+  "output_tokens": 849,
+  "cost_usd": 0.00107475,
+  "prompt": "Dataset: City of Chicago Food Inspections\nDomain: Public Health / Regulatory\nSource: https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5\nDescription: Food establishment inspections by the City of Chicago Department of Public Health, 2010 onwards. One record per inspection.\n\nColumns to validate:\n  Latitude (numeric): Latitude of the establishment\n  Longitude (numeric): Longitude of the establishment\n  Risk (text / categorical): Risk category of the establishment\n  Results (text / categorical): Outcome of the inspection\n  Facility Type (text / categorical): Type of establishment\nIdentifying columns (not validated): Inspection ID, Inspection Date\n\nWrite the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\"rules\": [\n  {\n    \"column\": \"Latitude\",\n    \"rule_type\": \"range\",\n    \"min\": 41.644,\n    \"max\": 42.023,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Latitude must be within the range of Chicago's latitude\",\n    \"provenance\": \"Chicago's geographical coordinates\"\n  },\n  {\n    \"column\": \"Longitude\",\n    \"rule_type\": \"range\",\n    \"min\": -87.94,\n    \"max\": -87.52,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Longitude must be within the range of Chicago's longitude\",\n    \"provenance\": \"Chicago's geographical coordinates\"\n  },\n  {\n    \"column\": \"Risk\",\n    \"rule_type\": \"category\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": [\"Risk 1 (High)\", \"Risk 2 (Medium)\", \"Risk 3 (Low)\"],\n    \"pattern\": null,\n    \"condition\": \"Risk category must be one of the predefined categories\",\n    \"provenance\": \"Typical risk categorization used by health departments\"\n  },\n  {\n    \"column\": \"Results\",\n    \"rule_type\": \"category\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": [\"Pass\", \"Pass w/ Conditions\", \"Fail\"],\n    \"pattern\": null,\n    \"condition\": \"Inspection result must be one of the predefined outcomes\",\n    \"provenance\": \"Typical inspection outcomes used by health departments\"\n  },\n  {\n    \"column\": \"Facility Type\",\n    \"rule_type\": \"completeness\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Facility type must not be missing\",\n    \"provenance\": \"Data dictionary and common data quality practices\"\n  },\n  {\n    \"column\": \"Facility Type\",\n    \"rule_type\": \"pattern\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": \"^[a-zA-Z0-9 /&-]+$\",\n    \"condition\": \"Facility type must match a typical pattern for establishment types\",\n    \"provenance\": \"Common patterns for text fields describing establishment types\"\n  },\n  {\n    \"column\": \"_records\",\n    \"rule_type\": \"uniqueness\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Each inspection must be unique\",\n    \"provenance\": \"Data description stating one record per inspection\"\n  },\n  {\n    \"column\": \"Latitude\",\n    \"rule_type\": \"completeness\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Latitude must not be missing\",\n    \"provenance\": \"Data dictionary and common data quality practices\"\n  },\n  {\n    \"column\": \"Longitude\",\n    \"rule_type\": \"completeness\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Longitude must not be missing\",\n    \"provenance\": \"Data dictionary and common data quality practices\"\n  },\n  {\n    \"column\": \"Latitude\",\n    \"rule_type\": \"type\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Latitude must be numeric\",\n    \"provenance\": \"Data type specified in the data dictionary\"\n  },\n  {\n    \"column\": \"Longitude\",\n    \"rule_type\": \"type\",\n    \"min\": null,\n    \"max\": null,\n    \"allowed_values\": null,\n    \"pattern\": null,\n    \"condition\": \"Longitude must be numeric\",\n    \"provenance\": \"Data type specified in the data dictionary\"\n  }\n]}",
+  "rules": [
+    {
+      "column": "Latitude",
+      "rule_type": "range",
+      "min": 41.644,
+      "max": 42.023,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Latitude must be within the range of Chicago's latitude",
+      "provenance": "Chicago's geographical coordinates"
+    },
+    {
+      "column": "Longitude",
+      "rule_type": "range",
+      "min": -87.94,
+      "max": -87.52,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Longitude must be within the range of Chicago's longitude",
+      "provenance": "Chicago's geographical coordinates"
+    },
+    {
+      "column": "Risk",
+      "rule_type": "category",
+      "min": null,
+      "max": null,
+      "allowed_values": [
+        "Risk 1 (High)",
+        "Risk 2 (Medium)",
+        "Risk 3 (Low)"
+      ],
+      "pattern": null,
+      "condition": "Risk category must be one of the predefined categories",
+      "provenance": "Typical risk categorization used by health departments"
+    },
+    {
+      "column": "Results",
+      "rule_type": "category",
+      "min": null,
+      "max": null,
+      "allowed_values": [
+        "Pass",
+        "Pass w/ Conditions",
+        "Fail"
+      ],
+      "pattern": null,
+      "condition": "Inspection result must be one of the predefined outcomes",
+      "provenance": "Typical inspection outcomes used by health departments"
+    },
+    {
+      "column": "Facility Type",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Facility type must not be missing",
+      "provenance": "Data dictionary and common data quality practices"
+    },
+    {
+      "column": "Facility Type",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^[a-zA-Z0-9 /&-]+$",
+      "condition": "Facility type must match a typical pattern for establishment types",
+      "provenance": "Common patterns for text fields describing establishment types"
+    },
+    {
+      "column": "_records",
+      "rule_type": "uniqueness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Each inspection must be unique",
+      "provenance": "Data description stating one record per inspection"
+    },
+    {
+      "column": "Latitude",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Latitude must not be missing",
+      "provenance": "Data dictionary and common data quality practices"
+    },
+    {
+      "column": "Longitude",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Longitude must not be missing",
+      "provenance": "Data dictionary and common data quality practices"
+    },
+    {
+      "column": "Latitude",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Latitude must be numeric",
+      "provenance": "Data type specified in the data dictionary"
+    },
+    {
+      "column": "Longitude",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Longitude must be numeric",
+      "provenance": "Data type specified in the data dictionary"
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "prompt": "aab3bc871a85a08f",
+    "author_code": "4712ffdc07ac2cfe",
+    "key": "30a6e37aff87"
+  },
+  "temperature": 0.0,
+  "max_tokens": 8000,
+  "system_prompt_hash": "3257ed6ec2b36651"
+}

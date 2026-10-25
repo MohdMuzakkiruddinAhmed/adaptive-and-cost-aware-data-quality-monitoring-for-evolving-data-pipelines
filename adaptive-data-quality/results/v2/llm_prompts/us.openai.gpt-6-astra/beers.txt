@@ -1,0 +1,59 @@
+Dataset: beers
+Description: US craft beers: serving size in ounces, alcohol by volume, bitterness, style, brewery location.
+Batch size: about 500 records. Statistics below come from a training sample of earlier batches.
+The records also contain identifying columns (id, beer_name, brewery_id, brewery_name); together with the columns below they make up the whole record.
+
+Column: ounces
+  description: n/a
+  type: numerical
+  missing: 100% of records
+  statistics: min null, max null, mean null, median null, std null, unique values 0
+  quantiles: 
+  example values: 
+
+Column: abv
+  description: n/a
+  type: numerical
+  missing: 33.4% of records
+  statistics: min 0.035, max 0.099, mean 0.0592132, median 0.056, std 0.0134, unique values 55
+  quantiles: p01 0.03932, p05 0.043, p10 0.045, p20 0.049, p25 0.05, p30 0.05, p40 0.0528, p50 0.056, p60 0.06, p70 0.065, p75 0.065, p80 0.069, p90 0.0798, p95 0.0888, p99 0.099
+  example values: 0.047, 0.077, 0.063, 0.05, 0.059, 0.065, 0.051, 0.038, 0.088, 0.065, 0.06, 0.055, 0.051, 0.043, 0.05
+
+Column: ibu
+  description: n/a
+  type: numerical
+  missing: 41.6% of records
+  statistics: min 4, max 120, mean 42.8356, median 35, std 25.9431, unique values 78
+  quantiles: p01 7.73, p05 11.55, p10 16, p20 20, p25 21, p30 23, p40 29, p50 35, p60 45, p70 57.1, p75 61.25, p80 65, p90 75, p95 98.45, p99 110.45
+  example values: 25, 26, 45, 18, 20, 20, 29, 32, 74, 55, 43, 85, 30, 15, 38
+
+Column: style
+  description: n/a
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 77
+  most common values (share of records): American IPA (18.200%), American Pale Ale (APA) (9.000%), American Blonde Ale (5.200%), American Amber / Red Ale (4.800%), American Double / Imperial IPA (4.200%), American Pale Wheat Ale (3.400%), American Brown Ale (3.200%), Witbier (2.600%), Hefeweizen (2.600%), Fruit / Vegetable Beer (2.400%), Saison / Farmhouse Ale (2.000%), Cider (1.800%), Belgian Pale Ale (1.800%), Cream Ale (1.600%), American Porter (1.600%), German Pilsener (1.600%), American Pilsner (1.400%), American Stout (1.400%), Scottish Ale (1.400%), American Black Ale (1.200%)
+  example values: Radler, American IPA, American Blonde Ale, American Blonde Ale, American White IPA, Scottish Ale, Tripel, American Pale Lager, English Strong Ale, American IPA, Herbed / Spiced Beer, American Pale Ale (APA), American Black Ale, American IPA, American Amber / Red Ale
+
+Column: city
+  description: n/a
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 244
+  most common values (share of records): Portland (2.600%), Grand Rapids (2.600%), Brooklyn (2.200%), Seattle (2.200%), Denver (2.200%), Chicago (2.200%), Austin (2.000%), Indianapolis (1.800%), Tampa (1.600%), Longmont (1.600%), Manhattan (1.400%), Boulder (1.200%), Aurora (1.200%), Davenport (1.200%), San Diego (1.200%), Boise (1.200%), San Francisco (1.000%), San Antonio (1.000%), Hilo (1.000%), Stevens Point (1.000%)
+  example values: Gloucester MA, Denver, Eau Claire, San Diego, Springdale, Dolores, Denver, Michigan City, Warrenville, Middleton, Marietta, Menominie, Philadelphia, Cincinnati, Bozeman
+
+Column: state
+  description: n/a
+  type: categorical
+  missing: 4.6% of records
+  number of distinct values: 48
+  most common values (share of records): CO (10.692%), MI (7.338%), TX (7.128%), CA (6.080%), IN (5.031%), OR (5.031%), NY (4.193%), PA (4.193%), WI (4.193%), WA (3.564%), IL (3.354%), FL (2.935%), NC (2.725%), ID (2.516%), MA (2.306%), KS (1.887%), HI (1.887%), MO (1.677%), AZ (1.677%), IA (1.677%)
+  example values: SC, KS, NM, WA, MT, PA, WI, PA, IN, NY, WI, MI, PA, IN, NY
+
+Values of numeric columns that are not plain numbers:
+Column ounces: 100.0% of the non-missing values are not plain numbers, e.g. "16.0 oz", "16.0 ounce", "16.0 ounce", "12.0 ounce", "12.0 oz", "16.0 oz", "12.0 OZ.", "12.0 ounce", "12.0 oz.", "12.0 ounce", "16.0 oz", "12.0 oz.", "12.0 OZ.", "12.0 oz", "12.0 ounce"
+Column abv: 30.8% of the non-missing values are not plain numbers, e.g. "0.027000000000000003%", "0.054000000000000006%", "0.08%", "0.038%", "0.055%", "0.04%", "0.045%", "0.069%", "0.076%", "0.099%", "0.046%", "0.07%", "0.068%", "0.055%", "0.069%"
+Column ibu: 41.6% of the non-missing values are not plain numbers, e.g. "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A"
+
+Propose the validation rules for the columns above (and for whole records where useful). Return JSON only.

@@ -1,0 +1,116 @@
+{
+  "dataset": "online_retail",
+  "run": 4,
+  "model_id": "us.openai.gpt-6-astra",
+  "mock": false,
+  "prompt_hash": "acf9d98841785e17",
+  "created_at": "2026-10-04T15:10:40+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 2,
+  "output_tokens": 810,
+  "cost_usd": 0.044572,
+  "prompt": "Dataset: UCI Online Retail II\nDescription: Invoice lines of a UK-based online gift-ware retailer, Dec 2009 - Dec 2011 (sales only; cancellations and returns removed). One record per invoice line.\nBatch size: about 30,000 records. Statistics below come from a training sample of earlier batches.\nThe records also contain identifying columns (Invoice, InvoiceDate); together with the columns below they make up the whole record.\n\nColumn: Quantity\n  description: Units sold on this invoice line\n  type: numerical\n  missing: 0% of records\n  statistics: min 1, max 4800, mean 10.6104, median 4, std 52.1426, unique values 130\n  quantiles: p01 1, p05 1, p10 1, p20 1, p25 1, p30 2, p40 2, p50 4, p60 6, p70 8, p75 11, p80 12, p90 24, p95 30, p99 100\n  example values: 1, 1, 12, 2, 6, 1, 3, 2, 1, 3, 2, 4, 1, 2, 12\n\nColumn: Price\n  description: Unit price in pounds sterling\n  type: numerical\n  missing: 0% of records\n  statistics: min 0.001, max 5795.87, mean 3.90623, median 2.1, std 36.4396, unique values 365\n  quantiles: p01 0.29, p05 0.42, p10 0.65, p20 0.95, p25 1.25, p30 1.25, p40 1.65, p50 2.1, p60 2.95, p70 3.75, p75 4.13, p80 4.95, p90 7.95, p95 9.95, p99 18\n  example values: 0.85, 1.7, 2.46, 2.95, 5.45, 1.25, 0.85, 0.83, 0.21, 3.75, 1.65, 1.65, 4.21, 1.25, 2.55\n\nColumn: Country\n  description: Customer's country\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 38\n  most common values (share of records): United Kingdom (91.923%), Germany (1.677%), EIRE (1.663%), France (1.363%), Netherlands (0.557%), Spain (0.360%), Belgium (0.323%), Switzerland (0.310%), Portugal (0.270%), Channel Islands (0.197%), Cyprus (0.153%), Sweden (0.150%), Italy (0.130%), Norway (0.123%), Denmark (0.107%), Finland (0.083%), Greece (0.080%), Unspecified (0.063%), Singapore (0.060%), Austria (0.057%)\n  example values: United Kingdom, United Kingdom, United Kingdom, France, United Kingdom, United Kingdom, United Kingdom, Germany, United Kingdom, Norway, United Kingdom, United Kingdom, United Kingdom, United Kingdom, Lebanon\n\nColumn: StockCode\n  description: Product code, usually five digits, sometimes followed by a letter\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 3641\n  most common values (share of records): 85123A (0.543%), 22423 (0.397%), 85099B (0.360%), 21212 (0.327%), 84879 (0.273%), 20725 (0.263%), 21232 (0.263%), 22197 (0.260%), 22382 (0.260%), 22086 (0.257%), 22386 (0.253%), 22469 (0.253%), 22384 (0.250%), 47566 (0.243%), 21931 (0.243%), 20914 (0.243%), 20727 (0.237%), 22139 (0.237%), 82482 (0.227%), 22457 (0.220%)\n  example values: 85099F, 22750, 21905, 22380, 22601, 84050, 22748, 22221, 20676, 22474, 48173C, 37448, 23406, 21807, 22897\n\nPropose the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\n  \"rules\": [\n    {\n      \"column\": \"Quantity\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Quantity must not be missing.\",\n      \"reason\": \"Each sales invoice line must specify the number of units sold.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"Quantity\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Quantity must be numeric.\",\n      \"reason\": \"Quantity represents a measurable count of units sold.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"Quantity\",\n      \"rule_type\": \"range\",\n      \"min\": 1,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Quantity must be at least 1.\",\n      \"reason\": \"Sales-only lines require positive unit quantities. No upper limit is imposed because legitimate bulk orders can exceed historical quantities.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"Price\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Price must not be missing.\",\n      \"reason\": \"A unit price is required to interpret the monetary value of a sales line.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"column\": \"Price\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Price must be numeric.\",\n      \"reason\": \"Price is a monetary amount in pounds sterling.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"Price\",\n      \"rule_type\": \"range\",\n      \"min\": 0,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Price must be nonnegative.\",\n      \"reason\": \"Negative unit prices are inconsistent with sales-only lines. Zero allows legitimate free items; no historical upper bound or decimal-precision restriction is imposed.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"column\": \"Country\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Country must not be missing.\",\n      \"reason\": \"Country is consistently populated, with an explicit 'Unspecified' value available for unknown locations. New countries and existing naming conventions should remain valid.\",\n      \"confidence\": 0.97\n    },\n    {\n      \"column\": \"StockCode\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"StockCode must not be missing.\",\n      \"reason\": \"Each invoice line needs an item code. The usual five-digit format is not universal, so special codes and new products should not be rejected.\",\n      \"confidence\": 0.99\n    }\n  ]\n}",
+  "rules": [
+    {
+      "column": "Quantity",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must not be missing.",
+      "reason": "Each sales invoice line must specify the number of units sold.",
+      "confidence": 0.99
+    },
+    {
+      "column": "Quantity",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must be numeric.",
+      "reason": "Quantity represents a measurable count of units sold.",
+      "confidence": 1.0
+    },
+    {
+      "column": "Quantity",
+      "rule_type": "range",
+      "min": 1,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must be at least 1.",
+      "reason": "Sales-only lines require positive unit quantities. No upper limit is imposed because legitimate bulk orders can exceed historical quantities.",
+      "confidence": 0.99
+    },
+    {
+      "column": "Price",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must not be missing.",
+      "reason": "A unit price is required to interpret the monetary value of a sales line.",
+      "confidence": 0.99
+    },
+    {
+      "column": "Price",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must be numeric.",
+      "reason": "Price is a monetary amount in pounds sterling.",
+      "confidence": 1.0
+    },
+    {
+      "column": "Price",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must be nonnegative.",
+      "reason": "Negative unit prices are inconsistent with sales-only lines. Zero allows legitimate free items; no historical upper bound or decimal-precision restriction is imposed.",
+      "confidence": 0.98
+    },
+    {
+      "column": "Country",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Country must not be missing.",
+      "reason": "Country is consistently populated, with an explicit 'Unspecified' value available for unknown locations. New countries and existing naming conventions should remain valid.",
+      "confidence": 0.97
+    },
+    {
+      "column": "StockCode",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "StockCode must not be missing.",
+      "reason": "Each invoice line needs an item code. The usual five-digit format is not universal, so special codes and new products should not be rejected.",
+      "confidence": 0.99
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "5a806588783054ff",
+    "prompt": "acf9d98841785e17",
+    "llm_settings": "ce15f35afa9bf847",
+    "generator_code": "36be4bbf49975e7c",
+    "key": "44a569f82d70"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "55c94eee898d3465"
+}

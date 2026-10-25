@@ -1,0 +1,62 @@
+Dataset: BTS Airline On-Time Performance, Jan-Jun 2024
+Description: US domestic flights reported by certified carriers (non-cancelled, non-diverted), Jan-Jun 2024. One record per flight.
+Batch size: about 50,000 records. Statistics below come from a training sample of earlier batches.
+The records also contain identifying columns (FlightDate, Flight_Number_Reporting_Airline, Dest, CRSDepTime); together with the columns below they make up the whole record.
+
+Column: DepDelay
+  description: Departure delay in minutes; negative means early
+  type: numerical
+  missing: 0% of records
+  statistics: min -29, max 1516, mean 13.8536, median -2, std 56.4569, unique values 510
+  quantiles: p01 -13, p05 -10, p10 -8, p20 -6, p25 -5, p30 -5, p40 -3, p50 -2, p60 0, p70 6, p75 11, p80 18, p90 48, p95 88, p99 220
+  example values: -5, 27, -9, -2, -4, 14, 3, -3, -5, 45, -7, 1, 127, -8, 8
+
+Column: TaxiOut
+  description: Taxi-out time in minutes
+  type: numerical
+  missing: 0% of records
+  statistics: min 1, max 168, mean 17.9852, median 15, std 9.68902, unique values 131
+  quantiles: p01 7, p05 9, p10 10, p20 12, p25 12, p30 13, p40 14, p50 15, p60 17, p70 19, p75 21, p80 22, p90 28, p95 35, p99 55
+  example values: 30, 12, 16, 15, 19, 17, 24, 17, 18, 19, 21, 14, 16, 15, 10
+
+Column: AirTime
+  description: Airborne time in minutes
+  type: numerical
+  missing: 0% of records
+  statistics: min 15, max 649, mean 115.059, median 99, std 67.9697, unique values 412
+  quantiles: p01 26, p05 38, p10 46, p20 58.8, p25 64, p30 71, p40 85, p50 99, p60 117, p70 135, p75 145, p80 158, p90 208, p95 259, p99 334
+  example values: 96, 234, 48, 159, 177, 53, 121, 93, 64, 53, 31, 35, 116, 97, 289
+
+Column: Distance
+  description: Distance between airports in miles
+  type: numerical
+  missing: 0% of records
+  statistics: min 61, max 4983, mean 825.043, median 683, std 564.083, unique values 1397
+  quantiles: p01 106, p05 190, p10 241, p20 353, p25 404, p30 449, p40 583, p50 683, p60 850, p70 989, p75 1066, p80 1182, p90 1598, p95 2079, p99 2565
+  example values: 551, 920, 1416, 293, 204, 950, 391, 612, 973, 447, 1500, 125, 2554, 500, 301
+
+Column: Reporting_Airline
+  description: Two-character IATA code of the reporting carrier
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 13
+  most common values (share of records): WN (21.086%), DL (14.784%), AA (14.758%), UA (10.782%), OO (10.464%), YX (4.350%), MQ (4.010%), NK (3.900%), B6 (3.814%), OH (3.242%), F9 (3.062%), 9E (2.992%), AS (2.756%)
+  example values: OH, OO, UA, WN, WN, AA, WN, OO, B6, 9E, YX, OH, WN, OO, AA
+
+Column: Origin
+  description: Three-letter IATA code of the origin airport
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 291
+  most common values (share of records): ATL (5.192%), DEN (4.570%), DFW (4.484%), ORD (4.054%), CLT (3.308%), PHX (2.930%), LAX (2.910%), LAS (2.886%), MCO (2.576%), LGA (2.410%), SEA (2.404%), DCA (2.218%), BOS (2.014%), DTW (1.996%), SFO (1.988%), MSP (1.888%), EWR (1.860%), JFK (1.810%), IAH (1.776%), MIA (1.708%)
+  example values: MSP, MSN, LAS, CAE, LIT, CLE, CLT, JFK, DFW, SFO, SJC, PHL, LBB, MFR, LGA
+
+Column: OriginState
+  description: Two-letter US state or territory code of the origin airport
+  type: categorical
+  missing: 0% of records
+  number of distinct values: 50
+  most common values (share of records): TX (11.056%), CA (10.856%), FL (9.606%), GA (5.570%), IL (5.450%), NY (5.426%), CO (5.120%), NC (4.692%), VA (3.626%), AZ (3.298%), NV (3.210%), WA (2.784%), MI (2.472%), PA (2.324%), MA (2.094%), TN (2.034%), MN (1.990%), NJ (1.930%), UT (1.702%), OH (1.492%)
+  example values: AZ, IL, NY, FL, CO, CA, TX, MA, FL, NY, GA, NJ, VA, NY, CA
+
+Propose the validation rules for the columns above (and for whole records where useful). Return JSON only.

@@ -1,0 +1,61 @@
+[sensitivity] 30 unit(s) to run (test, jobs=4)
+[sensitivity] done bts_airline seed 1001
+[sensitivity] done bts_airline seed 1003
+[sensitivity] done bts_airline seed 1002
+[sensitivity] done bts_airline seed 1004
+[sensitivity] done bts_airline seed 1005
+[sensitivity] done bts_airline seed 1006
+[sensitivity] done bts_airline seed 1007
+[sensitivity] done bts_airline seed 1008
+[sensitivity] done online_retail seed 1001
+[sensitivity] done online_retail seed 1002
+[sensitivity] done bts_airline seed 1009
+[sensitivity] done bts_airline seed 1010
+[sensitivity] done online_retail seed 1003
+[sensitivity] done online_retail seed 1004
+[sensitivity] done online_retail seed 1005
+[sensitivity] done online_retail seed 1006
+[sensitivity] done online_retail seed 1007
+[sensitivity] done online_retail seed 1008
+[sensitivity] done chicago_food seed 1001
+[sensitivity] done chicago_food seed 1002
+[sensitivity] done online_retail seed 1009
+[sensitivity] done online_retail seed 1010
+[sensitivity] done chicago_food seed 1003
+[sensitivity] done chicago_food seed 1004
+[sensitivity] done chicago_food seed 1005
+[sensitivity] done chicago_food seed 1006
+[sensitivity] done chicago_food seed 1007
+[sensitivity] done chicago_food seed 1008
+[sensitivity] done chicago_food seed 1009
+[sensitivity] done chicago_food seed 1010
+                                                          claim       dataset  settings  holds  holds_at_default                                                                                                                                                                                                                                                                                                        fails_in
+                C1 H1a: adaptive FPR < fixed_pooled under drift   bts_airline        14     14              True                                                                                                                                                                                                                                                                                                                
+                C1 H1a: adaptive FPR < fixed_pooled under drift  chicago_food        14     14              True                                                                                                                                                                                                                                                                                                                
+                C1 H1a: adaptive FPR < fixed_pooled under drift online_retail        14      0             False default: default; defect_rate: 10%; defect_rate: 20%; defect_rate: 3%; defect_rate: 5%; history_window: window 10; history_window: window 3; history_window: window 8; outlier_sigma: 3-5 sd (mild); outlier_sigma: 5-8 sd; outlier_sigma: 8-12 sd (severe); range_k: k = 2.5; range_k: k = 3.5; range_k: k = 4
+        C2 H1a: recall non-inferior to fixed_pooled under drift   bts_airline        14     14              True                                                                                                                                                                                                                                                                                                                
+        C2 H1a: recall non-inferior to fixed_pooled under drift  chicago_food        14     14              True                                                                                                                                                                                                                                                                                                                
+        C2 H1a: recall non-inferior to fixed_pooled under drift online_retail        14     13              True                                                                                                                                                                                                                                                                                    outlier_sigma: 3-5 sd (mild)
+C3 adaptive FPR <= best calibrated rolling baseline under drift   bts_airline        14     14              True                                                                                                                                                                                                                                                                                                                
+C3 adaptive FPR <= best calibrated rolling baseline under drift  chicago_food        14     14              True                                                                                                                                                                                                                                                                                                                
+C3 adaptive FPR <= best calibrated rolling baseline under drift online_retail        14      0             False default: default; defect_rate: 10%; defect_rate: 20%; defect_rate: 3%; defect_rate: 5%; history_window: window 10; history_window: window 3; history_window: window 8; outlier_sigma: 3-5 sd (mild); outlier_sigma: 5-8 sd; outlier_sigma: 8-12 sd (severe); range_k: k = 2.5; range_k: k = 3.5; range_k: k = 4
+                C4 H1b: proposed macro-F1 >= gated_fixed_pooled   bts_airline         9      9              True                                                                                                                                                                                                                                                                                                                
+                C4 H1b: proposed macro-F1 >= gated_fixed_pooled  chicago_food         9      9              True                                                                                                                                                                                                                                                                                                                
+                C4 H1b: proposed macro-F1 >= gated_fixed_pooled online_retail         9      0             False                                                                                         calibration_z: z = 2; calibration_z: z = 2.5; calibration_z: z = 3.5; calibration_z: z = 4; default: default; drift_alpha: alpha = 0.01; drift_alpha: alpha = 0.025; drift_alpha: alpha = 0.1; drift_alpha: alpha = 0.2
+   C5 H3: risk selection useful in sustained degradation (C, D)   bts_airline        23     23              True                                                                                                                                                                                                                                                                                                                
+   C5 H3: risk selection useful in sustained degradation (C, D)  chicago_food        23     23              True                                                                                                                                                                                                                                                                                                                
+   C5 H3: risk selection useful in sustained degradation (C, D) online_retail        23     22              True                                                                                                                                                                                                                                                                                 risk_thresholds: moderate = 0.1
+[figures] 13 written to /Users/as/Documents/Phd Stuff/Adaptve-Data-Quality/DataQuality/adaptive-data-quality/results/figures/v2/test and /Users/as/Documents/Phd Stuff/Adaptve-Data-Quality/DataQuality/paper/figures/v2
+  h1a_fpr_over_time.png / .pdf
+  h1a_paired_differences.png / .pdf
+  h1b_macro_f1.png / .pdf
+  h1b_confusion.png / .pdf
+  h2a_semantic_recall.png / .pdf
+  h2b_category_guard.png / .pdf
+  h3_cost_detection.png / .pdf
+  h3_runtime_phases.png / .pdf
+  ablation_main_effects.png / .pdf
+  external_tax.png / .pdf
+  chicago_temporal.png / .pdf
+  chicago_facility_type_adjudication.png / .pdf
+  sensitivity_claims.png / .pdf

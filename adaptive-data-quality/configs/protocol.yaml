@@ -1,0 +1,329 @@
+# Confirmatory evaluation protocol (v2). Manuscript Sections 3, 6 and the supervisor's seven experiments.
+#
+# Everything the v2 experiments need beyond configs/experiment.yaml lives here. experiment.yaml keeps the
+# method's own settings (k = 3, window 5, risk weights, LLM model, validation tolerance); this file adds the
+# evaluation design: record splits, seeds, scenarios, baselines, schedulers, statistics and decision criteria.
+#
+# FREEZING. Tune and debug only with split "dev" (dev seeds, dev records). Before any confirmatory run set
+# protocol.frozen: true. The v2 runners refuse to use split "test" while frozen is false, and every test
+# run records the SHA-256 of this file, experiment.yaml, datasets.yaml and manual_rules.yaml, so any change
+# made after freezing is visible in the run manifest.
+
+protocol:
+  version: "v2.2"                # v2.1: docs/CHANGES_v2.1.md; v2.2 (final, frozen for testing): docs/CHANGES_v2.2.md
+  frozen: true                  # frozen 20 Oct 2026 after dev run 5 (docs/CHANGES_v2.2.md); do not edit configs after this
+  results_dir: results/v2       # all v2 outputs; proof-of-concept results stay in results/
+  materialize_batches: false    # true = also write every generated batch to data/v2/batches (large)
+
+# ---------------------------------------------------------------------------------------------- splits
+# Development, calibration and final testing use different records (Section 6.3).
+#   dev pool   dev_fraction of the clean records: debugging, exploratory runs, LLM prompt examples
+#   test pool  the rest: confirmatory runs only
+# Within every run, T1..T5 are the calibration (warm-up) batches and T6..T20 the evaluation batches; they
+# never share records. The split is fixed by split_seed (independent of the run seeds) and stratified by
+# nothing: a plain random partition of the cleaned rows.
+splits:
+  split_seed: 20261004
+  dev_fraction: 0.30
+  # run seeds per split. Seeds 42-46 were used while designing the proof of concept: they are exploratory.
+  seeds:
+    dev: [42, 43, 44, 45, 46]
+    test: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010]   # ten paired seeds (supervisor)
+  # dev batches are smaller where the dev pool cannot fill 20 full-size batches; test batches use
+  # datasets.yaml batch_size. Batch size per split = min(batch_size, floor(pool rows / n_batches)).
+
+# ------------------------------------------------------------------------------------- decision criteria
+# Prespecified before final testing (Section 3). Agree them with the supervisor before freezing.
+#
+# Recall non-inferiority margin = 1 percentage point (absolute), replacing the provisional 2 points.
+# Justification (state it in the paper):
+#   1. Ceiling. The comparators' recall on the injected errors is about 99.5-100% (PoC). A 2-point margin would
+#      accept up to five times as many missed errors (0.5% -> 2.5%); 1 point caps it at about three times.
+#   2. Cost asymmetry. At the 1% defect rate, 1 point of recall = 1 extra missed error per 10,000 records,
+#      against roughly 200-440 fewer false alarms per 10,000 valid records under drift in the PoC (FPR
+#      reductions of 2.0-4.4 points). Adaptation still pays off even if a missed error costs up to ~200 times a
+#      false alarm; with 2 points that break-even halves to ~100.
+#   3. Testability. With ten seeds the paired CI of a pooled recall difference is a few tenths of a point wide
+#      per dataset, so a 1-point margin can be decided rather than left inconclusive.
+# Consequence to report honestly: the PoC Retail loss (1.38 points, 98.62% vs 100%) would NOT be non-inferior at
+# this margin. The margin is fixed in advance; it must not be changed after looking at test results.
+criteria:
+  recall_noninferiority_margin: 0.01     # H1a: CI of (adaptive - comparator) recall must exclude < -margin
+  fpr_increase_tolerance: 0.005          # H2a: acceptable FPR increase from adding semantic rules
+  detection_target_recall: 0.90          # H3: "useful" = cost saving while post-onset recall >= target
+  incident_detect_recall: 0.50           # an incident is detected in a batch when >= 50% of its records are flagged
+  confidence_level: 0.95
+  bootstrap_replicates: 5000
+  multiplicity: holm                     # secondary comparisons: Holm-adjusted paired tests
+
+# ------------------------------------------------------------------------------------------- scenarios
+# Drift and defect schedules refer to experiment.yaml "schedules". Optional keys:
+#   defect_profile   override of experiment.yaml "defects" (e.g. milder outliers)
+#   semantic         schedule name in experiment.yaml semantic_schedules (Experiment 3b violations)
+#   contamination    sustained systematic error: {start, fraction, factor}; columns (and an optional
+#                    contamination_factor override) per dataset below
+#   novelty          valid + invalid unseen categories (H2b); values per dataset below
+#   incidents        list of {name, families, start, end, rate[, column]} extra defects of given families
+#   zero_defects     true = no background defects at all (zero-defect control)
+scenarios:
+  A_stable:            {drift: drift_none,    defects: defects_baseline}
+  B_drift:             {drift: drift_gradual, defects: defects_baseline}
+  C_degradation:       {drift: drift_none,    defects: defects_degrading}
+  D_drift_degradation: {drift: drift_gradual, defects: defects_degrading}
+  Z_zero_defects:      {drift: drift_gradual, defects: defects_baseline, zero_defects: true}
+  E1_mild_stable:      {drift: drift_none,    defects: defects_baseline, defect_profile: mild}
+  E2_mild_drift:       {drift: drift_gradual, defects: defects_baseline, defect_profile: mild}
+  F1_contam_stable:    {drift: drift_none,    defects: defects_baseline, contamination: {start: 8, fraction: 0.05, factor: 3.0}}
+  F2_contam_drift:     {drift: drift_gradual, defects: defects_baseline, contamination: {start: 8, fraction: 0.05, factor: 3.0}}
+  S1_semantic_stable:  {drift: drift_none,    defects: defects_baseline, semantic: semantic_1pct}
+  S2_semantic_drift:   {drift: drift_gradual, defects: defects_baseline, semantic: semantic_1pct}
+  G1_novelty_stable:   {drift: drift_none,    defects: defects_baseline, novelty: true}
+  G2_novelty_drift:    {drift: drift_gradual, defects: defects_baseline, novelty: true}
+  # RQ3 incidents (background 1% defects throughout)
+  H1_sparse_duplicates:  {drift: drift_none, defects: defects_baseline,
+                          incidents: [{name: dup_sparse, families: [duplicate], start: 11, end: 20, rate: 0.005}]}
+  H2_sparse_category:    {drift: drift_none, defects: defects_baseline,
+                          incidents: [{name: cat_sparse, families: [invalid_category], column: sparse, start: 11, end: 20, rate: 0.005}]}
+  H3_short_incident:     {drift: drift_none, defects: defects_baseline,
+                          incidents: [{name: short, families: [duplicate, invalid_category], start: 9, end: 10, rate: 0.03}]}
+  H4_recovery:           {drift: drift_none, defects: defects_baseline,
+                          incidents: [{name: recover, families: [duplicate, invalid_category], start: 9, end: 14, rate: 0.03}]}
+
+defect_profiles:
+  mild:                       # milder numerical errors (supervisor: "include mild errors")
+    outlier_sigma: [3, 5]
+    outlier_mild_sigma: 4     # severity Mild below 4 sd, Medium 4-8, High >= 8
+  default:
+    outlier_mild_sigma: 4
+
+# which scenarios each experiment uses
+experiments:
+  rq1_thresholds:     [A_stable, B_drift, C_degradation, D_drift_degradation, Z_zero_defects,
+                       E1_mild_stable, E2_mild_drift, F1_contam_stable, F2_contam_drift]
+  rq1_classification: [A_stable, B_drift, C_degradation, D_drift_degradation]
+  rq2_coverage:       [S1_semantic_stable, S2_semantic_drift, A_stable, B_drift]
+  rq2_category_guard: [G1_novelty_stable, G2_novelty_drift]
+  rq3_scheduling:     [A_stable, B_drift, C_degradation, D_drift_degradation,
+                       H1_sparse_duplicates, H2_sparse_category, H3_short_incident, H4_recovery]
+  ablation:           [A_stable, B_drift, C_degradation, D_drift_degradation, S1_semantic_stable, S2_semantic_drift]
+
+# per-dataset scenario details (kept here so datasets.yaml stays the PoC description)
+dataset_scenarios:
+  bts_airline:
+    # legitimate numeric drift only on columns where +30% is physically plausible (congestion: delays, taxi-out).
+    # datasets.yaml also scales Distance and AirTime; a route's distance cannot grow by 30% and the LLM rules
+    # rightly flagged the scaled distances as impossible (dev run 2: 63% of pure-drift batches labelled
+    # degradation once LLM rules were added). The proof-of-concept experiments keep datasets.yaml.
+    drift_numeric: [DepDelay, TaxiOut]
+    contamination_columns: [TaxiOut]
+    sparse_category_column: OriginState
+    # H2b: valid novelty = real values removed from the record pool and introduced from `start`;
+    # invalid novelty = well-formed values outside the domain, introduced at the same time and share.
+    # Domain of Reporting_Airline = carriers reporting to BTS; of OriginState = US states and territories.
+    novelty:
+      - {column: Reporting_Airline, start: 6,  share: 0.005, valid: [HA], invalid: [ZX]}
+      - {column: Reporting_Airline, start: 11, share: 0.005, valid: [G4], invalid: [Q7]}
+      - {column: OriginState,       start: 6,  share: 0.005, valid: [HI], invalid: [QH]}
+      - {column: OriginState,       start: 11, share: 0.005, valid: [AK], invalid: [XK]}
+      - {column: Origin,            start: 6,  share: 0.005, valid: [STL], invalid: [QXV]}
+      - {column: Origin,            start: 11, share: 0.005, valid: [PDX], invalid: [ZJW]}
+  online_retail:
+    contamination_columns: [Price]
+    sparse_category_column: Country
+    novelty:
+      - {column: Country, start: 6,  share: 0.005, valid: [Australia], invalid: [Swizterland]}
+      - {column: Country, start: 11, share: 0.005, valid: [Japan],     invalid: [Nethrelands]}
+  chicago_food:
+    contamination_columns: [Longitude]
+    contamination_factor: 1.002     # coordinates: x3 would be trivially detectable; 1.002 shifts about 0.18 deg
+    sparse_category_column: Facility Type
+    novelty:
+      - {column: Results,       start: 6,  share: 0.005, valid: [Not Ready],            invalid: [Not Inspected]}
+      - {column: Results,       start: 11, share: 0.005, valid: [Business Not Located], invalid: [Pass Conditional]}
+      - {column: Facility Type, start: 6,  share: 0.005, valid: [Hospital],             invalid: [Restuarant]}
+      - {column: Facility Type, start: 11, share: 0.005, valid: [Catering],             invalid: [Bakkery]}
+
+# ------------------------------------------------------------------------- legitimate drift generator
+drift:
+  category_top_n: 10            # categorical drift redraws values from the top_n categories of the pool ...
+  category_min_share: 0.01      # ... that hold at least 1% of records ("common categories", manuscript 6.2)
+
+# ------------------------------------------------------------------------- RQ1a threshold baselines
+# Each method = numeric policy + category policy. History length and calibration are matched: every
+# rolling method sees the same previous `window` batches (experiment.yaml adaptive.history_window).
+baselines:
+  ewma_lambda: 0.3              # EWMA smoothing of batch location and scale
+  iqr_k: 3.0                    # Tukey far-out fence Q1 - 3 IQR, Q3 + 3 IQR
+  mad_k: 3.0                    # median +/- 3 * 1.4826 * MAD (= 3 sd for normal data)
+  methods:
+    fixed_t1:          {numeric: fixed_t1,      category: fixed_t1}       # proof-of-concept baseline
+    fixed_pooled:      {numeric: fixed_pooled,  category: fixed_pooled}   # all five warm-up batches
+    rolling_meansd:    {numeric: rolling_meansd, category: recurrence}
+    rolling_mad:       {numeric: rolling_mad,   category: recurrence}
+    rolling_iqr:       {numeric: rolling_iqr,   category: recurrence}
+    ewma:              {numeric: ewma,          category: recurrence}
+    adaptive:          {numeric: adaptive,      category: recurrence}     # proposed (current batch)
+    adaptive_prev:     {numeric: adaptive_prev, category: recurrence}     # previous batches only
+    # robust baselines with k calibrated on the warm-up to the primary comparator's warm-up flag rate (dev run 2: the
+    # textbook k = 3 flagged 27-29% of valid records on skewed columns); the k = 3 versions above are kept
+    rolling_mad_cal:   {numeric: rolling_mad_cal, category: recurrence}
+    rolling_iqr_cal:   {numeric: rolling_iqr_cal, category: recurrence}
+    # decomposition (dev run: on Retail / Chicago the category policy, not the numeric adaptation, drove the
+    # FPR differences): swap the category policy while keeping the numeric policy, and vice versa
+    adaptive_num_pooled_cat:   {numeric: adaptive,     category: fixed_pooled}
+    pooled_num_recurrence_cat: {numeric: fixed_pooled, category: recurrence}
+  primary_comparator: fixed_pooled
+
+# AVH-style batch-level comparator (Tu et al., KDD 2023; simplified, see baselines/avh.py)
+avh:
+  fpr_budget: 0.05              # batch-level false-alarm budget shared over all constraints (union bound)
+  min_history: 4
+  bound: student                # student prediction bound (default) | gaussian | chebyshev (Chebyshev almost never
+                                # alarmed in the dev run; see baselines/avh.py)
+  history: all                  # all (as published) | accepted (quarantine); both are compared, see comparators
+
+# ------------------------------------------------------------------------- RQ1b classification
+classification:
+  min_gate_records: 50          # fewer passing records than this -> drift evidence "insufficient"
+  drift_threshold:              # per-column drift thresholds from the 5 leave-one-out warm-up scores
+    method: prediction_bound    # prediction_bound | zscore (PoC: mean + 3 sd; dev run 2: 18-22% of stable batches
+                                # labelled drift, as expected for z = 3, n = 5 and 5-7 columns; monitor/classifier.py)
+    alpha: 0.05                 # batch-level false-drift budget, Bonferroni-split over the monitored columns
+    resampling: {draws: 200}    # v2.1: threshold = max(LOO prediction bound, (1 - alpha / C) quantile of 5 x 200
+                                # resampled stable-batch scores; drift/drift_detector.py resampled_null_scores).
+                                # Dev run 3 without it: 15-17% false drift on Chicago / Retail (LOO bound from five
+                                # nearly equal scores); dev harness with it: 2-5% on all three datasets
+    min_effect: {numeric: 0.0, categorical: 0.0}   # optional practical-significance floor (0 = none)
+  # sensitivity analysis (comparator proposed_min_effect; Chicago replay): a drift must ALSO exceed a minimum size.
+  # numeric score = quantile Wasserstein distance / reference IQR (0.10 = a tenth of the IQR); categorical score =
+  # Jensen-Shannon divergence, base 2 (0.01 = about 12 percentage points of mass moving between two categories)
+  practical_min_effect: {numeric: 0.10, categorical: 0.01}
+  comparators:                  # drift signal x failure signal (drift detector held constant where possible)
+    static_no_drift:       {drift: none,     failure: fixed_t1}        # PoC comparator (50% ceiling)
+    proposed:              {drift: gated,    failure: adaptive}
+    proposed_no_gate:      {drift: ungated,  failure: adaptive}        # gate ablation
+    gated_fixed_pooled:    {drift: gated,    failure: fixed_pooled}
+    gated_rolling_mad:     {drift: gated,    failure: rolling_mad}
+    gated_ewma:            {drift: gated,    failure: ewma}
+    proposed_min_effect:   {drift: gated,    failure: adaptive, min_effect: practical}  # sensitivity: drift floor
+    avh_style:             {drift: avh,      failure: avh}                   # history: all earlier batches
+    avh_style_quarantine:  {drift: avh,      failure: avh, history: accepted}  # learns only from non-alarmed batches
+    # established tools (external_tools below; skipped with a warning when their outputs are missing)
+    deequ_anomaly:            {drift: deequ, failure: deequ, config: default}       # Deequ as documented
+    deequ_anomaly_calibrated: {drift: deequ, failure: deequ, config: calibrated}    # warm-up reference, calibrated
+    deequ_calibrated_checks:  {drift: deequ, failure: deequ, config: calibrated, constraints: observed_default}
+                                                     # + a failed suggested constraint (Deequ verification) = degradation
+    tfdv_previous:          {drift: tfdv,  failure: tfdv, reference: previous, thresholds: documented}  # TFDV as documented
+    tfdv_warmup:            {drift: tfdv,  failure: tfdv, reference: warmup,   thresholds: documented}
+    tfdv_warmup_calibrated: {drift: tfdv,  failure: tfdv, reference: warmup,   thresholds: calibrated}
+
+# ------------------------------------------------------------------------- RQ2a coverage
+rq2:
+  models: [primary, secondary]  # keys of llm_models below
+  generations: 5                # independent generations per model and dataset
+  redundancy_modes: [empirical, logical]
+  rule_fp_tolerance: 0.005      # a rule is "incorrect" if it flags more than this share of valid records
+  probe_values: 200             # values per column used to compare patterns across generations
+  value_check_max_cost_usd: 10.0   # spending cap per model for the per-value guard checks (llm_value_checks.py)
+
+llm_models:
+  primary:   us.anthropic.claude-opus-5-5                    # Claude Opus 5.5 (the proof of concept used Opus 4.6)
+  secondary: us.openai.gpt-6-astra                           # different model family (OpenAI GPT-6 Astra, GA on
+                                                             # Bedrock Sep 2026). ID follows the pattern of
+                                                             # us.openai.gpt-6-sol: VERIFY with
+                                                             # python scripts/check_bedrock.py --probe; its price
+                                                             # must be in experiment.yaml llm.prices
+
+# independent author of the manual domain rules (v2.1; experiments/v2/manual_author.py, rules/llm_author.py): a model of
+# a DIFFERENT family from llm_models, shown only the data dictionary. VERIFY it is callable with
+# python scripts/check_bedrock.py --probe and that its price is in experiment.yaml llm.prices
+manual_author:
+  model_id: us.meta.llama4-maverick-17b-instruct-v1:0
+  temperature: 0.0
+  max_tokens: 8000
+
+# ------------------------------------------------------------------------- RQ2b category guard
+category_guard:
+  policies: [frozen, recurrence, recurrence_manual, recurrence_llm]
+
+# ------------------------------------------------------------------------- RQ3 schedulers
+schedulers:
+  policies: [all, periodic, random, failure_only, drift_only, risk]
+  cost_match: true              # periodic period and random rate are matched to the risk policy's
+                                # executed share of standard checks in the same run
+  periodic_phase: staggered     # staggered: check j runs when (t + j) % period == 0
+  degradation_rule: per_check   # per_check (robust to skipped checks) or union_rate (PoC rule)
+  drift_source: gated_executed  # gated_executed: gate made of the checks executed this batch; profile: no gate
+  reference_pass: true          # evaluation-only full-suite pass; never read by the scheduler
+
+# ------------------------------------------------------------------------- cost measurement
+cost:
+  runtime_trials:
+    repeats: 5                  # repeated timed executions per configuration
+    seeds: 1                    # first seed of the split only (detection results do not depend on timing)
+    randomize_order: true
+  measure_memory: true          # separate tracemalloc pass (tracing distorts timing, so never combined)
+  upstream_profiles: true       # also report cost when profiles are supplied by an upstream stage
+
+# ------------------------------------------------------------------------- ablation (8 combinations)
+ablation:
+  adaptation: [fixed_pooled, adaptive]
+  llm_rules: [none, validated]
+  selection: [all, risk]
+  reference_rows: [fixed_t1]    # extra reference row: proof-of-concept static rules, run-all
+
+# ------------------------------------------------------------------------- external + temporal validation
+external:
+  benchmarks_config: configs/benchmarks.yaml
+temporal:
+  chicago_batch: month          # chronological replay: one batch per calendar month
+  warmup_batches: 5
+  drift_references: [rolling, warmup]   # rolling = previous 5 months (change NOW); warmup = Jan-May 2010 (change
+                                        # since the start: after 16 years every month differs, so it is reported but
+                                        # the adjudication sample is drawn from the rolling-reference labels)
+  adjudication_sample: 10       # flagged records per month labelled degradation (rolling reference)
+  adjudication_max_rows: 300    # total cap, so that independent adjudication stays feasible
+  incomplete_month_gap_days: 4  # drop the extract's last month if it ends more than 4 days before the month's end
+  min_effect_sensitivity: true  # also replay with the practical-significance floor on drift
+
+# ------------------------------------------------------------------------- established tools (Deequ, TFDV)
+# Run as sidecars on the exchanged replay batches (experiments/v2/tool_exchange.py, tools/external_validators/).
+external_tools:
+  suggest_experiments: [rq1_thresholds]       # scenarios whose warm-up gets Deequ constraint suggestions (H1a)
+  verify_experiments: [rq1_thresholds]        # scenarios whose evaluation batches Deequ verifies, row level (H1a)
+  series_experiments: [rq1_classification]    # scenarios exported as whole runs for batch-level checks (H1b)
+  # H1a: Deequ's own record-level verdicts (row-level results of its verification), baselines/external_tools.py
+  rq1_methods:
+    deequ_observed:        {variant: observed_default, reading: failed}   # as a practitioner would run it
+    deequ_observed_rows:   {variant: observed_default, reading: any}
+    deequ_clean:           {variant: clean_extended, reading: failed}     # best case: clean warm-up, extended rules
+    deequ_clean_rows:      {variant: clean_extended, reading: any}
+    deequ_clean_rows+base: {variant: clean_extended, reading: any, base: true}   # + this project's base checks
+  deequ:
+    suggestion_variants:
+      observed_default: {warmup: observed, rules: DEFAULT}   # warm-up with its ~1% erroneous records
+      # erroneous warm-up records removed (optimistic bound). Rules: Deequ's EXTENDED without NUMERICAL, whose
+      # hasMin/hasMax/hasMean/hasStandardDeviation assert equality with the warm-up value (and HasMean uses the
+      # maximum: Deequ suggestions/rules/HasMean.scala), so they fail on every other batch.
+      clean_extended:   {warmup: clean, rules: DEFAULT+STRING+COMMON}
+    anomaly_configs:
+      # Deequ's documented set-up: every earlier batch is history, OnlineNormalStrategy with Deequ's defaults
+      # (deviation factors 3, ignoreStartPercentage 0.1, ignoreAnomalies true)
+      default:    {strategy: OnlineNormalStrategy, history: cumulative, params: {}}
+      # same calibration as the proposed method: warm-up T1..T5 only as history, deviation factor = Student-t
+      # prediction factor for one new value from n = 5, Bonferroni over the metrics, alpha below
+      calibrated: {strategy: BatchNormalStrategy, history: warmup, alpha: 0.05,
+                   params: {lowerDeviationFactor: calibrated, upperDeviationFactor: calibrated}}
+  tfdv:
+    # TFDV's guide uses an L-infinity drift threshold of 0.01 for categorical features; it gives no example for the
+    # Jensen-Shannon threshold of numeric features, so the same value is used (an assumption, stated in the paper).
+    # The "calibrated" comparator avoids both choices.
+    documented_thresholds: {categorical_linf: 0.01, numeric_jsd: 0.01}
+  # how run_all starts the sidecars (experiments/v2/run_tools.py): wsl (Windows + WSL), local (Linux / macOS
+  # shell), docker (container, project mounted at the same path), none (run them by hand); one value for both
+  # tools or one per tool. Windows: runner: wsl.   macOS (setup_macos.sh): Deequ native, TFDV in Docker.
+  runner: {deequ: local, tfdv: docker}
+  wsl_distribution: Ubuntu-24.04            # name shown by `wsl -l`; empty = the default distribution
+  venvs: {deequ: ~/adq-tools/deequ, tfdv: ~/adq-tools/tfdv}
+  java_home: /opt/homebrew/opt/openjdk@17   # JAVA_HOME for Deequ with runner local (empty = use the shell's)
+  docker: {image: "adq-tfdv:1.21.0", platform: linux/amd64, venvs: {tfdv: /opt/adq-tools/tfdv}}

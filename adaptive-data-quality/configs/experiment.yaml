@@ -1,0 +1,120 @@
+# Experiment settings (project description, Sections 6, 7, 8, 10, 13, 17).
+
+seed: 42
+n_batches: 20            # T1..T20
+warmup_batches: 5        # T1..T5: stable history; metrics are reported on T6..T20
+
+# Section 7: sequential batches with stable, drift, degradation and combined periods.
+# Drift level d: every drift_numeric column is multiplied by (1 + d) and a fraction d of the
+# drift_categorical values is re-drawn from the 10 most common categories. This is treated as
+# legitimate change, not as a defect. Defect rate: fraction of records that receive a defect.
+schedules:
+  drift_none:        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  drift_gradual:     [0, 0, 0, 0, 0, 0.02, 0.04, 0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30]
+  defects_baseline:  [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]
+  defects_degrading: [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.03, 0.03, 0.03, 0.05, 0.05, 0.05, 0.10, 0.10, 0.10, 0.10]
+
+# Section 13, Experiment 2 scenarios
+scenarios:
+  A_stable:            {drift: drift_none,    defects: defects_baseline}
+  B_drift:             {drift: drift_gradual, defects: defects_baseline}
+  C_degradation:       {drift: drift_none,    defects: defects_degrading}
+  D_drift_degradation: {drift: drift_gradual, defects: defects_degrading}
+
+# Experiment 3b: semantic-defect scenarios. Same batches, drift and standard defects as A / B, plus
+# realistic domain violations (configs/datasets.yaml: semantic_defects) in a share of records from T6
+# on. They are absent from the warm-up, so no method can learn them as normal. These scenarios are
+# used only by Experiment 3b; Experiments 1, 2, 4 and 5 use the scenarios above.
+semantic_scenarios:
+  S1_semantic_stable: {drift: drift_none,    defects: defects_baseline, semantic: semantic_1pct}
+  S2_semantic_drift:  {drift: drift_gradual, defects: defects_baseline, semantic: semantic_1pct}
+semantic_schedules:
+  semantic_1pct: [0, 0, 0, 0, 0, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]
+
+# Section 6: record-level defects, split equally between the four types.
+# Distribution drift is applied at batch level by inject_distribution_shift() and recorded in the
+# scenario labels file.
+defects:
+  types: [missing, duplicate, invalid_category, outlier]
+  severity: {missing: Medium, duplicate: Low, invalid_category: Medium}
+  outlier_sigma: [4, 12]    # outlier = mean +/- U(4, 12) * std of the batch
+  outlier_high_sigma: 8     # severity High at >= 8 std, otherwise Medium
+
+# Section 8.2: statistical range rule mu +/- k*sigma
+range_k: 3
+
+# Section 10: adaptive thresholds T_t = f(H_{t-k:t}, D_t)
+adaptive:
+  history_window: 5         # k previous batches
+  category_min_batches: 2   # a category is learned as valid once seen in >= 2 batches of the window
+  category_keep_warmup: true  # ... and every category of the warm-up stays valid (v2.1; adaptation/adaptive_thresholds.py)
+
+# Section 10: drift scores in [0, 1] (drift/drift_detector.py)
+#   numerical:   Wasserstein distance from stored quantiles / reference IQR (clipped at 1)
+#   categorical: Jensen-Shannon divergence over the top-20 reference categories + "other"
+# Two references are used:
+#   rolling  = last k batches    -> drives the adaptive thresholds (follow the data)
+#   baseline = warm-up T1..T5    -> answers "has the data drifted?" in Experiment 2
+
+# Experiment 2: thresholds are calibrated on the warm-up batches T2..T5 (mean + z * sd)
+classification:
+  calibration_z: 3
+
+# Sections 11-12: risk score and cost-aware rule selection (Experiment 4)
+risk:
+  weights: {F: 0.25, D: 0.25, S: 0.15, H: 0.20, I: 0.15}   # initial weights from Section 11
+  thresholds: {moderate: 0.20, high: 0.50, very_high: 0.75}  # initial thresholds from Section 12
+  history_window: 5          # H = share of the last 5 batches in which the unit was anomalous
+  refresh_every: 5           # every check runs at least once every 5 batches, so F stays current
+  # check tiers follow the relative costs in Section 11 (missingness, range = low; uniqueness = medium)
+  tiers: {completeness: basic, type: basic, range: basic, category: standard, uniqueness: standard, pattern: standard,
+          dependency: standard, conditional: standard}
+  sweep_moderate: [0.0, 0.05, 0.10, 0.15, 0.20, 0.30, 0.40]   # cost vs detection curve (Figure 6)
+
+# Sections 8.3 and 9: LLM-assisted rule generation (Experiment 3) on AWS Bedrock
+llm:
+  model_id: us.anthropic.claude-opus-5-5      # switch model here; its price must be listed below
+                              # (proof of concept used us.anthropic.claude-opus-4-6-v1; changed 4 Oct 2026)
+                              # (scripts/check_bedrock.py --probe lists the models this account can call)
+  runs: 3                     # independent generations per dataset (rule stability across runs)
+  max_tokens: 16000           # hard cap on output tokens per call (room for any reasoning + the JSON answer;
+                              # reasoning tokens are billed as output)
+  temperature: null           # null = model default
+  sample_values: 15           # example values per column shown to the LLM (from the clean data)
+  # USD per million tokens [input, output] for the us.* cross-region profiles (10% above global).
+  # Check https://aws.amazon.com/bedrock/pricing/ before running; update if prices change.
+  prices:
+    us.anthropic.claude-opus-4-6-v1: [5.50, 27.50]
+    us.anthropic.claude-opus-4-5-20251101-v1:0: [5.50, 27.50]
+    us.anthropic.claude-sonnet-4-6: [3.30, 16.50]
+    us.anthropic.claude-sonnet-4-5-20250929-v1:0: [3.30, 16.50]
+    us.anthropic.claude-haiku-4-5-20251001-v1:0: [1.10, 5.50]
+    us.anthropic.claude-opus-5-5: [4.40, 22.00]      # callable (probe 4 Oct 2026); verify price on the Bedrock pricing page
+    us.openai.gpt-6-sol: [2.20, 11.00]               # not enabled for this account (Sep 2026)
+    us.meta.llama4-maverick-17b-instruct-v1:0: [0.27, 1.07]   # independent manual-rule author (protocol.yaml
+                                                              # manual_author); VERIFY on the Bedrock pricing page
+    us.openai.gpt-6-astra: [11.00, 55.00]            # v2 second model (protocol.yaml llm_models.secondary).
+                                                     # OpenAI direct price $10/$50 per M tokens + 10% for the us.*
+                                                     # profile; VERIFY against the Bedrock pricing page
+  max_cost_usd: 5.00          # the run stops before any call that could push total spend above this
+# Section 9: rule validation
+validation:
+  max_warmup_failure_rate: 0.005   # a rule failing >0.5% of warm-up records (T1-T5) is statistically implausible
+
+# Section 14: sensitivity analysis (experiments/sensitivity.py). One setting is changed at a time;
+# everything else stays at the values above. Repeating the default setting with other seeds shows
+# how much the results move by chance alone, the yardstick for judging every other change.
+sensitivity:
+  seeds: [42, 43, 44, 45, 46]
+  defect_rates: [0.01, 0.03, 0.05, 0.10, 0.20]      # Section 14 recommendation; scenarios A and B
+  outlier_sigma:                                     # defect severity: outliers at mean +/- U(a, b) sd
+    "3-5 sd (mild)": [3, 5]
+    "4-12 sd (default)": [4, 12]
+    "5-8 sd": [5, 8]
+    "8-12 sd (severe)": [8, 12]
+  calibration_z: [2.0, 2.5, 3.0, 3.5, 4.0]            # drift and degradation thresholds, Experiment 2
+  weight_factors: [0, 0.5, 2]                        # each risk weight x factor, renormalised to sum 1
+  risk_thresholds:                                   # Section 12 thresholds, one at a time
+    moderate: [0.10, 0.20, 0.30]
+    high: [0.40, 0.50, 0.60]
+    very_high: [0.60, 0.75, 0.90]

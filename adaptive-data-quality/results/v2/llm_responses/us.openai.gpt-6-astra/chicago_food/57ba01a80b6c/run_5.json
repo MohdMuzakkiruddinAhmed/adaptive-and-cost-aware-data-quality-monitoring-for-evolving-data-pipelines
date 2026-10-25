@@ -1,0 +1,109 @@
+{
+  "dataset": "chicago_food",
+  "run": 5,
+  "model_id": "us.openai.gpt-6-astra",
+  "mock": false,
+  "prompt_hash": "2453f6ee6d00da69",
+  "created_at": "2026-10-05T05:26:41+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 2,
+  "output_tokens": 1028,
+  "cost_usd": 0.056562,
+  "prompt": "Dataset: City of Chicago Food Inspections\nDescription: Food establishment inspections by the City of Chicago Department of Public Health, 2010 onwards. One record per inspection.\nBatch size: about 10,000 records. Statistics below come from a training sample of earlier batches.\nThe records also contain identifying columns (Inspection ID, Inspection Date); together with the columns below they make up the whole record.\n\nColumn: Latitude\n  description: Latitude of the establishment\n  type: numerical\n  missing: 0% of records\n  statistics: min 41.6486, max 42.0211, mean 41.8801, median 41.8918, std 0.0801434, unique values 6722\n  quantiles: p01 41.6872, p05 41.7303, p10 41.7578, p20 41.7998, p25 41.831, p30 41.8529, p40 41.8806, p50 41.8918, p60 41.9091, p70 41.9288, p75 41.9386, p80 41.9478, p90 41.9758, p95 41.9973, p99 42.0116\n  example values: 41.8811, 41.9356, 41.8371, 41.7499, 41.9392, 41.895, 41.8096, 41.933, 41.9286, 41.9394, 41.9535, 41.8781, 41.8958, 41.7798, 41.951\n\nColumn: Longitude\n  description: Longitude of the establishment\n  type: numerical\n  missing: 0% of records\n  statistics: min -87.9069, max -87.5251, mean -87.6766, median -87.6658, std 0.0590707, unique values 6722\n  quantiles: p01 -87.9069, p05 -87.7782, p10 -87.7568, p20 -87.7214, p25 -87.7083, p30 -87.6987, p40 -87.6803, p50 -87.6658, p60 -87.6543, p70 -87.6416, p75 -87.6345, p80 -87.6302, p90 -87.6207, p95 -87.5974, p99 -87.5519\n  example values: -87.6497, -87.6601, -87.6651, -87.6254, -87.6349, -87.742, -87.6982, -87.6775, -87.6774, -87.6502, -87.6756, -87.6693, -87.749, -87.7097, -87.7047\n\nColumn: Risk\n  description: Risk category of the establishment\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 3\n  most common values (share of records): Risk 1 (High) (75.030%), Risk 2 (Medium) (18.010%), Risk 3 (Low) (6.960%)\n  example values: Risk 2 (Medium), Risk 2 (Medium), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 1 (High), Risk 3 (Low), Risk 1 (High), Risk 1 (High), Risk 1 (High)\n\nColumn: Results\n  description: Outcome of the inspection\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 5\n  most common values (share of records): Pass (53.780%), Fail (19.280%), Pass w/ Conditions (14.980%), Out of Business (7.430%), No Entry (4.530%)\n  example values: Fail, Pass, Pass, No Entry, Pass, Pass, Fail, Pass, Out of Business, Pass w/ Conditions, Pass, Pass, Pass w/ Conditions, Pass, Pass\n\nColumn: Facility Type\n  description: Type of establishment\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 126\n  most common values (share of records): Restaurant (69.010%), Grocery Store (12.900%), School (6.320%), Children's Services Facility (2.780%), Bakery (1.550%), Daycare Above and Under 2 Years (1.380%), Daycare (2 - 6 Years) (1.160%), Long Term Care (0.750%), Mobile Food Preparer (0.430%), Liquor (0.350%), Mobile Food Dispenser (0.330%), Golden Diner (0.310%), Daycare Combo 1586 (0.180%), Special Event (0.170%), Shared Kitchen User (Long Term) (0.140%), Shared Kitchen (0.120%), Wholesale (0.110%), Daycare (Under 2 Years) (0.100%), BANQUET HALL (0.100%), LIVE POULTRY (0.080%)\n  example values: Bakery, Restaurant, Grocery Store, Grocery Store, Restaurant, Mobile Food Preparer, Daycare Above and Under 2 Years, Grocery Store, Restaurant, School, Restaurant, Restaurant, Restaurant, Restaurant, Restaurant\n\nPropose the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\n  \"rules\": [\n    {\n      \"column\": \"Latitude\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"When present, Latitude must be numeric.\",\n      \"reason\": \"Latitude represents a geographic coordinate. Missing geocoding is distinct from an invalid coordinate.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"Latitude\",\n      \"rule_type\": \"range\",\n      \"min\": 41.5,\n      \"max\": 42.15,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"When present, Latitude must be between 41.5 and 42.15 degrees, inclusive.\",\n      \"reason\": \"These generous bounds encompass Chicago with a geographic buffer, including locations beyond the sample extrema, while detecting coordinates implausible for a Chicago establishment.\",\n      \"confidence\": 0.96\n    },\n    {\n      \"column\": \"Longitude\",\n      \"rule_type\": \"type\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"When present, Longitude must be numeric.\",\n      \"reason\": \"Longitude represents a geographic coordinate. Missing geocoding is distinct from an invalid coordinate.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"column\": \"Longitude\",\n      \"rule_type\": \"range\",\n      \"min\": -88.1,\n      \"max\": -87.4,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"When present, Longitude must be between -88.1 and -87.4 degrees, inclusive.\",\n      \"reason\": \"These generous bounds encompass Chicago, including its western airport areas, with room beyond the observed extrema. They detect sign errors and substantially misplaced coordinates without enforcing the historical distribution.\",\n      \"confidence\": 0.96\n    },\n    {\n      \"column\": \"Risk\",\n      \"rule_type\": \"category\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": [\n        \"Risk 1 (High)\",\n        \"Risk 2 (Medium)\",\n        \"Risk 3 (Low)\"\n      ],\n      \"pattern\": null,\n      \"condition\": \"When present, Risk must be one of the three defined establishment risk categories.\",\n      \"reason\": \"The values represent a standardized three-tier risk classification rather than an open-ended establishment description. No restriction is placed on their relative frequencies.\",\n      \"confidence\": 0.95\n    },\n    {\n      \"column\": \"Results\",\n      \"rule_type\": \"completeness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"Results must contain a nonblank inspection outcome or disposition.\",\n      \"reason\": \"An inspection record needs an outcome or administrative disposition, including cases where entry was impossible or the business had closed. All sampled records contain one; the rule does not restrict future outcomes to the five observed labels.\",\n      \"confidence\": 0.97\n    },\n    {\n      \"column\": \"_records\",\n      \"rule_type\": \"uniqueness\",\n      \"min\": null,\n      \"max\": null,\n      \"allowed_values\": null,\n      \"pattern\": null,\n      \"condition\": \"No two records in a batch may be identical across all columns, including Inspection ID and Inspection Date.\",\n      \"reason\": \"The dataset contains one record per inspection. Exact duplicates represent repeated ingestion, while separate inspections at the same establishment remain valid because their identifying fields differ.\",\n      \"confidence\": 0.99\n    }\n  ]\n}",
+  "rules": [
+    {
+      "column": "Latitude",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "When present, Latitude must be numeric.",
+      "reason": "Latitude represents a geographic coordinate. Missing geocoding is distinct from an invalid coordinate.",
+      "confidence": 1.0
+    },
+    {
+      "column": "Latitude",
+      "rule_type": "range",
+      "min": 41.5,
+      "max": 42.15,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "When present, Latitude must be between 41.5 and 42.15 degrees, inclusive.",
+      "reason": "These generous bounds encompass Chicago with a geographic buffer, including locations beyond the sample extrema, while detecting coordinates implausible for a Chicago establishment.",
+      "confidence": 0.96
+    },
+    {
+      "column": "Longitude",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "When present, Longitude must be numeric.",
+      "reason": "Longitude represents a geographic coordinate. Missing geocoding is distinct from an invalid coordinate.",
+      "confidence": 1.0
+    },
+    {
+      "column": "Longitude",
+      "rule_type": "range",
+      "min": -88.1,
+      "max": -87.4,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "When present, Longitude must be between -88.1 and -87.4 degrees, inclusive.",
+      "reason": "These generous bounds encompass Chicago, including its western airport areas, with room beyond the observed extrema. They detect sign errors and substantially misplaced coordinates without enforcing the historical distribution.",
+      "confidence": 0.96
+    },
+    {
+      "column": "Risk",
+      "rule_type": "category",
+      "min": null,
+      "max": null,
+      "allowed_values": [
+        "Risk 1 (High)",
+        "Risk 2 (Medium)",
+        "Risk 3 (Low)"
+      ],
+      "pattern": null,
+      "condition": "When present, Risk must be one of the three defined establishment risk categories.",
+      "reason": "The values represent a standardized three-tier risk classification rather than an open-ended establishment description. No restriction is placed on their relative frequencies.",
+      "confidence": 0.95
+    },
+    {
+      "column": "Results",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Results must contain a nonblank inspection outcome or disposition.",
+      "reason": "An inspection record needs an outcome or administrative disposition, including cases where entry was impossible or the business had closed. All sampled records contain one; the rule does not restrict future outcomes to the five observed labels.",
+      "confidence": 0.97
+    },
+    {
+      "column": "_records",
+      "rule_type": "uniqueness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "No two records in a batch may be identical across all columns, including Inspection ID and Inspection Date.",
+      "reason": "The dataset contains one record per inspection. Exact duplicates represent repeated ingestion, while separate inspections at the same establishment remain valid because their identifying fields differ.",
+      "confidence": 0.99
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "3934f4902f65a1e3",
+    "prompt": "2453f6ee6d00da69",
+    "llm_settings": "ce15f35afa9bf847",
+    "generator_code": "36be4bbf49975e7c",
+    "key": "57ba01a80b6c"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "55c94eee898d3465"
+}

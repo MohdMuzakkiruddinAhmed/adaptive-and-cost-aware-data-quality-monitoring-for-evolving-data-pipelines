@@ -1,0 +1,40 @@
+\section{Problem Formulation and Hypotheses}
+\label{sec:problem}
+
+\subsection{Setting and Definitions}
+
+A pipeline delivers a sequence of batches $B_1, B_2, \ldots, B_T$ of records with a fixed schema. Each monitored column is either numerical or categorical. The first $w$ batches form a warm-up period that is assumed to be mostly clean; the monitor uses them to calibrate its rules and thresholds and does not report on them. In the experiments $T = 20$ and $w = 5$, and batches $B_6$ to $B_{20}$ are evaluated.
+
+A record is \emph{erroneous} when at least one of its monitored values violates the intended meaning of the data: a value is missing, the record duplicates another, a categorical value lies outside the valid domain, or a numerical value is implausible or impossible in the domain. A monitor flags records; a flagged valid record is a false positive and an unflagged erroneous record is a false negative. These outcomes are evaluated against the injected-error answer key in controlled runs and the dirty/clean comparison convention in external benchmarks. A rule failure is evidence of a possible error, rather than an independent guarantee that the source value is factually incorrect.
+
+A batch exhibits \emph{drift} when the distribution of its valid values differs from that of the warm-up because of a legitimate change in the world, such as longer taxi times during congestion or a new mix of inspection outcomes after a change of procedure. A batch exhibits \emph{degradation} when it contains more erroneous records than the warm-up did. In the controlled scenarios both properties are known by construction: a batch is a drift batch when its injected drift level is positive, and a degradation batch when its rate of erroneous records exceeds the warm-up rate for any reason, including incidents, sustained contamination, domain-impossible values and recurring invalid categories. A stable batch can still contain the unchanged background error rate; stable does not mean error-free. Every evaluated batch therefore carries one of four labels: \emph{stable}, \emph{drift}, \emph{degradation}, or \emph{drift with degradation}.
+
+The monitor has two tasks per batch. At record level it flags erroneous records. At batch level it assigns one of the four labels. It also decides, before executing any check, which checks to run. These decisions have different purposes: record flags locate suspected problems, batch labels support operational interpretation, and selection allocates execution effort. They are measured separately because a good result on one task does not establish a good result on the others.
+
+The distinction between drift and degradation is known by construction in controlled scenarios. During natural operation, the monitor instead infers them from distribution comparisons and detected failures. Its labels are consequently operational estimates conditional on the rules, reference data, and checks available, not causal proof of why the data changed.
+
+\subsection{Research Questions and Hypotheses}
+
+\paragraph{RQ1: Adaptation under drift.} Do adaptive thresholds handle legitimate drift better than fixed and history-based thresholds, and can the monitor separate drift from degradation?
+
+\begin{itemize}
+\item \textbf{H1a.} In each dataset and scenario, adaptive thresholds have a lower record-level false-positive rate (FPR) than fixed thresholds computed on the pooled warm-up, and their recall is non-inferior within a margin of 1 percentage point. The scenarios of interest are those with drift; scenarios without drift test whether adaptation costs anything when nothing changes.
+\item \textbf{H1b.} A gated drift signal combined with a failure-rate signal assigns the four batch labels with a higher macro-averaged F1 than the comparators, which include the same drift signal paired with non-adaptive thresholds, the same monitor without the gate, and established tools.
+\end{itemize}
+
+\paragraph{RQ2: Domain knowledge from rules.} Do validated LLM rules add coverage that statistical rules lack, and can domain constraints stop the monitor from learning invalid values?
+
+\begin{itemize}
+\item \textbf{H2a.} On domain-impossible values that are statistically unremarkable, statistical rules combined with validated LLM rules reach higher recall than either rule source alone, while the FPR rises by no more than 0.5 percentage points.
+\item \textbf{H2b.} When new categories may be learned only if they are compatible with independently justified domain constraints, recurring invalid categories are admitted less often than under learning by recurrence alone, while valid new categories are still admitted.
+\end{itemize}
+
+\paragraph{RQ3: Cost.} Can risk-based selection of checks reduce the cost of monitoring without a large loss in detection?
+
+\begin{itemize}
+\item \textbf{H3.} In scenarios with sustained degradation or incidents, selecting checks by a per-column risk score executes fewer checks than running every check, while recall on the records after the onset of the problem stays at or above 0.90. A configuration that meets both conditions is called \emph{useful}. Risk-based selection should be useful more often than periodic or random selection that executes the same number of checks.
+\end{itemize}
+
+\subsection{Prespecified Decision Criteria}
+
+The decision thresholds were specified in the internally frozen protocol and are retained for the test evaluation. The margins express the required trade-offs rather than quantities optimised after observing the results. The recall non-inferiority margin is 1 percentage point. The argument for this value has three parts. First, the comparators detect about 99.5 to 100\% of the injected errors in the stable scenario, and a 2-point margin would allow up to five times as many missed errors. Second, at a 1\% error rate one point of recall corresponds to one additional missed error per 10,000 records, against the 200 to 440 fewer false alarms per 10,000 valid records that adaptation produced under drift in a preliminary study. Third, ten paired seeds were expected to give confidence intervals for a pooled recall difference a few tenths of a point wide, narrow enough to decide a 1-point margin. (On the retail data the intervals turned out wider; Section~\ref{sec:res:h1a} reports them.) The tolerated rise in FPR for H2a is 0.5 percentage points. The detection target for H3 is a post-onset recall of 0.90. All intervals are 95\% intervals. H1a decisions are made per dataset and scenario using paired confidence bounds. H3 usefulness is assessed from the reported mean recall and positive check saving; it does not require the lower confidence bound to exceed 0.90. Secondary comparator comparisons use the Holm procedure~\cite{Holm1979}; the reporting correction and its family definition are explained in Section~\ref{sec:design}. These criteria are not a claim of study-wide superiority across every dataset, scenario, and metric.

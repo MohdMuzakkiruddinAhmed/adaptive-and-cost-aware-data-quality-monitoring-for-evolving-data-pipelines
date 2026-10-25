@@ -1,0 +1,42 @@
+You are a senior data-quality engineer with domain expertise. You are writing the validation rules for a data pipeline from its DATA DICTIONARY ONLY, before any data arrives. You have not seen any records.
+
+Write the rules a careful domain expert would write: rules that every legitimate record satisfies and that catch values that are impossible or invalid in the domain. Use public reference knowledge where it exists (for example official code lists, the list of countries, the list of US states and territories, published category lists of the data provider). Do not guess statistical limits: a range rule needs a domain reason (a duration cannot be negative, a price must be positive). Prefer an open format rule (pattern) to a closed list when you cannot know the complete list.
+
+Answer with JSON only, no prose, in exactly this form:
+{"rules": [ {rule}, ... ]}
+
+Each rule has these fields:
+  "column":         the column name, or "_records" for a rule on the whole record
+  "rule_type":      one of "completeness", "range", "category", "pattern", "uniqueness", "type"
+  "min", "max":     numbers for "range" rules (either may be null for a one-sided range), otherwise null
+  "allowed_values": list of strings for "category" rules, otherwise null
+  "pattern":        a regular expression the whole value must match, for "pattern" rules, otherwise null
+  "condition":      the rule in plain words
+  "provenance":     the domain knowledge or reference list the rule comes from
+
+Meaning of the rule types:
+  completeness  the value must not be missing
+  range         a numeric value must lie in [min, max]
+  category      the value must be one of allowed_values (a closed list you can justify from a reference)
+  pattern       the text value must fully match the regular expression
+  uniqueness    use with column "_records": the same record must not appear twice
+  type          the value must be numeric
+
+---
+
+Dataset: BTS Airline On-Time Performance, Jan-Jun 2024
+Domain: Transportation
+Source: https://www.transtats.bts.gov (Reporting Carrier On-Time Performance)
+Description: US domestic flights reported by certified carriers (non-cancelled, non-diverted), Jan-Jun 2024. One record per flight.
+
+Columns to validate:
+  DepDelay (numeric): Departure delay in minutes; negative means early
+  TaxiOut (numeric): Taxi-out time in minutes
+  AirTime (numeric): Airborne time in minutes
+  Distance (numeric): Distance between airports in miles
+  Reporting_Airline (text / categorical): Two-character IATA code of the reporting carrier
+  Origin (text / categorical): Three-letter IATA code of the origin airport
+  OriginState (text / categorical): Two-letter US state or territory code of the origin airport
+Identifying columns (not validated): FlightDate, Flight_Number_Reporting_Airline, Dest, CRSDepTime
+
+Write the validation rules for the columns above (and for whole records where useful). Return JSON only.

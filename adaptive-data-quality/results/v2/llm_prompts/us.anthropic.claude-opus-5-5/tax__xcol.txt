@@ -1,0 +1,37 @@
+Dataset: tax
+Description: Synthetic tax records (one per person): salary, tax rate and exemptions by US state.
+Statistics below come from a training sample of 20,000 records.
+
+Columns:
+  salary: annual salary in US dollars; numeric, min 5000, median 50000, max 100000, share of zeros 0.0%; missing 0.0%
+  rate: state income tax rate in percent; numeric, min 0, median 4.75, max 9.3, share of zeros 21.5%; missing 0.0%
+  single_exemp: state tax exemption for single filers, US dollars; numeric, min 0, median 0, max 12750, share of zeros 63.1%; missing 0.0%
+  married_exemp: state tax exemption for married filers, US dollars; numeric, min 0, median 0, max 24500, share of zeros 63.7%; missing 0.0%
+  child_exemp: state tax exemption per child, US dollars; numeric, min 0, median 0, max 3300, share of zeros 62.9%; missing 0.0%
+  gender: F or M; text, 2 distinct values; most common: F (50.7%), M (49.2%); missing 0.0%
+  state: US state of the address (two-letter code); text, 53 distinct values; most common: MO (2.1%), SC (2.1%), FL (2.1%), ME (2.1%), WY (2.1%), MN (2.0%), GA (2.0%), OK (2.0%); missing 0.0%
+  marital_status: M = married, S = single; text, 2 distinct values; most common: M (50.1%), S (49.9%); missing 0.0%
+  has_child: Y = has at least one child, N = no children; text, 2 distinct values; most common: Y (50.2%), N (49.8%); missing 0.0%
+  zip: US postal code of the person's address; text, 14,287 distinct values; most common: 01907 (0.2%), 02852 (0.1%), 96734 (0.0%), 02916 (0.0%), 02817 (0.0%), 02905 (0.0%), 02842 (0.0%), 02881 (0.0%); missing 0.0%
+  city: city of the address; text, 8,348 distinct values; most common: WASHINGTON (1.8%), LAS VEGAS (0.6%), HONOLULU (0.6%), WILMINGTON (0.5%), SAN JUAN (0.4%), PROVIDENCE (0.3%), PHOENIX (0.3%), SALT LAKE CITY (0.3%); missing 0.0%
+  area_code: telephone area code; text, 273 distinct values; most common: 207 (2.1%), 307 (2.1%), 907 (2.0%), 208 (2.0%), 505 (2.0%), 802 (2.0%), 406 (2.0%), 304 (2.0%); missing 0.0%
+
+Example records:
+salary,rate,single_exemp,married_exemp,child_exemp,gender,state,marital_status,has_child,zip,city,area_code
+70000,4.397808,3300,0,3300,F,VT,S,Y,05304,BRATTLEBORO,802
+25000,6.25,0,2000,0,M,OK,M,N,74129,TULSA,405
+65000,6.0,0,5400,3000,M,GA,M,Y,31546,JESUP,229
+45000,6.25,1000,0,0,F,OK,S,N,74832,CARNEY,580
+95000,5.95,110,0,110,M,DE,S,Y,19885,WILMINGTON,302
+100000,9.0,1370,0,1370,F,DC,S,Y,20097,WASHINGTON,202
+30000,0.0,0,0,0,F,WA,S,Y,98502,OLYMPIA,253
+65000,3.4,1000,0,0,F,IN,S,N,46952,MARION,812
+30000,1.5418718,0,2600,0,M,OH,M,N,45880,PAYNE,216
+50000,6.84,103,0,0,M,NE,S,N,68409,MURRAY,308
+80000,3.4,0,2000,1000,F,IN,M,Y,47837,CARBON,574
+55000,6.1499996,0,4000,2000,F,WV,M,Y,26230,PICKENS,304
+40000,7.8,3300,0,0,M,ID,S,N,83531,FENN,208
+10000,3.0,2000,0,2000,M,WV,S,Y,25063,DUCK,304
+35000,5.0545335,700,0,0,F,WI,S,N,53575,OREGON,608
+
+Propose cross-column rules for this dataset. Return JSON only.

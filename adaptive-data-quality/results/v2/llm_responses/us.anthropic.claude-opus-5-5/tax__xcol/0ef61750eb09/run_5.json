@@ -1,0 +1,176 @@
+{
+  "dataset": "tax__xcol",
+  "run": 5,
+  "model_id": "us.anthropic.claude-opus-5-5",
+  "mock": false,
+  "prompt_hash": "e507a0f653089b93",
+  "created_at": "2026-10-19T07:19:48+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 2054,
+  "output_tokens": 1843,
+  "cost_usd": 0.0495836,
+  "prompt": "Dataset: tax\nDescription: Synthetic tax records (one per person): salary, tax rate and exemptions by US state.\nStatistics below come from a training sample of 20,000 records.\n\nColumns:\n  salary: annual salary in US dollars; numeric, min 5000, median 50000, max 100000, share of zeros 0.0%; missing 0.0%\n  rate: state income tax rate in percent; numeric, min 0, median 4.75, max 9.3, share of zeros 21.5%; missing 0.0%\n  single_exemp: state tax exemption for single filers, US dollars; numeric, min 0, median 0, max 12750, share of zeros 63.1%; missing 0.0%\n  married_exemp: state tax exemption for married filers, US dollars; numeric, min 0, median 0, max 24500, share of zeros 63.7%; missing 0.0%\n  child_exemp: state tax exemption per child, US dollars; numeric, min 0, median 0, max 3300, share of zeros 62.9%; missing 0.0%\n  gender: F or M; text, 2 distinct values; most common: F (50.7%), M (49.2%); missing 0.0%\n  state: US state of the address (two-letter code); text, 53 distinct values; most common: MO (2.1%), SC (2.1%), FL (2.1%), ME (2.1%), WY (2.1%), MN (2.0%), GA (2.0%), OK (2.0%); missing 0.0%\n  marital_status: M = married, S = single; text, 2 distinct values; most common: M (50.1%), S (49.9%); missing 0.0%\n  has_child: Y = has at least one child, N = no children; text, 2 distinct values; most common: Y (50.2%), N (49.8%); missing 0.0%\n  zip: US postal code of the person's address; text, 14,287 distinct values; most common: 01907 (0.2%), 02852 (0.1%), 96734 (0.0%), 02916 (0.0%), 02817 (0.0%), 02905 (0.0%), 02842 (0.0%), 02881 (0.0%); missing 0.0%\n  city: city of the address; text, 8,348 distinct values; most common: WASHINGTON (1.8%), LAS VEGAS (0.6%), HONOLULU (0.6%), WILMINGTON (0.5%), SAN JUAN (0.4%), PROVIDENCE (0.3%), PHOENIX (0.3%), SALT LAKE CITY (0.3%); missing 0.0%\n  area_code: telephone area code; text, 273 distinct values; most common: 207 (2.1%), 307 (2.1%), 907 (2.0%), 208 (2.0%), 505 (2.0%), 802 (2.0%), 406 (2.0%), 304 (2.0%); missing 0.0%\n\nExample records:\nsalary,rate,single_exemp,married_exemp,child_exemp,gender,state,marital_status,has_child,zip,city,area_code\r\n70000,4.397808,3300,0,3300,F,VT,S,Y,05304,BRATTLEBORO,802\r\n25000,6.25,0,2000,0,M,OK,M,N,74129,TULSA,405\r\n65000,6.0,0,5400,3000,M,GA,M,Y,31546,JESUP,229\r\n45000,6.25,1000,0,0,F,OK,S,N,74832,CARNEY,580\r\n95000,5.95,110,0,110,M,DE,S,Y,19885,WILMINGTON,302\r\n100000,9.0,1370,0,1370,F,DC,S,Y,20097,WASHINGTON,202\r\n30000,0.0,0,0,0,F,WA,S,Y,98502,OLYMPIA,253\r\n65000,3.4,1000,0,0,F,IN,S,N,46952,MARION,812\r\n30000,1.5418718,0,2600,0,M,OH,M,N,45880,PAYNE,216\r\n50000,6.84,103,0,0,M,NE,S,N,68409,MURRAY,308\r\n80000,3.4,0,2000,1000,F,IN,M,Y,47837,CARBON,574\r\n55000,6.1499996,0,4000,2000,F,WV,M,Y,26230,PICKENS,304\r\n40000,7.8,3300,0,0,M,ID,S,N,83531,FENN,208\r\n10000,3.0,2000,0,2000,M,WV,S,Y,25063,DUCK,304\r\n35000,5.0545335,700,0,0,F,WI,S,N,53575,OREGON,608\n\nPropose cross-column rules for this dataset. Return JSON only.",
+  "response_text": "{\"rules\": [\n{\"rule_type\": \"dependency\", \"determinant\": [\"zip\"], \"dependent\": \"city\", \"condition\": \"A zip code always maps to the same city.\", \"reason\": \"USPS assigns each 5-digit zip code to one preferred city name.\", \"confidence\": 0.9},\n{\"rule_type\": \"dependency\", \"determinant\": [\"zip\"], \"dependent\": \"state\", \"condition\": \"A zip code always maps to the same state.\", \"reason\": \"Zip code ranges are allocated by state, so a zip code lies in exactly one state.\", \"confidence\": 0.95},\n{\"rule_type\": \"dependency\", \"determinant\": [\"area_code\"], \"dependent\": \"state\", \"condition\": \"A telephone area code always maps to the same state.\", \"reason\": \"North American area codes are assigned within a single state's geographic boundaries.\", \"confidence\": 0.85},\n{\"rule_type\": \"dependency\", \"determinant\": [\"state\", \"salary\"], \"dependent\": \"rate\", \"condition\": \"Within a state, the same salary always gets the same tax rate.\", \"reason\": \"The state income tax rate comes from that state's bracket schedule applied to the salary.\", \"confidence\": 0.85},\n{\"rule_type\": \"dependency\", \"determinant\": [\"state\", \"marital_status\"], \"dependent\": \"single_exemp\", \"condition\": \"State and marital status together fix the single-filer exemption.\", \"reason\": \"Each state sets one statutory single exemption, which applies only to single filers.\", \"confidence\": 0.85},\n{\"rule_type\": \"dependency\", \"determinant\": [\"state\", \"marital_status\"], \"dependent\": \"married_exemp\", \"condition\": \"State and marital status together fix the married-filer exemption.\", \"reason\": \"Each state sets one statutory married exemption, which applies only to married filers.\", \"confidence\": 0.85},\n{\"rule_type\": \"dependency\", \"determinant\": [\"state\", \"has_child\"], \"dependent\": \"child_exemp\", \"condition\": \"State and the has-child flag together fix the child exemption.\", \"reason\": \"The per-child exemption is set by state law and applies only to people with children.\", \"confidence\": 0.8},\n{\"rule_type\": \"conditional\", \"if\": {\"column\": \"marital_status\", \"values\": [\"M\"]}, \"then\": {\"column\": \"single_exemp\", \"min\": null, \"max\": 0}, \"condition\": \"Married people have a single exemption of 0.\", \"reason\": \"The single-filer exemption does not apply to married filers.\", \"confidence\": 0.9},\n{\"rule_type\": \"conditional\", \"if\": {\"column\": \"marital_status\", \"values\": [\"S\"]}, \"then\": {\"column\": \"married_exemp\", \"min\": null, \"max\": 0}, \"condition\": \"Single people have a married exemption of 0.\", \"reason\": \"The married-filer exemption does not apply to single filers.\", \"confidence\": 0.9},\n{\"rule_type\": \"conditional\", \"if\": {\"column\": \"has_child\", \"values\": [\"N\"]}, \"then\": {\"column\": \"child_exemp\", \"min\": null, \"max\": 0}, \"condition\": \"People without children have a child exemption of 0.\", \"reason\": \"The per-child exemption can only be claimed by someone who has a child.\", \"confidence\": 0.9},\n{\"rule_type\": \"conditional\", \"if\": {\"column\": \"state\", \"values\": [\"WA\", \"TX\", \"FL\", \"NV\", \"SD\", \"WY\", \"AK\"]}, \"then\": {\"column\": \"rate\", \"min\": null, \"max\": 0}, \"condition\": \"States with no personal income tax have a rate of 0.\", \"reason\": \"These states levy no state income tax on wages.\", \"confidence\": 0.75}\n]}",
+  "rules": [
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "zip"
+      ],
+      "dependent": "city",
+      "condition": "A zip code always maps to the same city.",
+      "reason": "USPS assigns each 5-digit zip code to one preferred city name.",
+      "confidence": 0.9
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "zip"
+      ],
+      "dependent": "state",
+      "condition": "A zip code always maps to the same state.",
+      "reason": "Zip code ranges are allocated by state, so a zip code lies in exactly one state.",
+      "confidence": 0.95
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "area_code"
+      ],
+      "dependent": "state",
+      "condition": "A telephone area code always maps to the same state.",
+      "reason": "North American area codes are assigned within a single state's geographic boundaries.",
+      "confidence": 0.85
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "salary"
+      ],
+      "dependent": "rate",
+      "condition": "Within a state, the same salary always gets the same tax rate.",
+      "reason": "The state income tax rate comes from that state's bracket schedule applied to the salary.",
+      "confidence": 0.85
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "marital_status"
+      ],
+      "dependent": "single_exemp",
+      "condition": "State and marital status together fix the single-filer exemption.",
+      "reason": "Each state sets one statutory single exemption, which applies only to single filers.",
+      "confidence": 0.85
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "marital_status"
+      ],
+      "dependent": "married_exemp",
+      "condition": "State and marital status together fix the married-filer exemption.",
+      "reason": "Each state sets one statutory married exemption, which applies only to married filers.",
+      "confidence": 0.85
+    },
+    {
+      "rule_type": "dependency",
+      "determinant": [
+        "state",
+        "has_child"
+      ],
+      "dependent": "child_exemp",
+      "condition": "State and the has-child flag together fix the child exemption.",
+      "reason": "The per-child exemption is set by state law and applies only to people with children.",
+      "confidence": 0.8
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "marital_status",
+        "values": [
+          "M"
+        ]
+      },
+      "then": {
+        "column": "single_exemp",
+        "min": null,
+        "max": 0
+      },
+      "condition": "Married people have a single exemption of 0.",
+      "reason": "The single-filer exemption does not apply to married filers.",
+      "confidence": 0.9
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "marital_status",
+        "values": [
+          "S"
+        ]
+      },
+      "then": {
+        "column": "married_exemp",
+        "min": null,
+        "max": 0
+      },
+      "condition": "Single people have a married exemption of 0.",
+      "reason": "The married-filer exemption does not apply to single filers.",
+      "confidence": 0.9
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "has_child",
+        "values": [
+          "N"
+        ]
+      },
+      "then": {
+        "column": "child_exemp",
+        "min": null,
+        "max": 0
+      },
+      "condition": "People without children have a child exemption of 0.",
+      "reason": "The per-child exemption can only be claimed by someone who has a child.",
+      "confidence": 0.9
+    },
+    {
+      "rule_type": "conditional",
+      "if": {
+        "column": "state",
+        "values": [
+          "WA",
+          "TX",
+          "FL",
+          "NV",
+          "SD",
+          "WY",
+          "AK"
+        ]
+      },
+      "then": {
+        "column": "rate",
+        "min": null,
+        "max": 0
+      },
+      "condition": "States with no personal income tax have a rate of 0.",
+      "reason": "These states levy no state income tax on wages.",
+      "confidence": 0.75
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "4109b3b18a449123",
+    "prompt": "e507a0f653089b93",
+    "llm_settings": "0b1eed0a621b71da",
+    "generator_code": "9d9f99592c67a343",
+    "key": "0ef61750eb09"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "43b2e563fd56735e"
+}

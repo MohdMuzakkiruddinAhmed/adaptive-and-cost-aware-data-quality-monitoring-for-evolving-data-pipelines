@@ -1,0 +1,69 @@
+# External dirty/clean benchmarks (supervisor experiment 7; manuscript Section 6.3).
+#
+# Source: the Raha / Baran benchmark collection (Mahdavi et al., SIGMOD 2019; VLDB 2020),
+# https://github.com/BigDaMa/raha/tree/master/datasets  -> python scripts/download_benchmarks.py
+# Files go to data/external/<name>/dirty.csv and clean.csv. Rows of dirty and clean are aligned by position;
+# column names are taken from the dirty file.
+#
+# Labels are used ONLY for evaluation. These tables have no credible chronology, so they are replayed as
+# shuffled batches and test error DETECTION, not temporal behaviour (that is the Chicago replay).
+# Warm-up batches are dirty too: the "mostly clean history" assumption of the main study does not hold here,
+# which is part of what this transfer test measures.
+#
+# label_normalization: how a cell is judged erroneous (dirty != clean):
+#   numeric_equal  strings stripped; two values that both parse as numbers and are equal are NOT an error
+#                  (e.g. "0.0" vs "0", "01907" vs "1907" are formatting artefacts of the benchmark files)
+#   exact          raw string comparison (the benchmark's own definition)
+# Flights and Rayyan were inspected and left out: their errors (conflicting times across sources, free
+# text) lie outside the six rule families of this study.
+
+seeds_from_split: true          # use the run seeds of the chosen split for the row shuffling
+# v2.1 leakage fix: rows reserved for the LLM prompts (chosen once by the split seed) never occur in a replay batch,
+# so no evaluated record was shown to the model (before: the prompt sample was a reference replay's warm-up)
+prompt_pool: {fraction: 0.10, min_rows: 500}
+# cross-column rules (rules/crosscolumn.py): context_columns are not given single-column checks (free text or very
+# high cardinality) but may appear in dependencies and conditional constraints, e.g. zip -> city
+n_batches: 20
+label_normalization: numeric_equal
+empty_as_missing: true          # "" in the dirty table is a missing value
+
+benchmarks:
+  tax:
+    files: {dirty: tax/dirty.csv, clean: tax/clean.csv}
+    url: https://raw.githubusercontent.com/BigDaMa/raha/master/datasets/tax
+    numeric: [salary, rate, single_exemp, married_exemp, child_exemp]
+    categorical: [gender, state, marital_status, has_child]
+    context_columns: [zip, city, area_code]
+    nullable: []
+    description: "Synthetic tax records (one per person): salary, tax rate and exemptions by US state."
+    column_descriptions:
+      zip: "US postal code of the person's address"
+      city: "city of the address"
+      area_code: "telephone area code"
+      state: "US state of the address (two-letter code)"
+      marital_status: "M = married, S = single"
+      has_child: "Y = has at least one child, N = no children"
+      salary: "annual salary in US dollars"
+      rate: "state income tax rate in percent"
+      single_exemp: "state tax exemption for single filers, US dollars"
+      married_exemp: "state tax exemption for married filers, US dollars"
+      child_exemp: "state tax exemption per child, US dollars"
+      gender: "F or M"
+  beers:
+    files: {dirty: beers/dirty.csv, clean: beers/clean.csv}
+    url: https://raw.githubusercontent.com/BigDaMa/raha/master/datasets/beers
+    numeric: [ounces, abv, ibu]
+    categorical: [style, city, state]
+    context_columns: [brewery_id, brewery_name]
+    nullable: [ibu, style]       # legitimately empty in the clean table
+    drop_columns: [index]
+    description: "US craft beers: serving size in ounces, alcohol by volume, bitterness, style, brewery location."
+  hospital:
+    files: {dirty: hospital/dirty.csv, clean: hospital/clean.csv}
+    url: https://raw.githubusercontent.com/BigDaMa/raha/master/datasets/hospital
+    numeric: [provider_number, zip, phone]
+    categorical: [city, state, county, type, owner, emergency_service, condition, measure_code]
+    nullable: []
+    drop_columns: [index]
+    optional: true               # small (1,000 rows = 50 per batch); third benchmark if wanted
+    description: "US hospital quality measures (CMS)."

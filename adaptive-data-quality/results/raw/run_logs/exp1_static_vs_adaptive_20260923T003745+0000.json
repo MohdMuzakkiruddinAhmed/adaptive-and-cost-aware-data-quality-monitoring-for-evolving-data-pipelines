@@ -1,0 +1,324 @@
+{
+  "experiment_id": "exp1_static_vs_adaptive_20260923T003745+0000",
+  "date": "2026-09-23T00:37:45+00:00",
+  "datasets": {
+    "bts_airline": {
+      "name": "BTS Airline On-Time Performance, Jan-Jun 2024",
+      "batch_size": 50000
+    },
+    "online_retail": {
+      "name": "UCI Online Retail II",
+      "batch_size": 30000
+    },
+    "chicago_food": {
+      "name": "City of Chicago Food Inspections",
+      "batch_size": 10000
+    }
+  },
+  "dataset_version": "raw files listed in data/original/download_manifest.json",
+  "random_seed": 42,
+  "number_of_records": 7242300,
+  "injected_defects": {
+    "types": [
+      "missing",
+      "duplicate",
+      "invalid_category",
+      "outlier"
+    ],
+    "rates": {
+      "drift_none": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "drift_gradual": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.1,
+        0.12,
+        0.14,
+        0.16,
+        0.18,
+        0.2,
+        0.22,
+        0.24,
+        0.26,
+        0.28,
+        0.3
+      ],
+      "defects_baseline": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01
+      ],
+      "defects_degrading": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.03,
+        0.03,
+        0.03,
+        0.05,
+        0.05,
+        0.05,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ]
+    }
+  },
+  "drift_levels": {
+    "A_stable": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "B_drift": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.02,
+      0.04,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.14,
+      0.16,
+      0.18,
+      0.2,
+      0.22,
+      0.24,
+      0.26,
+      0.28,
+      0.3
+    ],
+    "C_degradation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "D_drift_degradation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.02,
+      0.04,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.14,
+      0.16,
+      0.18,
+      0.2,
+      0.22,
+      0.24,
+      0.26,
+      0.28,
+      0.3
+    ]
+  },
+  "rules_executed": 6880,
+  "parameters": {
+    "range_k": 3,
+    "adaptive": {
+      "history_window": 5,
+      "category_min_batches": 2
+    },
+    "classification": {
+      "calibration_z": 3
+    },
+    "warmup_batches": 5,
+    "n_batches": 20
+  },
+  "runtime_s": 48.71741889999976,
+  "detection_results": {
+    "bts_airline|A_stable|adaptive": {
+      "precision": 0.1840535964072738,
+      "recall": 1.0,
+      "f1": 0.31088727227507307,
+      "fpr": 0.04466700251889169,
+      "fnr": 0.0
+    },
+    "bts_airline|A_stable|static": {
+      "precision": 0.18653932248918073,
+      "recall": 1.0,
+      "f1": 0.3144258583825934,
+      "fpr": 0.0439375314861461,
+      "fnr": 0.0
+    },
+    "bts_airline|B_drift|adaptive": {
+      "precision": 0.1849979033570953,
+      "recall": 1.0,
+      "f1": 0.3122333007222997,
+      "fpr": 0.044387573467674225,
+      "fnr": 0.0
+    },
+    "bts_airline|B_drift|static": {
+      "precision": 0.10187449062754686,
+      "recall": 1.0,
+      "f1": 0.1849112426035503,
+      "fpr": 0.08882619647355164,
+      "fnr": 0.0
+    },
+    "chicago_food|A_stable|adaptive": {
+      "precision": 0.35046728971962615,
+      "recall": 1.0,
+      "f1": 0.5190311418685121,
+      "fpr": 0.018673383711167085,
+      "fnr": 0.0
+    },
+    "chicago_food|A_stable|static": {
+      "precision": 0.31746031746031744,
+      "recall": 1.0,
+      "f1": 0.4819277108433735,
+      "fpr": 0.021662468513853905,
+      "fnr": 0.0
+    },
+    "chicago_food|B_drift|adaptive": {
+      "precision": 0.35046728971962615,
+      "recall": 1.0,
+      "f1": 0.5190311418685121,
+      "fpr": 0.018673383711167085,
+      "fnr": 0.0
+    },
+    "chicago_food|B_drift|static": {
+      "precision": 0.18649757553151808,
+      "recall": 1.0,
+      "f1": 0.3143665513989311,
+      "fpr": 0.04394962216624685,
+      "fnr": 0.0
+    },
+    "online_retail|A_stable|adaptive": {
+      "precision": 0.4405955334987593,
+      "recall": 0.9864444444444445,
+      "f1": 0.6091252144082333,
+      "fpr": 0.012619087601455359,
+      "fnr": 0.013555555555555555
+    },
+    "online_retail|A_stable|static": {
+      "precision": 0.24083096857096964,
+      "recall": 0.9995555555555555,
+      "f1": 0.38814341804375024,
+      "fpr": 0.031746991323817524,
+      "fnr": 0.00044444444444444447
+    },
+    "online_retail|B_drift|adaptive": {
+      "precision": 0.44119693806541405,
+      "recall": 0.9862222222222222,
+      "f1": 0.609657256679717,
+      "fpr": 0.012585502378953261,
+      "fnr": 0.013777777777777778
+    },
+    "online_retail|B_drift|static": {
+      "precision": 0.23583669618992714,
+      "recall": 1.0,
+      "f1": 0.3816632034264874,
+      "fpr": 0.03264707528687377,
+      "fnr": 0.0
+    }
+  },
+  "cost": {
+    "total_rule_runtime_ms": 20426.200899935793,
+    "records_scanned": 14484600,
+    "cloud_cost": "not measured (local run)"
+  },
+  "output_paths": {
+    "batch_results": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\raw\\exp1_batch_results.csv",
+    "table": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\tables\\exp1_static_vs_adaptive.csv",
+    "figures": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\figures"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.0.5",
+    "git_commit": null
+  }
+}

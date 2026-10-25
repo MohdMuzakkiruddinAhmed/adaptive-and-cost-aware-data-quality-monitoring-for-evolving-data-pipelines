@@ -1,0 +1,312 @@
+{
+  "experiment_id": "exp2_drift_vs_degradation_20260923T003836+0000",
+  "date": "2026-09-23T00:38:36+00:00",
+  "datasets": {
+    "bts_airline": {
+      "name": "BTS Airline On-Time Performance, Jan-Jun 2024",
+      "batch_size": 50000
+    },
+    "online_retail": {
+      "name": "UCI Online Retail II",
+      "batch_size": 30000
+    },
+    "chicago_food": {
+      "name": "City of Chicago Food Inspections",
+      "batch_size": 10000
+    }
+  },
+  "dataset_version": "raw files listed in data/original/download_manifest.json",
+  "random_seed": 42,
+  "number_of_records": 7242300,
+  "injected_defects": {
+    "types": [
+      "missing",
+      "duplicate",
+      "invalid_category",
+      "outlier"
+    ],
+    "rates": {
+      "drift_none": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "drift_gradual": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.1,
+        0.12,
+        0.14,
+        0.16,
+        0.18,
+        0.2,
+        0.22,
+        0.24,
+        0.26,
+        0.28,
+        0.3
+      ],
+      "defects_baseline": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01
+      ],
+      "defects_degrading": [
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.03,
+        0.03,
+        0.03,
+        0.05,
+        0.05,
+        0.05,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ]
+    }
+  },
+  "drift_levels": {
+    "A_stable": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "B_drift": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.02,
+      0.04,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.14,
+      0.16,
+      0.18,
+      0.2,
+      0.22,
+      0.24,
+      0.26,
+      0.28,
+      0.3
+    ],
+    "C_degradation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "D_drift_degradation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.02,
+      0.04,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.14,
+      0.16,
+      0.18,
+      0.2,
+      0.22,
+      0.24,
+      0.26,
+      0.28,
+      0.3
+    ]
+  },
+  "rules_executed": 6880,
+  "parameters": {
+    "range_k": 3,
+    "adaptive": {
+      "history_window": 5,
+      "category_min_batches": 2
+    },
+    "classification": {
+      "calibration_z": 3
+    },
+    "warmup_batches": 5,
+    "n_batches": 20
+  },
+  "runtime_s": 50.713381699999445,
+  "detection_results": {
+    "bts_airline|adaptive": {
+      "batches": 60,
+      "accuracy_4class": 0.9333333333333333,
+      "drift_detection_rate": 1.0,
+      "drift_false_alarm_rate": 0.13333333333333333,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.0,
+      "false_degradation_alarms_during_pure_drift": 0.0
+    },
+    "bts_airline|static": {
+      "batches": 60,
+      "accuracy_4class": 0.5,
+      "drift_detection_rate": 0.0,
+      "drift_false_alarm_rate": 0.0,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.5,
+      "false_degradation_alarms_during_pure_drift": 1.0
+    },
+    "online_retail|adaptive": {
+      "batches": 60,
+      "accuracy_4class": 0.9333333333333333,
+      "drift_detection_rate": 1.0,
+      "drift_false_alarm_rate": 0.13333333333333333,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.0,
+      "false_degradation_alarms_during_pure_drift": 0.0
+    },
+    "online_retail|static": {
+      "batches": 60,
+      "accuracy_4class": 0.5,
+      "drift_detection_rate": 0.0,
+      "drift_false_alarm_rate": 0.0,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.0,
+      "false_degradation_alarms_during_pure_drift": 0.0
+    },
+    "chicago_food|adaptive": {
+      "batches": 60,
+      "accuracy_4class": 0.9666666666666667,
+      "drift_detection_rate": 1.0,
+      "drift_false_alarm_rate": 0.06666666666666667,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.0,
+      "false_degradation_alarms_during_pure_drift": 0.0
+    },
+    "chicago_food|static": {
+      "batches": 60,
+      "accuracy_4class": 0.5,
+      "drift_detection_rate": 0.0,
+      "drift_false_alarm_rate": 0.0,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.45,
+      "false_degradation_alarms_during_pure_drift": 0.9
+    },
+    "ALL|adaptive": {
+      "batches": 180,
+      "accuracy_4class": 0.9444444444444444,
+      "drift_detection_rate": 1.0,
+      "drift_false_alarm_rate": 0.1111111111111111,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.0,
+      "false_degradation_alarms_during_pure_drift": 0.0
+    },
+    "ALL|static": {
+      "batches": 180,
+      "accuracy_4class": 0.5,
+      "drift_detection_rate": 0.0,
+      "drift_false_alarm_rate": 0.0,
+      "degradation_detection_rate": 1.0,
+      "degradation_false_alarm_rate": 0.31666666666666665,
+      "false_degradation_alarms_during_pure_drift": 0.6333333333333333
+    }
+  },
+  "cost": {
+    "total_rule_runtime_ms": 20201.90050004021,
+    "records_scanned": 14484600,
+    "cloud_cost": "not measured (local run)"
+  },
+  "output_paths": {
+    "batch_results": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\raw\\exp2_batch_results.csv",
+    "tables": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\tables",
+    "figures": "C:\\Users\\mujta\\Desktop\\DataQuality\\adaptive-data-quality\\results\\figures"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.0.5",
+    "git_commit": null
+  }
+}

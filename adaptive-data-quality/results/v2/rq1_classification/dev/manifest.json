@@ -1,0 +1,1509 @@
+{
+  "experiment": "rq1_classification",
+  "created_at": "2026-10-20T06:12:46+00:00",
+  "split": "dev",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "code_fingerprint": "882bec8d78be2576",
+  "config_hash": "759366403ba2fb17",
+  "config_files": {
+    "benchmarks.yaml": "dde6685c3ebee62d",
+    "datasets.yaml": "28cde0e91422d1f9",
+    "experiment.yaml": "1c17d6772e263138",
+    "manual_rules.yaml": "0404b3d4efc25e0a",
+    "manual_rules_draft_v2.0.yaml": "a5f309d1ba14c245",
+    "protocol.yaml": "419c116058f9da9f"
+  },
+  "config": {
+    "experiment": {
+      "seed": 42,
+      "n_batches": 20,
+      "warmup_batches": 5,
+      "schedules": {
+        "drift_none": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "drift_gradual": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.02,
+          0.04,
+          0.06,
+          0.08,
+          0.1,
+          0.12,
+          0.14,
+          0.16,
+          0.18,
+          0.2,
+          0.22,
+          0.24,
+          0.26,
+          0.28,
+          0.3
+        ],
+        "defects_baseline": [
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01
+        ],
+        "defects_degrading": [
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.03,
+          0.03,
+          0.03,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      },
+      "scenarios": {
+        "A_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline"
+        },
+        "B_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline"
+        },
+        "C_degradation": {
+          "drift": "drift_none",
+          "defects": "defects_degrading"
+        },
+        "D_drift_degradation": {
+          "drift": "drift_gradual",
+          "defects": "defects_degrading"
+        }
+      },
+      "semantic_scenarios": {
+        "S1_semantic_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "semantic": "semantic_1pct"
+        },
+        "S2_semantic_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline",
+          "semantic": "semantic_1pct"
+        }
+      },
+      "semantic_schedules": {
+        "semantic_1pct": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01
+        ]
+      },
+      "defects": {
+        "types": [
+          "missing",
+          "duplicate",
+          "invalid_category",
+          "outlier"
+        ],
+        "severity": {
+          "missing": "Medium",
+          "duplicate": "Low",
+          "invalid_category": "Medium"
+        },
+        "outlier_sigma": [
+          4,
+          12
+        ],
+        "outlier_high_sigma": 8
+      },
+      "range_k": 3,
+      "adaptive": {
+        "history_window": 5,
+        "category_min_batches": 2,
+        "category_keep_warmup": true
+      },
+      "classification": {
+        "calibration_z": 3
+      },
+      "risk": {
+        "weights": {
+          "F": 0.25,
+          "D": 0.25,
+          "S": 0.15,
+          "H": 0.2,
+          "I": 0.15
+        },
+        "thresholds": {
+          "moderate": 0.2,
+          "high": 0.5,
+          "very_high": 0.75
+        },
+        "history_window": 5,
+        "refresh_every": 5,
+        "tiers": {
+          "completeness": "basic",
+          "type": "basic",
+          "range": "basic",
+          "category": "standard",
+          "uniqueness": "standard",
+          "pattern": "standard",
+          "dependency": "standard",
+          "conditional": "standard"
+        },
+        "sweep_moderate": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4
+        ]
+      },
+      "llm": {
+        "model_id": "us.anthropic.claude-opus-5-5",
+        "runs": 3,
+        "max_tokens": 16000,
+        "temperature": null,
+        "sample_values": 15,
+        "prices": {
+          "us.anthropic.claude-opus-4-6-v1": [
+            5.5,
+            27.5
+          ],
+          "us.anthropic.claude-opus-4-5-20251101-v1:0": [
+            5.5,
+            27.5
+          ],
+          "us.anthropic.claude-sonnet-4-6": [
+            3.3,
+            16.5
+          ],
+          "us.anthropic.claude-sonnet-4-5-20250929-v1:0": [
+            3.3,
+            16.5
+          ],
+          "us.anthropic.claude-haiku-4-5-20251001-v1:0": [
+            1.1,
+            5.5
+          ],
+          "us.anthropic.claude-opus-5-5": [
+            4.4,
+            22.0
+          ],
+          "us.openai.gpt-6-sol": [
+            2.2,
+            11.0
+          ],
+          "us.meta.llama4-maverick-17b-instruct-v1:0": [
+            0.27,
+            1.07
+          ],
+          "us.openai.gpt-6-astra": [
+            11.0,
+            55.0
+          ]
+        },
+        "max_cost_usd": 5.0
+      },
+      "validation": {
+        "max_warmup_failure_rate": 0.005
+      },
+      "sensitivity": {
+        "seeds": [
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "defect_rates": [
+          0.01,
+          0.03,
+          0.05,
+          0.1,
+          0.2
+        ],
+        "outlier_sigma": {
+          "3-5 sd (mild)": [
+            3,
+            5
+          ],
+          "4-12 sd (default)": [
+            4,
+            12
+          ],
+          "5-8 sd": [
+            5,
+            8
+          ],
+          "8-12 sd (severe)": [
+            8,
+            12
+          ]
+        },
+        "calibration_z": [
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0
+        ],
+        "weight_factors": [
+          0,
+          0.5,
+          2
+        ],
+        "risk_thresholds": {
+          "moderate": [
+            0.1,
+            0.2,
+            0.3
+          ],
+          "high": [
+            0.4,
+            0.5,
+            0.6
+          ],
+          "very_high": [
+            0.6,
+            0.75,
+            0.9
+          ]
+        }
+      }
+    },
+    "protocol": {
+      "protocol": {
+        "version": "v2.2",
+        "frozen": false,
+        "results_dir": "results/v2",
+        "materialize_batches": false
+      },
+      "splits": {
+        "split_seed": 20261004,
+        "dev_fraction": 0.3,
+        "seeds": {
+          "dev": [
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "test": [
+            1001,
+            1002,
+            1003,
+            1004,
+            1005,
+            1006,
+            1007,
+            1008,
+            1009,
+            1010
+          ]
+        }
+      },
+      "criteria": {
+        "recall_noninferiority_margin": 0.01,
+        "fpr_increase_tolerance": 0.005,
+        "detection_target_recall": 0.9,
+        "incident_detect_recall": 0.5,
+        "confidence_level": 0.95,
+        "bootstrap_replicates": 5000,
+        "multiplicity": "holm"
+      },
+      "scenarios": {
+        "A_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline"
+        },
+        "B_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline"
+        },
+        "C_degradation": {
+          "drift": "drift_none",
+          "defects": "defects_degrading"
+        },
+        "D_drift_degradation": {
+          "drift": "drift_gradual",
+          "defects": "defects_degrading"
+        },
+        "Z_zero_defects": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline",
+          "zero_defects": true
+        },
+        "E1_mild_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "defect_profile": "mild"
+        },
+        "E2_mild_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline",
+          "defect_profile": "mild"
+        },
+        "F1_contam_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "contamination": {
+            "start": 8,
+            "fraction": 0.05,
+            "factor": 3.0
+          }
+        },
+        "F2_contam_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline",
+          "contamination": {
+            "start": 8,
+            "fraction": 0.05,
+            "factor": 3.0
+          }
+        },
+        "S1_semantic_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "semantic": "semantic_1pct"
+        },
+        "S2_semantic_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline",
+          "semantic": "semantic_1pct"
+        },
+        "G1_novelty_stable": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "novelty": true
+        },
+        "G2_novelty_drift": {
+          "drift": "drift_gradual",
+          "defects": "defects_baseline",
+          "novelty": true
+        },
+        "H1_sparse_duplicates": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "incidents": [
+            {
+              "name": "dup_sparse",
+              "families": [
+                "duplicate"
+              ],
+              "start": 11,
+              "end": 20,
+              "rate": 0.005
+            }
+          ]
+        },
+        "H2_sparse_category": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "incidents": [
+            {
+              "name": "cat_sparse",
+              "families": [
+                "invalid_category"
+              ],
+              "column": "sparse",
+              "start": 11,
+              "end": 20,
+              "rate": 0.005
+            }
+          ]
+        },
+        "H3_short_incident": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "incidents": [
+            {
+              "name": "short",
+              "families": [
+                "duplicate",
+                "invalid_category"
+              ],
+              "start": 9,
+              "end": 10,
+              "rate": 0.03
+            }
+          ]
+        },
+        "H4_recovery": {
+          "drift": "drift_none",
+          "defects": "defects_baseline",
+          "incidents": [
+            {
+              "name": "recover",
+              "families": [
+                "duplicate",
+                "invalid_category"
+              ],
+              "start": 9,
+              "end": 14,
+              "rate": 0.03
+            }
+          ]
+        }
+      },
+      "defect_profiles": {
+        "mild": {
+          "outlier_sigma": [
+            3,
+            5
+          ],
+          "outlier_mild_sigma": 4
+        },
+        "default": {
+          "outlier_mild_sigma": 4
+        }
+      },
+      "experiments": {
+        "rq1_thresholds": [
+          "A_stable",
+          "B_drift",
+          "C_degradation",
+          "D_drift_degradation",
+          "Z_zero_defects",
+          "E1_mild_stable",
+          "E2_mild_drift",
+          "F1_contam_stable",
+          "F2_contam_drift"
+        ],
+        "rq1_classification": [
+          "A_stable",
+          "B_drift",
+          "C_degradation",
+          "D_drift_degradation"
+        ],
+        "rq2_coverage": [
+          "S1_semantic_stable",
+          "S2_semantic_drift",
+          "A_stable",
+          "B_drift"
+        ],
+        "rq2_category_guard": [
+          "G1_novelty_stable",
+          "G2_novelty_drift"
+        ],
+        "rq3_scheduling": [
+          "A_stable",
+          "B_drift",
+          "C_degradation",
+          "D_drift_degradation",
+          "H1_sparse_duplicates",
+          "H2_sparse_category",
+          "H3_short_incident",
+          "H4_recovery"
+        ],
+        "ablation": [
+          "A_stable",
+          "B_drift",
+          "C_degradation",
+          "D_drift_degradation",
+          "S1_semantic_stable",
+          "S2_semantic_drift"
+        ]
+      },
+      "dataset_scenarios": {
+        "bts_airline": {
+          "drift_numeric": [
+            "DepDelay",
+            "TaxiOut"
+          ],
+          "contamination_columns": [
+            "TaxiOut"
+          ],
+          "sparse_category_column": "OriginState",
+          "novelty": [
+            {
+              "column": "Reporting_Airline",
+              "start": 6,
+              "share": 0.005,
+              "valid": [
+                "HA"
+              ],
+              "invalid": [
+                "ZX"
+              ]
+            },
+            {
+              "column": "Reporting_Airline",
+              "start": 11,
+              "share": 0.005,
+              "valid": [
+                "G4"
+              ],
+              "invalid": [
+                "Q7"
+              ]
+            },
+            {
+              "column": "OriginState",
+              "start": 6,
+              "share": 0.005,
+              "valid": [
+                "HI"
+              ],
+              "invalid": [
+                "QH"
+              ]
+            },
+            {
+              "column": "OriginState",
+              "start": 11,
+              "share": 0.005,
+              "valid": [
+                "AK"
+              ],
+              "invalid": [
+                "XK"
+              ]
+            },
+            {
+              "column": "Origin",
+              "start": 6,
+              "share": 0.005,
+              "valid": [
+                "STL"
+              ],
+              "invalid": [
+                "QXV"
+              ]
+            },
+            {
+              "column": "Origin",
+              "start": 11,
+              "share": 0.005,
+              "valid": [
+                "PDX"
+              ],
+              "invalid": [
+                "ZJW"
+              ]
+            }
+          ]
+        },
+        "online_retail": {
+          "contamination_columns": [
+            "Price"
+          ],
+          "sparse_category_column": "Country",
+          "novelty": [
+            {
+              "column": "Country",
+              "start": 6,
+              "share": 0.005,
+              "valid": [
+                "Australia"
+              ],
+              "invalid": [
+                "Swizterland"
+              ]
+            },
+            {
+              "column": "Country",
+              "start": 11,
+              "share": 0.005,
+              "valid": [
+                "Japan"
+              ],
+              "invalid": [
+                "Nethrelands"
+              ]
+            }
+          ]
+        },
+        "chicago_food": {
+          "contamination_columns": [
+            "Longitude"
+          ],
+          "contamination_factor": 1.002,
+          "sparse_category_column": "Facility Type",
+          "novelty": [
+            {
+              "column": "Results",
+              "start": 6,
+              "share": 0.005,
+              "valid": [
+                "Not Ready"
+              ],
+              "invalid": [
+                "Not Inspected"
+              ]
+            },
+            {
+              "column": "Results",
+              "start": 11,
+              "share": 0.005,
+              "valid": [
+                "Business Not Located"
+              ],
+              "invalid": [
+                "Pass Conditional"
+              ]
+            },
+            {
+              "column": "Facility Type",
+              "start": 6,
+              "share": 0.005,
+              "valid": [
+                "Hospital"
+              ],
+              "invalid": [
+                "Restuarant"
+              ]
+            },
+            {
+              "column": "Facility Type",
+              "start": 11,
+              "share": 0.005,
+              "valid": [
+                "Catering"
+              ],
+              "invalid": [
+                "Bakkery"
+              ]
+            }
+          ]
+        }
+      },
+      "drift": {
+        "category_top_n": 10,
+        "category_min_share": 0.01
+      },
+      "baselines": {
+        "ewma_lambda": 0.3,
+        "iqr_k": 3.0,
+        "mad_k": 3.0,
+        "methods": {
+          "fixed_t1": {
+            "numeric": "fixed_t1",
+            "category": "fixed_t1"
+          },
+          "fixed_pooled": {
+            "numeric": "fixed_pooled",
+            "category": "fixed_pooled"
+          },
+          "rolling_meansd": {
+            "numeric": "rolling_meansd",
+            "category": "recurrence"
+          },
+          "rolling_mad": {
+            "numeric": "rolling_mad",
+            "category": "recurrence"
+          },
+          "rolling_iqr": {
+            "numeric": "rolling_iqr",
+            "category": "recurrence"
+          },
+          "ewma": {
+            "numeric": "ewma",
+            "category": "recurrence"
+          },
+          "adaptive": {
+            "numeric": "adaptive",
+            "category": "recurrence"
+          },
+          "adaptive_prev": {
+            "numeric": "adaptive_prev",
+            "category": "recurrence"
+          },
+          "rolling_mad_cal": {
+            "numeric": "rolling_mad_cal",
+            "category": "recurrence"
+          },
+          "rolling_iqr_cal": {
+            "numeric": "rolling_iqr_cal",
+            "category": "recurrence"
+          },
+          "adaptive_num_pooled_cat": {
+            "numeric": "adaptive",
+            "category": "fixed_pooled"
+          },
+          "pooled_num_recurrence_cat": {
+            "numeric": "fixed_pooled",
+            "category": "recurrence"
+          }
+        },
+        "primary_comparator": "fixed_pooled"
+      },
+      "avh": {
+        "fpr_budget": 0.05,
+        "min_history": 4,
+        "bound": "student",
+        "history": "all"
+      },
+      "classification": {
+        "min_gate_records": 50,
+        "drift_threshold": {
+          "method": "prediction_bound",
+          "alpha": 0.05,
+          "resampling": {
+            "draws": 200
+          },
+          "min_effect": {
+            "numeric": 0.0,
+            "categorical": 0.0
+          }
+        },
+        "practical_min_effect": {
+          "numeric": 0.1,
+          "categorical": 0.01
+        },
+        "comparators": {
+          "static_no_drift": {
+            "drift": "none",
+            "failure": "fixed_t1"
+          },
+          "proposed": {
+            "drift": "gated",
+            "failure": "adaptive"
+          },
+          "proposed_no_gate": {
+            "drift": "ungated",
+            "failure": "adaptive"
+          },
+          "gated_fixed_pooled": {
+            "drift": "gated",
+            "failure": "fixed_pooled"
+          },
+          "gated_rolling_mad": {
+            "drift": "gated",
+            "failure": "rolling_mad"
+          },
+          "gated_ewma": {
+            "drift": "gated",
+            "failure": "ewma"
+          },
+          "proposed_min_effect": {
+            "drift": "gated",
+            "failure": "adaptive",
+            "min_effect": "practical"
+          },
+          "avh_style": {
+            "drift": "avh",
+            "failure": "avh"
+          },
+          "avh_style_quarantine": {
+            "drift": "avh",
+            "failure": "avh",
+            "history": "accepted"
+          },
+          "deequ_anomaly": {
+            "drift": "deequ",
+            "failure": "deequ",
+            "config": "default"
+          },
+          "deequ_anomaly_calibrated": {
+            "drift": "deequ",
+            "failure": "deequ",
+            "config": "calibrated"
+          },
+          "deequ_calibrated_checks": {
+            "drift": "deequ",
+            "failure": "deequ",
+            "config": "calibrated",
+            "constraints": "observed_default"
+          },
+          "tfdv_previous": {
+            "drift": "tfdv",
+            "failure": "tfdv",
+            "reference": "previous",
+            "thresholds": "documented"
+          },
+          "tfdv_warmup": {
+            "drift": "tfdv",
+            "failure": "tfdv",
+            "reference": "warmup",
+            "thresholds": "documented"
+          },
+          "tfdv_warmup_calibrated": {
+            "drift": "tfdv",
+            "failure": "tfdv",
+            "reference": "warmup",
+            "thresholds": "calibrated"
+          }
+        }
+      },
+      "rq2": {
+        "models": [
+          "primary",
+          "secondary"
+        ],
+        "generations": 5,
+        "redundancy_modes": [
+          "empirical",
+          "logical"
+        ],
+        "rule_fp_tolerance": 0.005,
+        "probe_values": 200,
+        "value_check_max_cost_usd": 10.0
+      },
+      "llm_models": {
+        "primary": "us.anthropic.claude-opus-5-5",
+        "secondary": "us.openai.gpt-6-astra"
+      },
+      "manual_author": {
+        "model_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+        "temperature": 0.0,
+        "max_tokens": 8000
+      },
+      "category_guard": {
+        "policies": [
+          "frozen",
+          "recurrence",
+          "recurrence_manual",
+          "recurrence_llm"
+        ]
+      },
+      "schedulers": {
+        "policies": [
+          "all",
+          "periodic",
+          "random",
+          "failure_only",
+          "drift_only",
+          "risk"
+        ],
+        "cost_match": true,
+        "periodic_phase": "staggered",
+        "degradation_rule": "per_check",
+        "drift_source": "gated_executed",
+        "reference_pass": true
+      },
+      "cost": {
+        "runtime_trials": {
+          "repeats": 5,
+          "seeds": 1,
+          "randomize_order": true
+        },
+        "measure_memory": true,
+        "upstream_profiles": true
+      },
+      "ablation": {
+        "adaptation": [
+          "fixed_pooled",
+          "adaptive"
+        ],
+        "llm_rules": [
+          "none",
+          "validated"
+        ],
+        "selection": [
+          "all",
+          "risk"
+        ],
+        "reference_rows": [
+          "fixed_t1"
+        ]
+      },
+      "external": {
+        "benchmarks_config": "configs/benchmarks.yaml"
+      },
+      "temporal": {
+        "chicago_batch": "month",
+        "warmup_batches": 5,
+        "drift_references": [
+          "rolling",
+          "warmup"
+        ],
+        "adjudication_sample": 10,
+        "adjudication_max_rows": 300,
+        "incomplete_month_gap_days": 4,
+        "min_effect_sensitivity": true
+      },
+      "external_tools": {
+        "suggest_experiments": [
+          "rq1_thresholds"
+        ],
+        "verify_experiments": [
+          "rq1_thresholds"
+        ],
+        "series_experiments": [
+          "rq1_classification"
+        ],
+        "rq1_methods": {
+          "deequ_observed": {
+            "variant": "observed_default",
+            "reading": "failed"
+          },
+          "deequ_observed_rows": {
+            "variant": "observed_default",
+            "reading": "any"
+          },
+          "deequ_clean": {
+            "variant": "clean_extended",
+            "reading": "failed"
+          },
+          "deequ_clean_rows": {
+            "variant": "clean_extended",
+            "reading": "any"
+          },
+          "deequ_clean_rows+base": {
+            "variant": "clean_extended",
+            "reading": "any",
+            "base": true
+          }
+        },
+        "deequ": {
+          "suggestion_variants": {
+            "observed_default": {
+              "warmup": "observed",
+              "rules": "DEFAULT"
+            },
+            "clean_extended": {
+              "warmup": "clean",
+              "rules": "DEFAULT+STRING+COMMON"
+            }
+          },
+          "anomaly_configs": {
+            "default": {
+              "strategy": "OnlineNormalStrategy",
+              "history": "cumulative",
+              "params": {}
+            },
+            "calibrated": {
+              "strategy": "BatchNormalStrategy",
+              "history": "warmup",
+              "alpha": 0.05,
+              "params": {
+                "lowerDeviationFactor": "calibrated",
+                "upperDeviationFactor": "calibrated"
+              }
+            }
+          }
+        },
+        "tfdv": {
+          "documented_thresholds": {
+            "categorical_linf": 0.01,
+            "numeric_jsd": 0.01
+          }
+        },
+        "runner": {
+          "deequ": "local",
+          "tfdv": "docker"
+        },
+        "wsl_distribution": "Ubuntu-24.04",
+        "venvs": {
+          "deequ": "~/adq-tools/deequ",
+          "tfdv": "~/adq-tools/tfdv"
+        },
+        "java_home": "/opt/homebrew/opt/openjdk@17",
+        "docker": {
+          "image": "adq-tfdv:1.21.0",
+          "platform": "linux/amd64",
+          "venvs": {
+            "tfdv": "/opt/adq-tools/tfdv"
+          }
+        }
+      }
+    },
+    "datasets": {
+      "bts_airline": {
+        "name": "BTS Airline On-Time Performance, Jan-Jun 2024",
+        "domain": "Transportation",
+        "source": "https://www.transtats.bts.gov (Reporting Carrier On-Time Performance)",
+        "license": "US Government work (public domain)",
+        "loader": "bts",
+        "files": [
+          "**/On_Time_Reporting_Carrier_On_Time_Performance*.zip",
+          "**/On_Time_Reporting_Carrier_On_Time_Performance*.csv"
+        ],
+        "load_columns": [
+          "FlightDate",
+          "Reporting_Airline",
+          "Flight_Number_Reporting_Airline",
+          "Origin",
+          "Dest",
+          "OriginState",
+          "CRSDepTime",
+          "DepDelay",
+          "TaxiOut",
+          "AirTime",
+          "Distance",
+          "Cancelled",
+          "Diverted"
+        ],
+        "clean_filters": [
+          "Cancelled == 0",
+          "Diverted == 0"
+        ],
+        "key_columns": [
+          "FlightDate",
+          "Reporting_Airline",
+          "Flight_Number_Reporting_Airline",
+          "Origin",
+          "Dest",
+          "CRSDepTime"
+        ],
+        "numeric": [
+          "DepDelay",
+          "TaxiOut",
+          "AirTime",
+          "Distance"
+        ],
+        "categorical": [
+          "Reporting_Airline",
+          "Origin",
+          "OriginState"
+        ],
+        "drift_numeric": [
+          "DepDelay",
+          "TaxiOut",
+          "AirTime",
+          "Distance"
+        ],
+        "drift_categorical": [
+          "Reporting_Airline"
+        ],
+        "batch_size": 50000,
+        "importance": {
+          "DepDelay": 1.0,
+          "TaxiOut": 0.5,
+          "AirTime": 0.5,
+          "Distance": 0.5,
+          "Reporting_Airline": 1.0,
+          "Origin": 0.5,
+          "OriginState": 0.5,
+          "_records": 0.5
+        },
+        "description": "US domestic flights reported by certified carriers (non-cancelled, non-diverted), Jan-Jun 2024. One record per flight.",
+        "column_descriptions": {
+          "FlightDate": "Scheduled flight date",
+          "Reporting_Airline": "Two-character IATA code of the reporting carrier",
+          "Flight_Number_Reporting_Airline": "Flight number",
+          "Origin": "Three-letter IATA code of the origin airport",
+          "Dest": "Three-letter IATA code of the destination airport",
+          "OriginState": "Two-letter US state or territory code of the origin airport",
+          "CRSDepTime": "Scheduled departure time, local, HHMM",
+          "DepDelay": "Departure delay in minutes; negative means early",
+          "TaxiOut": "Taxi-out time in minutes",
+          "AirTime": "Airborne time in minutes",
+          "Distance": "Distance between airports in miles"
+        },
+        "semantic_defects": [
+          {
+            "column": "TaxiOut",
+            "uniform": [
+              -10,
+              -1
+            ],
+            "what": "negative taxi-out time"
+          },
+          {
+            "column": "AirTime",
+            "uniform": [
+              -60,
+              0
+            ],
+            "what": "zero or negative airborne time"
+          },
+          {
+            "column": "Distance",
+            "uniform": [
+              -400,
+              10
+            ],
+            "what": "negative or near-zero route distance"
+          },
+          {
+            "column": "Reporting_Airline",
+            "values": [
+              "ZZ",
+              "XQ",
+              "QY"
+            ],
+            "what": "well-formed but non-existent carrier code"
+          },
+          {
+            "column": "Origin",
+            "values": [
+              "ZZZ",
+              "QQX",
+              "XQZ"
+            ],
+            "what": "well-formed but non-existent airport code"
+          },
+          {
+            "column": "OriginState",
+            "values": [
+              "XX",
+              "ZQ",
+              "QZ"
+            ],
+            "what": "well-formed but non-existent state code"
+          }
+        ]
+      },
+      "online_retail": {
+        "name": "UCI Online Retail II",
+        "domain": "E-commerce / Retail",
+        "source": "https://archive.ics.uci.edu/dataset/502/online+retail+ii",
+        "license": "CC BY 4.0",
+        "loader": "retail",
+        "files": [
+          "**/online_retail_II.xlsx",
+          "**/online_retail_II.csv"
+        ],
+        "clean_filters": [
+          "~Invoice.str.startswith('C')",
+          "Quantity > 0",
+          "Price > 0"
+        ],
+        "key_columns": [
+          "Invoice",
+          "InvoiceDate"
+        ],
+        "numeric": [
+          "Quantity",
+          "Price"
+        ],
+        "categorical": [
+          "Country",
+          "StockCode"
+        ],
+        "drift_numeric": [
+          "Quantity",
+          "Price"
+        ],
+        "drift_categorical": [
+          "Country"
+        ],
+        "batch_size": 30000,
+        "importance": {
+          "Quantity": 1.0,
+          "Price": 1.0,
+          "Country": 0.5,
+          "StockCode": 0.5,
+          "_records": 1.0
+        },
+        "description": "Invoice lines of a UK-based online gift-ware retailer, Dec 2009 - Dec 2011 (sales only; cancellations and returns removed). One record per invoice line.",
+        "column_descriptions": {
+          "Invoice": "Six-digit invoice number",
+          "InvoiceDate": "Invoice date and time",
+          "StockCode": "Product code, usually five digits, sometimes followed by a letter",
+          "Quantity": "Units sold on this invoice line",
+          "Price": "Unit price in pounds sterling",
+          "Country": "Customer's country"
+        },
+        "semantic_defects": [
+          {
+            "column": "Quantity",
+            "values": [
+              0,
+              -1,
+              -2,
+              -5,
+              -10
+            ],
+            "what": "zero or negative quantity on a sales line"
+          },
+          {
+            "column": "Price",
+            "uniform": [
+              -5,
+              -0.01
+            ],
+            "what": "negative unit price"
+          },
+          {
+            "column": "Country",
+            "values": [
+              "Untied Kingdom",
+              "Frnace",
+              "Germny"
+            ],
+            "what": "misspelled country"
+          },
+          {
+            "column": "StockCode",
+            "values": [
+              "99999Z",
+              "00000",
+              "1234567"
+            ],
+            "what": "well-formed but non-existent product code"
+          }
+        ]
+      },
+      "chicago_food": {
+        "name": "City of Chicago Food Inspections",
+        "domain": "Public Health / Regulatory",
+        "source": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
+        "license": "City of Chicago Data Portal terms of use",
+        "loader": "chicago",
+        "files": [
+          "**/Food_Inspections*.csv"
+        ],
+        "clean_filters": [],
+        "key_columns": [
+          "Inspection ID",
+          "Inspection Date"
+        ],
+        "numeric": [
+          "Latitude",
+          "Longitude"
+        ],
+        "categorical": [
+          "Risk",
+          "Results",
+          "Facility Type"
+        ],
+        "domain_ranges": {
+          "Latitude": [
+            41.6445,
+            42.0231
+          ],
+          "Longitude": [
+            -87.9402,
+            -87.5241
+          ]
+        },
+        "documented_domains": {
+          "Risk": [
+            "Risk 1 (High)",
+            "Risk 2 (Medium)",
+            "Risk 3 (Low)",
+            "All"
+          ],
+          "Results": [
+            "Pass",
+            "Pass w/ Conditions",
+            "Fail",
+            "Out of Business",
+            "No Entry",
+            "Not Ready",
+            "Business Not Located"
+          ]
+        },
+        "drift_numeric": [],
+        "drift_categorical": [
+          "Risk",
+          "Results"
+        ],
+        "batch_size": 10000,
+        "importance": {
+          "Latitude": 0.5,
+          "Longitude": 0.5,
+          "Risk": 1.0,
+          "Results": 1.0,
+          "Facility Type": 0.5,
+          "_records": 0.5
+        },
+        "description": "Food establishment inspections by the City of Chicago Department of Public Health, 2010 onwards. One record per inspection.",
+        "column_descriptions": {
+          "Inspection ID": "Unique inspection identifier",
+          "Inspection Date": "Date of the inspection",
+          "Risk": "Risk category of the establishment",
+          "Results": "Outcome of the inspection",
+          "Facility Type": "Type of establishment",
+          "Latitude": "Latitude of the establishment",
+          "Longitude": "Longitude of the establishment"
+        },
+        "semantic_defects": [
+          {
+            "column": "Risk",
+            "values": [
+              "Risk 4 (Very Low)",
+              "Risk 1 (high)"
+            ],
+            "what": "non-existent or mis-cased risk category"
+          },
+          {
+            "column": "Results",
+            "values": [
+              "Pass w/ Conditons",
+              "Passed"
+            ],
+            "what": "misspelled or non-standard result"
+          },
+          {
+            "column": "Facility Type",
+            "values": [
+              "Resturant",
+              "Grocery stor"
+            ],
+            "what": "misspelled facility type"
+          }
+        ]
+      }
+    }
+  },
+  "data": {
+    "bts_airline": {
+      "clean_parquet_sha256": "f8cfffefbc0ccfbf"
+    },
+    "online_retail": {
+      "clean_parquet_sha256": "b4c0d8aec30e19c5"
+    },
+    "chicago_food": {
+      "clean_parquet_sha256": "58adee43391c967d"
+    }
+  },
+  "environment": {
+    "python": "3.14.8",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "executable": "/Users/as/Documents/Phd Stuff/Adaptve-Data-Quality/DataQuality/adaptive-data-quality/.venv/bin/python"
+  },
+  "outputs": {
+    "tables": "/Users/as/Documents/Phd Stuff/Adaptve-Data-Quality/DataQuality/adaptive-data-quality/results/v2/rq1_classification/dev"
+  },
+  "scenarios": [
+    "A_stable",
+    "B_drift",
+    "C_degradation",
+    "D_drift_degradation"
+  ],
+  "runtime_s": 310.73021979199984,
+  "comparators": {
+    "static_no_drift": {
+      "drift": "none",
+      "failure": "fixed_t1"
+    },
+    "proposed": {
+      "drift": "gated",
+      "failure": "adaptive"
+    },
+    "proposed_no_gate": {
+      "drift": "ungated",
+      "failure": "adaptive"
+    },
+    "gated_fixed_pooled": {
+      "drift": "gated",
+      "failure": "fixed_pooled"
+    },
+    "gated_rolling_mad": {
+      "drift": "gated",
+      "failure": "rolling_mad"
+    },
+    "gated_ewma": {
+      "drift": "gated",
+      "failure": "ewma"
+    },
+    "proposed_min_effect": {
+      "drift": "gated",
+      "failure": "adaptive",
+      "min_effect": "practical"
+    },
+    "avh_style": {
+      "drift": "avh",
+      "failure": "avh"
+    },
+    "avh_style_quarantine": {
+      "drift": "avh",
+      "failure": "avh",
+      "history": "accepted"
+    },
+    "deequ_anomaly": {
+      "drift": "deequ",
+      "failure": "deequ",
+      "config": "default"
+    },
+    "deequ_anomaly_calibrated": {
+      "drift": "deequ",
+      "failure": "deequ",
+      "config": "calibrated"
+    },
+    "deequ_calibrated_checks": {
+      "drift": "deequ",
+      "failure": "deequ",
+      "config": "calibrated",
+      "constraints": "observed_default"
+    },
+    "tfdv_previous": {
+      "drift": "tfdv",
+      "failure": "tfdv",
+      "reference": "previous",
+      "thresholds": "documented"
+    },
+    "tfdv_warmup": {
+      "drift": "tfdv",
+      "failure": "tfdv",
+      "reference": "warmup",
+      "thresholds": "documented"
+    },
+    "tfdv_warmup_calibrated": {
+      "drift": "tfdv",
+      "failure": "tfdv",
+      "reference": "warmup",
+      "thresholds": "calibrated"
+    }
+  }
+}

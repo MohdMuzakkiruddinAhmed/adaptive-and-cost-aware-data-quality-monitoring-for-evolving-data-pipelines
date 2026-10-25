@@ -1,0 +1,138 @@
+{
+  "dataset": "online_retail",
+  "run": 3,
+  "model_id": "us.anthropic.claude-opus-5-5",
+  "mock": false,
+  "prompt_hash": "0cb699b7e2f2775b",
+  "created_at": "2026-10-04T15:05:43+00:00",
+  "stop_reason": "end_turn",
+  "input_tokens": 1907,
+  "output_tokens": 1995,
+  "cost_usd": 0.0522808,
+  "prompt": "Dataset: UCI Online Retail II\nDescription: Invoice lines of a UK-based online gift-ware retailer, Dec 2009 - Dec 2011 (sales only; cancellations and returns removed). One record per invoice line.\nBatch size: about 30,000 records. Statistics below come from a training sample of earlier batches.\nThe records also contain identifying columns (Invoice, InvoiceDate); together with the columns below they make up the whole record.\n\nColumn: Quantity\n  description: Units sold on this invoice line\n  type: numerical\n  missing: 0% of records\n  statistics: min 1, max 4800, mean 10.6104, median 4, std 52.1426, unique values 130\n  quantiles: p01 1, p05 1, p10 1, p20 1, p25 1, p30 2, p40 2, p50 4, p60 6, p70 8, p75 11, p80 12, p90 24, p95 30, p99 100\n  example values: 1, 1, 12, 2, 6, 1, 3, 2, 1, 3, 2, 4, 1, 2, 12\n\nColumn: Price\n  description: Unit price in pounds sterling\n  type: numerical\n  missing: 0% of records\n  statistics: min 0.001, max 5795.87, mean 3.90623, median 2.1, std 36.4396, unique values 365\n  quantiles: p01 0.29, p05 0.42, p10 0.65, p20 0.95, p25 1.25, p30 1.25, p40 1.65, p50 2.1, p60 2.95, p70 3.75, p75 4.13, p80 4.95, p90 7.95, p95 9.95, p99 18\n  example values: 0.85, 1.7, 2.46, 2.95, 5.45, 1.25, 0.85, 0.83, 0.21, 3.75, 1.65, 1.65, 4.21, 1.25, 2.55\n\nColumn: Country\n  description: Customer's country\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 38\n  most common values (share of records): United Kingdom (91.923%), Germany (1.677%), EIRE (1.663%), France (1.363%), Netherlands (0.557%), Spain (0.360%), Belgium (0.323%), Switzerland (0.310%), Portugal (0.270%), Channel Islands (0.197%), Cyprus (0.153%), Sweden (0.150%), Italy (0.130%), Norway (0.123%), Denmark (0.107%), Finland (0.083%), Greece (0.080%), Unspecified (0.063%), Singapore (0.060%), Austria (0.057%)\n  example values: United Kingdom, United Kingdom, United Kingdom, France, United Kingdom, United Kingdom, United Kingdom, Germany, United Kingdom, Norway, United Kingdom, United Kingdom, United Kingdom, United Kingdom, Lebanon\n\nColumn: StockCode\n  description: Product code, usually five digits, sometimes followed by a letter\n  type: categorical\n  missing: 0% of records\n  number of distinct values: 3641\n  most common values (share of records): 85123A (0.543%), 22423 (0.397%), 85099B (0.360%), 21212 (0.327%), 84879 (0.273%), 20725 (0.263%), 21232 (0.263%), 22197 (0.260%), 22382 (0.260%), 22086 (0.257%), 22386 (0.253%), 22469 (0.253%), 22384 (0.250%), 47566 (0.243%), 21931 (0.243%), 20914 (0.243%), 20727 (0.237%), 22139 (0.237%), 82482 (0.227%), 22457 (0.220%)\n  example values: 85099F, 22750, 21905, 22380, 22601, 84050, 22748, 22221, 20676, 22474, 48173C, 37448, 23406, 21807, 22897\n\nPropose the validation rules for the columns above (and for whole records where useful). Return JSON only.",
+  "response_text": "{\"rules\": [\n{\"column\": \"Quantity\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Quantity must not be missing\", \"reason\": \"Every invoice line records units sold. The column is 0% missing in the training data.\", \"confidence\": 0.95},\n{\"column\": \"Quantity\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Quantity must be numeric\", \"reason\": \"Quantity is a count of units.\", \"confidence\": 0.95},\n{\"column\": \"Quantity\", \"rule_type\": \"range\", \"min\": 1, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Quantity must be at least 1\", \"reason\": \"Cancellations and returns are removed, so a sales line must have a positive quantity. No upper bound is set because legitimate wholesale orders can be very large.\", \"confidence\": 0.9},\n{\"column\": \"Price\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Price must not be missing\", \"reason\": \"Every invoice line has a unit price. The column is 0% missing in the training data.\", \"confidence\": 0.95},\n{\"column\": \"Price\", \"rule_type\": \"type\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Price must be numeric\", \"reason\": \"Price is a monetary amount.\", \"confidence\": 0.95},\n{\"column\": \"Price\", \"rule_type\": \"range\", \"min\": 0, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Price must be non-negative\", \"reason\": \"A unit price on a sale cannot be negative. No upper bound is set because manual or postage lines can legitimately carry high prices.\", \"confidence\": 0.85},\n{\"column\": \"Country\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"Country must not be missing\", \"reason\": \"The column is 0% missing; 'Unspecified' is used as the explicit unknown value instead.\", \"confidence\": 0.9},\n{\"column\": \"Country\", \"rule_type\": \"pattern\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": \"^[A-Za-z][A-Za-z .&'()-]*$\", \"condition\": \"Country must be a textual country name\", \"reason\": \"Country names consist of letters, spaces and a few punctuation marks. A fixed category list is avoided because new customer countries can legitimately appear over time.\", \"confidence\": 0.75},\n{\"column\": \"StockCode\", \"rule_type\": \"completeness\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": null, \"condition\": \"StockCode must not be missing\", \"reason\": \"Every invoice line refers to a product. The column is 0% missing in the training data.\", \"confidence\": 0.95},\n{\"column\": \"StockCode\", \"rule_type\": \"pattern\", \"min\": null, \"max\": null, \"allowed_values\": null, \"pattern\": \"^(\\\\d{5}[A-Za-z]{0,3}|[A-Za-z][A-Za-z0-9_ ]*)$\", \"condition\": \"StockCode must be five digits optionally followed by letters, or an alphanumeric special code such as POST, M, DOT or gift_0001_10\", \"reason\": \"Product codes are usually five digits with an optional letter suffix. Special non-product codes (postage, manual, fees) are legitimate and start with a letter.\", \"confidence\": 0.7}\n]}",
+  "rules": [
+    {
+      "column": "Quantity",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must not be missing",
+      "reason": "Every invoice line records units sold. The column is 0% missing in the training data.",
+      "confidence": 0.95
+    },
+    {
+      "column": "Quantity",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must be numeric",
+      "reason": "Quantity is a count of units.",
+      "confidence": 0.95
+    },
+    {
+      "column": "Quantity",
+      "rule_type": "range",
+      "min": 1,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Quantity must be at least 1",
+      "reason": "Cancellations and returns are removed, so a sales line must have a positive quantity. No upper bound is set because legitimate wholesale orders can be very large.",
+      "confidence": 0.9
+    },
+    {
+      "column": "Price",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must not be missing",
+      "reason": "Every invoice line has a unit price. The column is 0% missing in the training data.",
+      "confidence": 0.95
+    },
+    {
+      "column": "Price",
+      "rule_type": "type",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must be numeric",
+      "reason": "Price is a monetary amount.",
+      "confidence": 0.95
+    },
+    {
+      "column": "Price",
+      "rule_type": "range",
+      "min": 0,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Price must be non-negative",
+      "reason": "A unit price on a sale cannot be negative. No upper bound is set because manual or postage lines can legitimately carry high prices.",
+      "confidence": 0.85
+    },
+    {
+      "column": "Country",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "Country must not be missing",
+      "reason": "The column is 0% missing; 'Unspecified' is used as the explicit unknown value instead.",
+      "confidence": 0.9
+    },
+    {
+      "column": "Country",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^[A-Za-z][A-Za-z .&'()-]*$",
+      "condition": "Country must be a textual country name",
+      "reason": "Country names consist of letters, spaces and a few punctuation marks. A fixed category list is avoided because new customer countries can legitimately appear over time.",
+      "confidence": 0.75
+    },
+    {
+      "column": "StockCode",
+      "rule_type": "completeness",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": null,
+      "condition": "StockCode must not be missing",
+      "reason": "Every invoice line refers to a product. The column is 0% missing in the training data.",
+      "confidence": 0.95
+    },
+    {
+      "column": "StockCode",
+      "rule_type": "pattern",
+      "min": null,
+      "max": null,
+      "allowed_values": null,
+      "pattern": "^(\\d{5}[A-Za-z]{0,3}|[A-Za-z][A-Za-z0-9_ ]*)$",
+      "condition": "StockCode must be five digits optionally followed by letters, or an alphanumeric special code such as POST, M, DOT or gift_0001_10",
+      "reason": "Product codes are usually five digits with an optional letter suffix. Special non-product codes (postage, manual, fees) are legitimate and start with a letter.",
+      "confidence": 0.7
+    }
+  ],
+  "parse_error": null,
+  "from_cache": false,
+  "fingerprint": {
+    "training_sample": "5a806588783054ff",
+    "prompt": "0cb699b7e2f2775b",
+    "llm_settings": "0b1eed0a621b71da",
+    "generator_code": "36be4bbf49975e7c",
+    "key": "4cc87519fc7f"
+  },
+  "temperature": null,
+  "max_tokens": 16000,
+  "system_prompt_hash": "55c94eee898d3465"
+}
