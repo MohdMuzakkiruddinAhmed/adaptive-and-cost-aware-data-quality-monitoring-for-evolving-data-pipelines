@@ -1,0 +1,91 @@
+{
+ "dataset": "bts_airline",
+ "warm_hash": "b462c67af1e3c600",
+ "variant": "observed_default",
+ "warmup": "observed",
+ "rows": 250625,
+ "rule_set": "DEFAULT",
+ "columns": {
+  "DepDelay": "DepDelay",
+  "TaxiOut": "TaxiOut",
+  "AirTime": "AirTime",
+  "Distance": "Distance",
+  "Reporting_Airline": "Reporting_Airline",
+  "Origin": "Origin",
+  "OriginState": "OriginState"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(TaxiOut,None,None))",
+   "column_name": "TaxiOut",
+   "current_value": "Completeness: 0.9996408977556109",
+   "description": "'TaxiOut' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"TaxiOut\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(AirTime,None,None))",
+   "column_name": "AirTime",
+   "current_value": "Completeness: 0.9996847880299252",
+   "description": "'AirTime' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"AirTime\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Reporting_Airline,None,None))",
+   "column_name": "Reporting_Airline",
+   "current_value": "Completeness: 0.9996967581047381",
+   "description": "'Reporting_Airline' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Reporting_Airline\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Origin,None,None))",
+   "column_name": "Origin",
+   "current_value": "Completeness: 0.999652867830424",
+   "description": "'Origin' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Origin\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(OriginState,None,None))",
+   "column_name": "OriginState",
+   "current_value": "Completeness: 0.9996568578553616",
+   "description": "'OriginState' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"OriginState\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Distance,None,None))",
+   "column_name": "Distance",
+   "current_value": "Completeness: 0.9995610972568578",
+   "description": "'Distance' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Distance\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(DepDelay,None,None))",
+   "column_name": "DepDelay",
+   "current_value": "Completeness: 0.9996129675810473",
+   "description": "'DepDelay' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"DepDelay\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  }
+ ],
+ "constraints_verified": [
+  ".hasCompleteness(\"AirTime\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"DepDelay\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Distance\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Origin\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"OriginState\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Reporting_Airline\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"TaxiOut\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+ ]
+}

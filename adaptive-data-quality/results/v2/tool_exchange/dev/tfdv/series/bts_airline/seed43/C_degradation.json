@@ -1,0 +1,862 @@
+{
+ "unit": {
+  "dataset": "bts_airline",
+  "seed": 43,
+  "scenario": "C_degradation",
+  "warm_hash": "cce5562140bbe058",
+  "warm_clean_hash": "a95c1d9613fda51b",
+  "series_hash": "bc63691f234e6999",
+  "suggest": true,
+  "series": true,
+  "verify": true,
+  "n_batches": 20,
+  "warmup": 5,
+  "rows": [
+   50125,
+   50125,
+   50125,
+   50125,
+   50125,
+   50125,
+   50125,
+   50125,
+   50125,
+   50125,
+   50375,
+   50375,
+   50375,
+   50625,
+   50625,
+   50625,
+   51250,
+   51250,
+   51250,
+   51250
+  ]
+ },
+ "schema": "feature {\n  name: \"DepDelay\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"TaxiOut\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"AirTime\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Distance\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Reporting_Airline\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Origin\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"OriginState\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  presence {\n    min_count: 1\n  }\n}\n",
+ "feature_kind": {
+  "DepDelay": "numeric",
+  "TaxiOut": "numeric",
+  "AirTime": "numeric",
+  "Distance": "numeric",
+  "Reporting_Airline": "categorical",
+  "Origin": "categorical",
+  "OriginState": "categorical"
+ },
+ "columns": {
+  "DepDelay": "DepDelay",
+  "TaxiOut": "TaxiOut",
+  "AirTime": "AirTime",
+  "Distance": "Distance",
+  "Reporting_Airline": "Reporting_Airline",
+  "Origin": "Origin",
+  "OriginState": "OriginState"
+ },
+ "loo_warmup": [
+  {
+   "DepDelay": 0.574954,
+   "TaxiOut": 0.239694,
+   "AirTime": 0.00674669,
+   "Distance": 0.0339639,
+   "Reporting_Airline": 0.00132156,
+   "Origin": 0.0019562,
+   "OriginState": 0.00220385
+  },
+  {
+   "DepDelay": 0.171208,
+   "TaxiOut": 0.106923,
+   "AirTime": 0.151023,
+   "Distance": 0.0765075,
+   "Reporting_Airline": 0.00204844,
+   "Origin": 0.00172727,
+   "OriginState": 0.00260012
+  },
+  {
+   "DepDelay": 0.062608,
+   "TaxiOut": 0.175608,
+   "AirTime": 0.0360753,
+   "Distance": 0.023145,
+   "Reporting_Airline": 0.00390523,
+   "Origin": 0.00106188,
+   "OriginState": 0.00129189
+  },
+  {
+   "DepDelay": 0.039886,
+   "TaxiOut": 0.114018,
+   "AirTime": 0.00347788,
+   "Distance": 0.0688449,
+   "Reporting_Airline": 0.00225315,
+   "Origin": 0.00146634,
+   "OriginState": 0.0024776
+  },
+  {
+   "DepDelay": 0.543308,
+   "TaxiOut": 0.0279354,
+   "AirTime": 0.111137,
+   "Distance": 0.0163191,
+   "Reporting_Airline": 0.00370569,
+   "Origin": 0.00200439,
+   "OriginState": 0.00258741
+  }
+ ],
+ "consecutive_warmup": [
+  {
+   "DepDelay": 0.526329,
+   "TaxiOut": 0.255144,
+   "AirTime": 0.155034,
+   "Distance": 0.102523,
+   "Reporting_Airline": 0.00191789,
+   "Origin": 0.0022491,
+   "OriginState": 0.00281983
+  },
+  {
+   "DepDelay": 0.114299,
+   "TaxiOut": 0.129378,
+   "AirTime": 0.174463,
+   "Distance": 0.0964054,
+   "Reporting_Airline": 0.00278883,
+   "Origin": 0.00133794,
+   "OriginState": 0.00241529
+  },
+  {
+   "DepDelay": 0.0341543,
+   "TaxiOut": 0.217704,
+   "AirTime": 0.0361056,
+   "Distance": 0.0762139,
+   "Reporting_Airline": 0.00401994,
+   "Origin": 0.00183559,
+   "OriginState": 0.00179341
+  },
+  {
+   "DepDelay": 0.55667,
+   "TaxiOut": 0.0382702,
+   "AirTime": 0.111108,
+   "Distance": 0.069071,
+   "Reporting_Airline": 0.00369734,
+   "Origin": 0.00145857,
+   "OriginState": 0.0033774
+  }
+ ],
+ "loo_warmup_quality": [
+  {
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9997406483790524,
+    "TaxiOut": 0.9995610972568578,
+    "AirTime": 0.9996807980049875,
+    "Distance": 0.9995211970074813,
+    "Reporting_Airline": 0.9995610972568578,
+    "Origin": 0.999720698254364,
+    "OriginState": 0.999720698254364
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9996608478802993,
+    "TaxiOut": 0.9997007481296758,
+    "AirTime": 0.9996209476309227,
+    "Distance": 0.9997007481296758,
+    "Reporting_Airline": 0.9994613466334165,
+    "Origin": 0.9995810473815462,
+    "OriginState": 0.9997805486284289
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9995411471321696,
+    "TaxiOut": 0.9996408977556109,
+    "AirTime": 0.9996209476309227,
+    "Distance": 0.999860349127182,
+    "Reporting_Airline": 0.9996408977556109,
+    "Origin": 0.9996209476309227,
+    "OriginState": 0.9995810473815462
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.999720698254364,
+    "TaxiOut": 0.9995810473815462,
+    "AirTime": 0.9998004987531172,
+    "Distance": 0.9996009975062344,
+    "Reporting_Airline": 0.999720698254364,
+    "Origin": 0.9996009975062344,
+    "OriginState": 0.9994812967581047
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9997406483790524,
+    "TaxiOut": 0.9996408977556109,
+    "AirTime": 0.9996608478802993,
+    "Distance": 0.9997007481296758,
+    "Reporting_Airline": 0.9995810473815462,
+    "Origin": 0.9996608478802993,
+    "OriginState": 0.9995211970074813
+   },
+   "unexpected_fraction": {}
+  }
+ ],
+ "batches": [
+  {
+   "t": 1,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9997406483790524,
+    "TaxiOut": 0.9995610972568578,
+    "AirTime": 0.9996807980049875,
+    "Distance": 0.9995211970074813,
+    "Reporting_Airline": 0.9995610972568578,
+    "Origin": 0.999720698254364,
+    "OriginState": 0.999720698254364
+   },
+   "unexpected_fraction": {},
+   "distance_previous": null,
+   "distance_warmup": {
+    "DepDelay": 0.542462,
+    "TaxiOut": 0.239885,
+    "AirTime": 0.00674634,
+    "Distance": 0.033955,
+    "Reporting_Airline": 0.00105726,
+    "Origin": 0.00156492,
+    "OriginState": 0.00176304
+   }
+  },
+  {
+   "t": 2,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9996608478802993,
+    "TaxiOut": 0.9997007481296758,
+    "AirTime": 0.9996209476309227,
+    "Distance": 0.9997007481296758,
+    "Reporting_Airline": 0.9994613466334165,
+    "Origin": 0.9995810473815462,
+    "OriginState": 0.9997805486284289
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.526329,
+    "TaxiOut": 0.255144,
+    "AirTime": 0.155034,
+    "Distance": 0.102523,
+    "Reporting_Airline": 0.00191789,
+    "Origin": 0.0022491,
+    "OriginState": 0.00281983
+   },
+   "distance_warmup": {
+    "DepDelay": 0.171225,
+    "TaxiOut": 0.0499961,
+    "AirTime": 0.151034,
+    "Distance": 0.076469,
+    "Reporting_Airline": 0.0016388,
+    "Origin": 0.00138183,
+    "OriginState": 0.00208001
+   }
+  },
+  {
+   "t": 3,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9995411471321696,
+    "TaxiOut": 0.9996408977556109,
+    "AirTime": 0.9996209476309227,
+    "Distance": 0.999860349127182,
+    "Reporting_Airline": 0.9996408977556109,
+    "Origin": 0.9996209476309227,
+    "OriginState": 0.9995810473815462
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.114299,
+    "TaxiOut": 0.129378,
+    "AirTime": 0.174463,
+    "Distance": 0.0964054,
+    "Reporting_Airline": 0.00278883,
+    "Origin": 0.00133794,
+    "OriginState": 0.00241529
+   },
+   "distance_warmup": {
+    "DepDelay": 0.0625314,
+    "TaxiOut": 0.175691,
+    "AirTime": 0.0360296,
+    "Distance": 0.0231281,
+    "Reporting_Airline": 0.00312415,
+    "Origin": 0.000849511,
+    "OriginState": 0.00103352
+   }
+  },
+  {
+   "t": 4,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.999720698254364,
+    "TaxiOut": 0.9995810473815462,
+    "AirTime": 0.9998004987531172,
+    "Distance": 0.9996009975062344,
+    "Reporting_Airline": 0.999720698254364,
+    "Origin": 0.9996009975062344,
+    "OriginState": 0.9994812967581047
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.0341543,
+    "TaxiOut": 0.217704,
+    "AirTime": 0.0361056,
+    "Distance": 0.0762139,
+    "Reporting_Airline": 0.00401994,
+    "Origin": 0.00183559,
+    "OriginState": 0.00179341
+   },
+   "distance_warmup": {
+    "DepDelay": 0.0321829,
+    "TaxiOut": 0.0597843,
+    "AirTime": 1.13934e-05,
+    "Distance": 0.0536582,
+    "Reporting_Airline": 0.00180246,
+    "Origin": 0.00117308,
+    "OriginState": 0.00198215
+   }
+  },
+  {
+   "t": 5,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9997406483790524,
+    "TaxiOut": 0.9996408977556109,
+    "AirTime": 0.9996608478802993,
+    "Distance": 0.9997007481296758,
+    "Reporting_Airline": 0.9995810473815462,
+    "Origin": 0.9996608478802993,
+    "OriginState": 0.9995211970074813
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.55667,
+    "TaxiOut": 0.0382702,
+    "AirTime": 0.111108,
+    "Distance": 0.069071,
+    "Reporting_Airline": 0.00369734,
+    "Origin": 0.00145857,
+    "OriginState": 0.0033774
+   },
+   "distance_warmup": {
+    "DepDelay": 0.543098,
+    "TaxiOut": 0.0278367,
+    "AirTime": 0.111165,
+    "Distance": 0.0153977,
+    "Reporting_Airline": 0.00296456,
+    "Origin": 0.0016035,
+    "OriginState": 0.00206998
+   }
+  },
+  {
+   "t": 6,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9996209476309227,
+    "TaxiOut": 0.9997605985037407,
+    "AirTime": 0.9996608478802993,
+    "Distance": 0.9995610972568578,
+    "Reporting_Airline": 0.9996807980049875,
+    "Origin": 0.9995810473815462,
+    "OriginState": 0.9996408977556109
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.50889,
+    "TaxiOut": 0.0156847,
+    "AirTime": 0.0647094,
+    "Distance": 0.0337066,
+    "Reporting_Airline": 0.0037327,
+    "Origin": 0.00205806,
+    "OriginState": 0.00272711
+   },
+   "distance_warmup": {
+    "DepDelay": 0.136175,
+    "TaxiOut": 0.0176575,
+    "AirTime": 0.05571,
+    "Distance": 0.0486385,
+    "Reporting_Airline": 0.00207367,
+    "Origin": 0.00159882,
+    "OriginState": 0.0032635
+   }
+  },
+  {
+   "t": 7,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9997406483790524,
+    "TaxiOut": 0.9997805486284289,
+    "AirTime": 0.9995610972568578,
+    "Distance": 0.9996608478802993,
+    "Reporting_Airline": 0.9995810473815462,
+    "Origin": 0.9995610972568578,
+    "OriginState": 0.9996209476309227
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.239028,
+    "TaxiOut": 0.150872,
+    "AirTime": 0.0543981,
+    "Distance": 0.0499981,
+    "Reporting_Airline": 0.00277795,
+    "Origin": 0.0016161,
+    "OriginState": 0.00207749
+   },
+   "distance_warmup": {
+    "DepDelay": 0.318714,
+    "TaxiOut": 0.129801,
+    "AirTime": 0.0116477,
+    "Distance": 0.0382669,
+    "Reporting_Airline": 0.00266814,
+    "Origin": 0.00150353,
+    "OriginState": 0.00120586
+   }
+  },
+  {
+   "t": 8,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9997805486284289,
+    "TaxiOut": 0.9997007481296758,
+    "AirTime": 0.9993416458852867,
+    "Distance": 0.9995411471321696,
+    "Reporting_Airline": 0.9996807980049875,
+    "Origin": 0.9997007481296758,
+    "OriginState": 0.9997605985037407
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.124009,
+    "TaxiOut": 0.0750737,
+    "AirTime": 0.108055,
+    "Distance": 0.0483252,
+    "Reporting_Airline": 0.00214968,
+    "Origin": 0.00197967,
+    "OriginState": 0.00174141
+   },
+   "distance_warmup": {
+    "DepDelay": 0.252617,
+    "TaxiOut": 0.0567246,
+    "AirTime": 0.0998294,
+    "Distance": 0.0288403,
+    "Reporting_Airline": 0.00223859,
+    "Origin": 0.00187278,
+    "OriginState": 0.00158508
+   }
+  },
+  {
+   "t": 9,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9995610972568578,
+    "TaxiOut": 0.9997007481296758,
+    "AirTime": 0.9995211970074813,
+    "Distance": 0.9996608478802993,
+    "Reporting_Airline": 0.9997406483790524,
+    "Origin": 0.9995610972568578,
+    "OriginState": 0.9997605985037407
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.227627,
+    "TaxiOut": 0.213931,
+    "AirTime": 0.148313,
+    "Distance": 0.0386663,
+    "Reporting_Airline": 0.00246316,
+    "Origin": 0.00318733,
+    "OriginState": 0.00295333
+   },
+   "distance_warmup": {
+    "DepDelay": 0.404268,
+    "TaxiOut": 0.232727,
+    "AirTime": 0.0625031,
+    "Distance": 0.00890531,
+    "Reporting_Airline": 0.00178372,
+    "Origin": 0.00247963,
+    "OriginState": 0.00219004
+   }
+  },
+  {
+   "t": 10,
+   "schema_anomalies": [],
+   "records": 50125,
+   "present_fraction": {
+    "DepDelay": 0.9996608478802993,
+    "TaxiOut": 0.9997007481296758,
+    "AirTime": 0.9995810473815462,
+    "Distance": 0.999720698254364,
+    "Reporting_Airline": 0.9996807980049875,
+    "Origin": 0.9996009975062344,
+    "OriginState": 0.9995610972568578
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.303766,
+    "TaxiOut": 0.10259,
+    "AirTime": 0.146879,
+    "Distance": 0.0470365,
+    "Reporting_Airline": 0.00128477,
+    "Origin": 0.00311185,
+    "OriginState": 0.0032724
+   },
+   "distance_warmup": {
+    "DepDelay": 0.143118,
+    "TaxiOut": 0.201184,
+    "AirTime": 0.097125,
+    "Distance": 0.0372793,
+    "Reporting_Airline": 0.00188827,
+    "Origin": 0.00146831,
+    "OriginState": 0.00480019
+   }
+  },
+  {
+   "t": 11,
+   "schema_anomalies": [],
+   "records": 50375,
+   "present_fraction": {
+    "DepDelay": 0.9990669975186104,
+    "TaxiOut": 0.9989478908188586,
+    "AirTime": 0.9989280397022332,
+    "Distance": 0.9988684863523574,
+    "Reporting_Airline": 0.9989478908188586,
+    "Origin": 0.9991265508684863,
+    "OriginState": 0.9986699751861042
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.186349,
+    "TaxiOut": 0.263809,
+    "AirTime": 0.111862,
+    "Distance": 0.0862139,
+    "Reporting_Airline": 0.00266595,
+    "Origin": 0.00208648,
+    "OriginState": 0.00270889
+   },
+   "distance_warmup": {
+    "DepDelay": 0.316451,
+    "TaxiOut": 0.17176,
+    "AirTime": 0.0160523,
+    "Distance": 0.0502826,
+    "Reporting_Airline": 0.00316051,
+    "Origin": 0.00196672,
+    "OriginState": 0.0023951
+   }
+  },
+  {
+   "t": 12,
+   "schema_anomalies": [],
+   "records": 50375,
+   "present_fraction": {
+    "DepDelay": 0.9991464019851116,
+    "TaxiOut": 0.9988287841191067,
+    "AirTime": 0.9987890818858561,
+    "Distance": 0.998650124069479,
+    "Reporting_Airline": 0.9992456575682382,
+    "Origin": 0.9990074441687344,
+    "OriginState": 0.9988883374689826
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.219971,
+    "TaxiOut": 0.266985,
+    "AirTime": 0.00926974,
+    "Distance": 0.0387057,
+    "Reporting_Airline": 0.00341564,
+    "Origin": 0.00229967,
+    "OriginState": 0.00266021
+   },
+   "distance_warmup": {
+    "DepDelay": 0.445339,
+    "TaxiOut": 0.144713,
+    "AirTime": 0.00686489,
+    "Distance": 0.0111359,
+    "Reporting_Airline": 0.00298536,
+    "Origin": 0.00185877,
+    "OriginState": 0.00163882
+   }
+  },
+  {
+   "t": 13,
+   "schema_anomalies": [],
+   "records": 50375,
+   "present_fraction": {
+    "DepDelay": 0.9989280397022332,
+    "TaxiOut": 0.9989478908188586,
+    "AirTime": 0.9986699751861042,
+    "Distance": 0.9990074441687344,
+    "Reporting_Airline": 0.998848635235732,
+    "Origin": 0.9989081885856079,
+    "OriginState": 0.9992456575682382
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.25212,
+    "TaxiOut": 0.271342,
+    "AirTime": 0.0264422,
+    "Distance": 0.0248204,
+    "Reporting_Airline": 0.00332022,
+    "Origin": 0.00265974,
+    "OriginState": 0.00167625
+   },
+   "distance_warmup": {
+    "DepDelay": 0.299151,
+    "TaxiOut": 0.195515,
+    "AirTime": 0.0198148,
+    "Distance": 0.0134411,
+    "Reporting_Airline": 0.00204704,
+    "Origin": 0.00126177,
+    "OriginState": 0.00147111
+   }
+  },
+  {
+   "t": 14,
+   "schema_anomalies": [],
+   "records": 50625,
+   "present_fraction": {
+    "DepDelay": 0.9981037037037037,
+    "TaxiOut": 0.9984,
+    "AirTime": 0.9980641975308642,
+    "Distance": 0.9986567901234568,
+    "Reporting_Airline": 0.9981234567901235,
+    "Origin": 0.9981234567901235,
+    "OriginState": 0.9981827160493827
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.225134,
+    "TaxiOut": 0.257561,
+    "AirTime": 0.010514,
+    "Distance": 0.0321411,
+    "Reporting_Airline": 0.00323937,
+    "Origin": 0.00159148,
+    "OriginState": 0.00178692
+   },
+   "distance_warmup": {
+    "DepDelay": 0.16837,
+    "TaxiOut": 0.0789976,
+    "AirTime": 0.00977286,
+    "Distance": 0.0190228,
+    "Reporting_Airline": 0.00366021,
+    "Origin": 0.0011212,
+    "OriginState": 0.00120987
+   }
+  },
+  {
+   "t": 15,
+   "schema_anomalies": [],
+   "records": 50625,
+   "present_fraction": {
+    "DepDelay": 0.9983407407407408,
+    "TaxiOut": 0.9981432098765433,
+    "AirTime": 0.9982024691358025,
+    "Distance": 0.9984395061728395,
+    "Reporting_Airline": 0.9979654320987654,
+    "Origin": 0.9984197530864197,
+    "OriginState": 0.9981432098765433
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.198563,
+    "TaxiOut": 0.0223121,
+    "AirTime": 0.00301518,
+    "Distance": 0.011543,
+    "Reporting_Airline": 0.00331786,
+    "Origin": 0.00244082,
+    "OriginState": 0.00219854
+   },
+   "distance_warmup": {
+    "DepDelay": 0.272549,
+    "TaxiOut": 0.0541796,
+    "AirTime": 0.00687681,
+    "Distance": 0.00748705,
+    "Reporting_Airline": 0.00166097,
+    "Origin": 0.0014801,
+    "OriginState": 0.00140368
+   }
+  },
+  {
+   "t": 16,
+   "schema_anomalies": [],
+   "records": 50625,
+   "present_fraction": {
+    "DepDelay": 0.9980641975308642,
+    "TaxiOut": 0.9982222222222222,
+    "AirTime": 0.9982222222222222,
+    "Distance": 0.9982222222222222,
+    "Reporting_Airline": 0.9984197530864197,
+    "Origin": 0.9982222222222222,
+    "OriginState": 0.9982814814814814
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.181193,
+    "TaxiOut": 0.0747937,
+    "AirTime": 0.0326541,
+    "Distance": 0.0235513,
+    "Reporting_Airline": 0.00259649,
+    "Origin": 0.00311777,
+    "OriginState": 0.00270436
+   },
+   "distance_warmup": {
+    "DepDelay": 0.381168,
+    "TaxiOut": 0.129572,
+    "AirTime": 0.0259747,
+    "Distance": 0.0167159,
+    "Reporting_Airline": 0.00270008,
+    "Origin": 0.00186421,
+    "OriginState": 0.0027979
+   }
+  },
+  {
+   "t": 17,
+   "schema_anomalies": [],
+   "records": 51250,
+   "present_fraction": {
+    "DepDelay": 0.9964682926829268,
+    "TaxiOut": 0.9962146341463415,
+    "AirTime": 0.996370731707317,
+    "Distance": 0.9967414634146341,
+    "Reporting_Airline": 0.9966048780487805,
+    "Origin": 0.996780487804878,
+    "OriginState": 0.996429268292683
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.359691,
+    "TaxiOut": 0.311727,
+    "AirTime": 0.0238375,
+    "Distance": 0.00382051,
+    "Reporting_Airline": 0.00220654,
+    "Origin": 0.00297178,
+    "OriginState": 0.00349663
+   },
+   "distance_warmup": {
+    "DepDelay": 0.0357374,
+    "TaxiOut": 0.266595,
+    "AirTime": 0.0031182,
+    "Distance": 0.0159116,
+    "Reporting_Airline": 0.00178796,
+    "Origin": 0.00269516,
+    "OriginState": 0.00218391
+   }
+  },
+  {
+   "t": 18,
+   "schema_anomalies": [],
+   "records": 51250,
+   "present_fraction": {
+    "DepDelay": 0.996429268292683,
+    "TaxiOut": 0.9967219512195122,
+    "AirTime": 0.9968390243902439,
+    "Distance": 0.9964682926829268,
+    "Reporting_Airline": 0.9964682926829268,
+    "Origin": 0.9960780487804878,
+    "OriginState": 0.9966048780487805
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.223055,
+    "TaxiOut": 0.304877,
+    "AirTime": 0.00579498,
+    "Distance": 0.00971645,
+    "Reporting_Airline": 0.0035695,
+    "Origin": 0.00231561,
+    "OriginState": 0.00403189
+   },
+   "distance_warmup": {
+    "DepDelay": 0.251121,
+    "TaxiOut": 0.145385,
+    "AirTime": 0.00442643,
+    "Distance": 0.0090046,
+    "Reporting_Airline": 0.00267618,
+    "Origin": 0.00236632,
+    "OriginState": 0.00387276
+   }
+  },
+  {
+   "t": 19,
+   "schema_anomalies": [],
+   "records": 51250,
+   "present_fraction": {
+    "DepDelay": 0.9963121951219512,
+    "TaxiOut": 0.9970536585365853,
+    "AirTime": 0.9961951219512195,
+    "Distance": 0.9965463414634146,
+    "Reporting_Airline": 0.9964487804878048,
+    "Origin": 0.996429268292683,
+    "OriginState": 0.9966243902439025
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.234908,
+    "TaxiOut": 0.175425,
+    "AirTime": 0.00793892,
+    "Distance": 0.00520927,
+    "Reporting_Airline": 0.00502843,
+    "Origin": 0.00243305,
+    "OriginState": 0.00276142
+   },
+   "distance_warmup": {
+    "DepDelay": 0.0179041,
+    "TaxiOut": 0.0318758,
+    "AirTime": 0.00546998,
+    "Distance": 0.0112503,
+    "Reporting_Airline": 0.00343034,
+    "Origin": 0.00183337,
+    "OriginState": 0.00250423
+   }
+  },
+  {
+   "t": 20,
+   "schema_anomalies": [],
+   "records": 51250,
+   "present_fraction": {
+    "DepDelay": 0.9962731707317073,
+    "TaxiOut": 0.9967219512195122,
+    "AirTime": 0.9967024390243903,
+    "Distance": 0.9962341463414635,
+    "Reporting_Airline": 0.9967024390243903,
+    "Origin": 0.9961365853658537,
+    "OriginState": 0.9968390243902439
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "DepDelay": 0.624913,
+    "TaxiOut": 0.0568524,
+    "AirTime": 0.00566923,
+    "Distance": 0.0100179,
+    "Reporting_Airline": 0.00396149,
+    "Origin": 0.00229944,
+    "OriginState": 0.00283607
+   },
+   "distance_warmup": {
+    "DepDelay": 0.629185,
+    "TaxiOut": 0.103184,
+    "AirTime": 0.0048345,
+    "Distance": 0.00124154,
+    "Reporting_Airline": 0.00366137,
+    "Origin": 0.00197149,
+    "OriginState": 0.00265681
+   }
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "versions": {
+  "pydeequ": "1.7.0",
+  "pyspark": "3.5.9",
+  "deequ": "com.amazon.deequ:deequ:2.0.21-spark-3.5",
+  "java": "17.0.20.1"
+ },
+ "settings": {
+  "suggestion_variants": {
+   "observed_default": {
+    "warmup": "observed",
+    "rules": "DEFAULT"
+   },
+   "clean_extended": {
+    "warmup": "clean",
+    "rules": "DEFAULT+STRING+COMMON"
+   }
+  },
+  "anomaly_configs": {
+   "default": {
+    "strategy": "OnlineNormalStrategy",
+    "history": "cumulative",
+    "params": {}
+   },
+   "calibrated": {
+    "strategy": "BatchNormalStrategy",
+    "history": "warmup",
+    "alpha": 0.05,
+    "params": {
+     "lowerDeviationFactor": "calibrated",
+     "upperDeviationFactor": "calibrated"
+    }
+   }
+  }
+ },
+ "export_key": "49eac0f1477074d2"
+}

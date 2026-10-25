@@ -1,0 +1,5785 @@
+{
+ "unit": {
+  "dataset": "chicago_food",
+  "seed": 1008,
+  "scenario": "D_drift_degradation",
+  "warm_hash": "86a6fec1e9725389",
+  "warm_clean_hash": "fd947ec7ab3c3582",
+  "series_hash": "a7ebe4d3ebffa447",
+  "suggest": true,
+  "series": true,
+  "verify": true,
+  "n_batches": 20,
+  "warmup": 5,
+  "rows": [
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10075,
+   10075,
+   10075,
+   10125,
+   10125,
+   10125,
+   10250,
+   10250,
+   10250,
+   10250
+  ]
+ },
+ "configs": {
+  "default": {
+   "strategy": "OnlineNormalStrategy",
+   "history": "cumulative",
+   "params": {},
+   "params_used": {},
+   "n_metrics": 23
+  },
+  "calibrated": {
+   "strategy": "BatchNormalStrategy",
+   "history": "warmup",
+   "alpha": 0.05,
+   "params": {
+    "lowerDeviationFactor": "calibrated",
+    "upperDeviationFactor": "calibrated"
+   },
+   "params_used": {
+    "lowerDeviationFactor": 7.6246046829133745,
+    "upperDeviationFactor": 7.6246046829133745
+   },
+   "n_metrics": 23
+  }
+ },
+ "batches": [
+  {
+   "t": 1,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     }
+    ]
+   }
+  },
+  {
+   "t": 2,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.755211970074813 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9993017456359102 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9996009975062344 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 41.880498017915045 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.08546167456685107 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 41.04031543887798 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 42.795690828952615 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 41.89102614763669 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -87.67611872240863 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.060908148027168214 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -88.2999364302662 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -87.05548322155423 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -87.66710446646866 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 15.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.7143058687454549 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.3459279963375232 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 153.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.346153618103553 does not meet the constraint requirement!"
+     }
+    ]
+   }
+  },
+  {
+   "t": 3,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9996009975062344 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9995012468827931 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9995012468827931 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 13.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 4,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 5,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 6,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 7,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 8,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 9,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.7822960948989982 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.4026691658432484 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 10,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.7935707644917379 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.4240599372214062 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 11,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10075.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 31.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 27.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10075.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9983126550868486 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 31.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8344502239472709 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 27.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.4565967339820671 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 12,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10075.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8095285359801488 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.998014888337469 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.06643805112730744 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 29.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8385827115657456 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 34.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.4717291107554085 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 13,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10075.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8157816377171215 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9981141439205955 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.06634142735127947 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 27.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8398537113656734 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 28.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.485501577693435 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 14,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9972345679012345 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9968395061728395 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.09783753373806947 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10125.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8233086419753086 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9972345679012345 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9968395061728395 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9979259259259259 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9975308641975309 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.09783753373806947 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.06983246225824451 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 44.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.882331713963014 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 56.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.5386596785027031 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 15,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10125.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.830716049382716 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9972345679012345 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9980246913580247 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9978271604938271 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9962469135802469 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.09956039190126402 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.06810247665072615 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 45.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8943073532122991 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 52.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.5354732435229883 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 16,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10125.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8278518518518518 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9973333333333333 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9973333333333333 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9974320987654322 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9971358024691358 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.07137882552464013 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 37.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8974520872426982 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 57.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.5537528822045132 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 17,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10250.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.995219512195122 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9949268292682927 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9940487804878049 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 79.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 105.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 234.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10250.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.821170731707317 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.995219512195122 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9959024390243902 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9949268292682927 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9940487804878049 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9955121951219512 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.10442004337489388 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.08034627270167344 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 79.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9512156274345148 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 105.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.6116165464330987 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 234.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 18,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -87.67398970506721 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10250.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8362926829268292 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9953170731707317 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9955121951219512 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9940487804878049 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.995609756097561 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9951219512195122 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.10825042326003337 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.07972133659509151 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 87.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9608823577434145 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 81.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.6125112638870076 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 230.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 19,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10250.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8315121951219512 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9964878048780488 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9943414634146341 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9955121951219512 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9953170731707317 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9939512195121951 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.11104216582307411 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.07886796817845496 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 73.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9616914968681748 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 104.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.6374863434628717 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 20,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 10250.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.8421463414634146 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Latitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9947317073170732 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Longitude",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9941463414634146 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Risk",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9946341463414634 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Results",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.995609756097561 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Facility_Type",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9964878048780488 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Latitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.11373981549678232 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Latitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Longitude",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.07665567676065324 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Longitude",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 85.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Risk",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9853131348359577 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 97.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Results",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1.6531670019643463 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Facility_Type",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  }
+ ],
+ "columns": {
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Risk": "Risk",
+  "Results": "Results",
+  "Facility_Type": "Facility Type"
+ },
+ "anomaly_configs": {
+  "default": {
+   "strategy": "OnlineNormalStrategy",
+   "history": "cumulative",
+   "params": {}
+  },
+  "calibrated": {
+   "strategy": "BatchNormalStrategy",
+   "history": "warmup",
+   "alpha": 0.05,
+   "params": {
+    "lowerDeviationFactor": "calibrated",
+    "upperDeviationFactor": "calibrated"
+   }
+  }
+ }
+}

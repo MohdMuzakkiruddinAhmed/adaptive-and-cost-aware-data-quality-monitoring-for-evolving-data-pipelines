@@ -1,0 +1,5064 @@
+{
+ "unit": {
+  "dataset": "online_retail",
+  "seed": 1005,
+  "scenario": "A_stable",
+  "warm_hash": "43be9866e673a51a",
+  "warm_clean_hash": "ecd0a964f1b9d07e",
+  "series_hash": "f857f7e9965c5499",
+  "suggest": true,
+  "series": true,
+  "verify": true,
+  "n_batches": 20,
+  "warmup": 5,
+  "rows": [
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075
+  ]
+ },
+ "configs": {
+  "default": {
+   "strategy": "OnlineNormalStrategy",
+   "history": "cumulative",
+   "params": {},
+   "params_used": {},
+   "n_metrics": 20
+  },
+  "calibrated": {
+   "strategy": "BatchNormalStrategy",
+   "history": "warmup",
+   "alpha": 0.05,
+   "params": {
+    "lowerDeviationFactor": "calibrated",
+    "upperDeviationFactor": "calibrated"
+   },
+   "params_used": {
+    "lowerDeviationFactor": 7.350501388345519,
+    "upperDeviationFactor": 7.350501388345519
+   },
+   "n_metrics": 20
+  }
+ },
+ "batches": [
+  {
+   "t": 1,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Can't execute the assertion: requirement failed: There have to be previous results in the MetricsRepository!!"
+     }
+    ]
+   }
+  },
+  {
+   "t": 2,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.4159600997506234 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.999334995843724 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9994347464671655 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9995344970906068 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Failure",
+      "message": "Value: 0.9992019950124689 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 11.01073043500221 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 70.40224753517428 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -738.7563998789412 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 9456.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 3.628843488256287 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 13.299389628111598 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -138.22930082998235 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 1119.63 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 0.5071425635681969 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 3463.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 7.60866817645767 does not meet the constraint requirement!"
+     }
+    ]
+   }
+  },
+  {
+   "t": 3,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 75.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 4,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 5,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 2.08 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 6,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 4.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 7,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 491.4377733502524 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: -5518.969214877559 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 80995.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 8,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 9,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 10,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 4.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 11,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 12,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 13,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 14,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 15,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Failure",
+      "message": "Value: 4.0 does not meet the constraint requirement!"
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 16,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 17,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 18,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 19,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "t": 20,
+   "checks": {
+    "default": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ],
+    "calibrated": [
+     {
+      "metric": "Size:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Uniqueness:*",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Quantity",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Price",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:Country",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Completeness:StockCode",
+      "group": "quality",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Quantity",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Mean:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "StandardDeviation:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Minimum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Maximum:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxQuantile:Price",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:Country",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "ApproxCountDistinct:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     },
+     {
+      "metric": "Entropy:StockCode",
+      "group": "distribution",
+      "constraint_status": "Success",
+      "message": ""
+     }
+    ]
+   }
+  }
+ ],
+ "columns": {
+  "Quantity": "Quantity",
+  "Price": "Price",
+  "Country": "Country",
+  "StockCode": "StockCode"
+ },
+ "anomaly_configs": {
+  "default": {
+   "strategy": "OnlineNormalStrategy",
+   "history": "cumulative",
+   "params": {}
+  },
+  "calibrated": {
+   "strategy": "BatchNormalStrategy",
+   "history": "warmup",
+   "alpha": 0.05,
+   "params": {
+    "lowerDeviationFactor": "calibrated",
+    "upperDeviationFactor": "calibrated"
+   }
+  }
+ }
+}

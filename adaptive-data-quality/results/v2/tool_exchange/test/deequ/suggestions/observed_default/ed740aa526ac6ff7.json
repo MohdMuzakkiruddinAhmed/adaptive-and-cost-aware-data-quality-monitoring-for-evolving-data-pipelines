@@ -1,0 +1,79 @@
+{
+ "dataset": "chicago_food",
+ "warm_hash": "ed740aa526ac6ff7",
+ "variant": "observed_default",
+ "warmup": "observed",
+ "rows": 50125,
+ "rule_set": "DEFAULT",
+ "columns": {
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Risk": "Risk",
+  "Results": "Results",
+  "Facility_Type": "Facility Type"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Latitude' has no negative values,Latitude >= 0,None,List(Latitude),None))",
+   "column_name": "Latitude",
+   "current_value": "Minimum: 40.908755503248585",
+   "description": "'Latitude' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"Latitude\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Latitude,None,None))",
+   "column_name": "Latitude",
+   "current_value": "Completeness: 0.9995211970074813",
+   "description": "'Latitude' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Latitude\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Longitude,None,None))",
+   "column_name": "Longitude",
+   "current_value": "Completeness: 0.9993815461346633",
+   "description": "'Longitude' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Longitude\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Results,None,None))",
+   "column_name": "Results",
+   "current_value": "Completeness: 0.9995411471321696",
+   "description": "'Results' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Results\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Facility_Type,None,None))",
+   "column_name": "Facility_Type",
+   "current_value": "Completeness: 0.9996408977556109",
+   "description": "'Facility_Type' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Facility_Type\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Risk,None,None))",
+   "column_name": "Risk",
+   "current_value": "Completeness: 0.9994214463840398",
+   "description": "'Risk' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Risk\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  }
+ ],
+ "constraints_verified": [
+  ".hasCompleteness(\"Facility_Type\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".isNonNegative(\"Latitude\")",
+  ".hasCompleteness(\"Latitude\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Longitude\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Results\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Risk\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+ ]
+}

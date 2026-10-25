@@ -1,0 +1,109 @@
+{
+ "dataset": "chicago_food",
+ "warm_hash": "ed7e5caaf43e14d3",
+ "variant": "observed_default",
+ "warmup": "observed",
+ "rows": 23270,
+ "rule_set": "DEFAULT",
+ "columns": {
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Risk": "Risk",
+  "Results": "Results",
+  "Facility_Type": "Facility Type"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Latitude,None,None))",
+   "column_name": "Latitude",
+   "current_value": "Completeness: 1.0",
+   "description": "'Latitude' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Latitude\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Latitude' has no negative values,Latitude >= 0,None,List(Latitude),None))",
+   "column_name": "Latitude",
+   "current_value": "Minimum: 41.64467013219805",
+   "description": "'Latitude' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"Latitude\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Longitude,None,None))",
+   "column_name": "Longitude",
+   "current_value": "Completeness: 1.0",
+   "description": "'Longitude' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Longitude\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business', 'No Entry', 'Not Ready', 'Business Not Located',`Results` IN ('Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business', 'No Entry', 'Not Ready', 'Business Not Located'),None,List(Results),None))",
+   "column_name": "Results",
+   "current_value": "Compliance: 1",
+   "description": "'Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business', 'No Entry', 'Not Ready', 'Business Not Located'",
+   "suggesting_rule": "CategoricalRangeRule(com.amazon.deequ.suggestions.rules.CategoricalRangeRule$$$Lambda$2066/0x000000a001b90000@45963cdf)",
+   "rule_description": "If we see a categorical range for a column, we suggest an IS IN (...) constraint",
+   "code_for_constraint": ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\", \"No Entry\", \"Not Ready\", \"Business Not Located\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Results,None,None))",
+   "column_name": "Results",
+   "current_value": "Completeness: 1.0",
+   "description": "'Results' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Results\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business' for at least 93.0% of values,`Results` IN ('Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business'),None,List(Results),None))",
+   "column_name": "Results",
+   "current_value": "Compliance: 0.9390201976794155",
+   "description": "'Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business' for at least 93.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2067/0x000000a001b90638@b8a5314,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\"), _ >= 0.93, Some(\"It should be above 0.93!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Facility_Type,None,None))",
+   "column_name": "Facility_Type",
+   "current_value": "Completeness: 1.0",
+   "description": "'Facility_Type' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Facility_Type\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Risk,None,None))",
+   "column_name": "Risk",
+   "current_value": "Completeness: 1.0",
+   "description": "'Risk' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Risk\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Risk' has value range 'Risk 1 (High)', 'Risk 2 (Medium)' for at least 92.0% of values,`Risk` IN ('Risk 1 (High)', 'Risk 2 (Medium)'),None,List(Risk),None))",
+   "column_name": "Risk",
+   "current_value": "Compliance: 0.9330898152127203",
+   "description": "'Risk' has value range 'Risk 1 (High)', 'Risk 2 (Medium)' for at least 92.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2067/0x000000a001b90638@b8a5314,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"Risk\", Array(\"Risk 1 (High)\", \"Risk 2 (Medium)\"), _ >= 0.92, Some(\"It should be above 0.92!\"))"
+  }
+ ],
+ "constraints_verified": [
+  ".isComplete(\"Facility_Type\")",
+  ".isComplete(\"Latitude\")",
+  ".isNonNegative(\"Latitude\")",
+  ".isComplete(\"Longitude\")",
+  ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\", \"No Entry\", \"Not Ready\", \"Business Not Located\"))",
+  ".isComplete(\"Results\")",
+  ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\"), _ >= 0.93, Some(\"It should be above 0.93!\"))",
+  ".isComplete(\"Risk\")",
+  ".isContainedIn(\"Risk\", Array(\"Risk 1 (High)\", \"Risk 2 (Medium)\"), _ >= 0.92, Some(\"It should be above 0.92!\"))"
+ ]
+}

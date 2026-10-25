@@ -1,0 +1,98 @@
+{
+ "dataset": "online_retail",
+ "warm_hash": "7fab9551ea570723",
+ "variant": "observed_default",
+ "warmup": "observed",
+ "rows": 150000,
+ "rule_set": "DEFAULT",
+ "columns": {
+  "Quantity": "Quantity",
+  "Price": "Price",
+  "Country": "Country",
+  "StockCode": "StockCode"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Quantity,None,None))",
+   "column_name": "Quantity",
+   "current_value": "Completeness: 1.0",
+   "description": "'Quantity' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Quantity\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Quantity' has no negative values,Quantity >= 0,None,List(Quantity),None))",
+   "column_name": "Quantity",
+   "current_value": "Minimum: 1.0",
+   "description": "'Quantity' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"Quantity\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Price,None,None))",
+   "column_name": "Price",
+   "current_value": "Completeness: 1.0",
+   "description": "'Price' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Price\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Price' has no negative values,Price >= 0,None,List(Price),None))",
+   "column_name": "Price",
+   "current_value": "Minimum: 0.001",
+   "description": "'Price' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"Price\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Country' has value range 'United Kingdom', 'EIRE', 'Germany', 'France', 'Netherlands', 'Spain', 'Belgium', 'Switzerland', 'Portugal', 'Australia', 'Channel Islands', 'Italy', 'Sweden', 'Cyprus', 'Finland', 'Norway', 'Austria', 'Unspecified', 'Denmark', 'Greece', 'United Arab Emirates', 'Japan', 'Poland', 'USA', 'Israel', 'Hong Kong', 'Malta', 'Singapore', 'Iceland', 'Canada', 'RSA', 'Lithuania', 'Bahrain', 'Brazil', 'European Community', 'West Indies', 'Thailand', 'Lebanon', 'Korea', 'Nigeria', 'Bermuda', 'Czech Republic', 'Saudi Arabia',`Country` IN ('United Kingdom', 'EIRE', 'Germany', 'France', 'Netherlands', 'Spain', 'Belgium', 'Switzerland', 'Portugal', 'Australia', 'Channel Islands', 'Italy', 'Sweden', 'Cyprus', 'Finland', 'Norway', 'Austria', 'Unspecified', 'Denmark', 'Greece', 'United Arab Emirates', 'Japan', 'Poland', 'USA', 'Israel', 'Hong Kong', 'Malta', 'Singapore', 'Iceland', 'Canada', 'RSA', 'Lithuania', 'Bahrain', 'Brazil', 'European Community', 'West Indies', 'Thailand', 'Lebanon', 'Korea', 'Nigeria', 'Bermuda', 'Czech Republic', 'Saudi Arabia'),None,List(Country),None))",
+   "column_name": "Country",
+   "current_value": "Compliance: 1",
+   "description": "'Country' has value range 'United Kingdom', 'EIRE', 'Germany', 'France', 'Netherlands', 'Spain', 'Belgium', 'Switzerland', 'Portugal', 'Australia', 'Channel Islands', 'Italy', 'Sweden', 'Cyprus', 'Finland', 'Norway', 'Austria', 'Unspecified', 'Denmark', 'Greece', 'United Arab Emirates', 'Japan', 'Poland', 'USA', 'Israel', 'Hong Kong', 'Malta', 'Singapore', 'Iceland', 'Canada', 'RSA', 'Lithuania', 'Bahrain', 'Brazil', 'European Community', 'West Indies', 'Thailand', 'Lebanon', 'Korea', 'Nigeria', 'Bermuda', 'Czech Republic', 'Saudi Arabia'",
+   "suggesting_rule": "CategoricalRangeRule(com.amazon.deequ.suggestions.rules.CategoricalRangeRule$$$Lambda$2068/0x0000008001b90000@7846b975)",
+   "rule_description": "If we see a categorical range for a column, we suggest an IS IN (...) constraint",
+   "code_for_constraint": ".isContainedIn(\"Country\", Array(\"United Kingdom\", \"EIRE\", \"Germany\", \"France\", \"Netherlands\", \"Spain\", \"Belgium\", \"Switzerland\", \"Portugal\", \"Australia\", \"Channel Islands\", \"Italy\", \"Sweden\", \"Cyprus\", \"Finland\", \"Norway\", \"Austria\", \"Unspecified\", \"Denmark\", \"Greece\", \"United Arab Emirates\", \"Japan\", \"Poland\", \"USA\", \"Israel\", \"Hong Kong\", \"Malta\", \"Singapore\", \"Iceland\", \"Canada\", \"RSA\", \"Lithuania\", \"Bahrain\", \"Brazil\", \"European Community\", \"West Indies\", \"Thailand\", \"Lebanon\", \"Korea\", \"Nigeria\", \"Bermuda\", \"Czech Republic\", \"Saudi Arabia\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Country,None,None))",
+   "column_name": "Country",
+   "current_value": "Completeness: 1.0",
+   "description": "'Country' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Country\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Country' has value range 'United Kingdom' for at least 91.0% of values,`Country` IN ('United Kingdom'),None,List(Country),None))",
+   "column_name": "Country",
+   "current_value": "Compliance: 0.9182533333333334",
+   "description": "'Country' has value range 'United Kingdom' for at least 91.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2069/0x0000008001b90638@7e7e6b7b,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"Country\", Array(\"United Kingdom\"), _ >= 0.91, Some(\"It should be above 0.91!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(StockCode,None,None))",
+   "column_name": "StockCode",
+   "current_value": "Completeness: 1.0",
+   "description": "'StockCode' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"StockCode\")"
+  }
+ ],
+ "constraints_verified": [
+  ".isContainedIn(\"Country\", Array(\"United Kingdom\", \"EIRE\", \"Germany\", \"France\", \"Netherlands\", \"Spain\", \"Belgium\", \"Switzerland\", \"Portugal\", \"Australia\", \"Channel Islands\", \"Italy\", \"Sweden\", \"Cyprus\", \"Finland\", \"Norway\", \"Austria\", \"Unspecified\", \"Denmark\", \"Greece\", \"United Arab Emirates\", \"Japan\", \"Poland\", \"USA\", \"Israel\", \"Hong Kong\", \"Malta\", \"Singapore\", \"Iceland\", \"Canada\", \"RSA\", \"Lithuania\", \"Bahrain\", \"Brazil\", \"European Community\", \"West Indies\", \"Thailand\", \"Lebanon\", \"Korea\", \"Nigeria\", \"Bermuda\", \"Czech Republic\", \"Saudi Arabia\"))",
+  ".isComplete(\"Country\")",
+  ".isContainedIn(\"Country\", Array(\"United Kingdom\"), _ >= 0.91, Some(\"It should be above 0.91!\"))",
+  ".isComplete(\"Price\")",
+  ".isNonNegative(\"Price\")",
+  ".isComplete(\"Quantity\")",
+  ".isNonNegative(\"Quantity\")",
+  ".isComplete(\"StockCode\")"
+ ]
+}

@@ -1,0 +1,58 @@
+{
+ "dataset": "online_retail",
+ "warm_hash": "02fb7158cba9290b",
+ "variant": "observed_default",
+ "warmup": "observed",
+ "rows": 75780,
+ "rule_set": "DEFAULT",
+ "columns": {
+  "Quantity": "Quantity",
+  "Price": "Price",
+  "Country": "Country",
+  "StockCode": "StockCode"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Quantity,None,None))",
+   "column_name": "Quantity",
+   "current_value": "Completeness: 0.9994325679598839",
+   "description": "'Quantity' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Quantity\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Price,None,None))",
+   "column_name": "Price",
+   "current_value": "Completeness: 0.9992082343626286",
+   "description": "'Price' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Price\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Country,None,None))",
+   "column_name": "Country",
+   "current_value": "Completeness: 0.9993665874901029",
+   "description": "'Country' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"Country\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(StockCode,None,None))",
+   "column_name": "StockCode",
+   "current_value": "Completeness: 0.9994853523357087",
+   "description": "'StockCode' has less than 1% missing values",
+   "suggesting_rule": "RetainCompletenessRule(0.2,1.0,WaldIntervalStrategy())",
+   "rule_description": "If a column is incomplete in the sample, we model its completeness as a binomial variable, estimate a confidence interval and use this to define a lower bound for the completeness",
+   "code_for_constraint": ".hasCompleteness(\"StockCode\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+  }
+ ],
+ "constraints_verified": [
+  ".hasCompleteness(\"Country\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Price\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"Quantity\", _ >= 0.99, Some(\"It should be above 0.99!\"))",
+  ".hasCompleteness(\"StockCode\", _ >= 0.99, Some(\"It should be above 0.99!\"))"
+ ]
+}

@@ -1,0 +1,637 @@
+{
+ "unit": {
+  "dataset": "online_retail",
+  "seed": 1004,
+  "scenario": "D_drift_degradation",
+  "warm_hash": "f78b1497c1afffd3",
+  "warm_clean_hash": "3c145fe77b56a6f2",
+  "series_hash": "0266dbf8d905ae9f",
+  "suggest": true,
+  "series": true,
+  "verify": true,
+  "n_batches": 20,
+  "warmup": 5,
+  "rows": [
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30075,
+   30225,
+   30225,
+   30225,
+   30375,
+   30375,
+   30375,
+   30750,
+   30750,
+   30750,
+   30750
+  ]
+ },
+ "schema": "feature {\n  name: \"Quantity\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Price\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Country\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"StockCode\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  presence {\n    min_count: 1\n  }\n}\n",
+ "feature_kind": {
+  "Quantity": "numeric",
+  "Price": "numeric",
+  "Country": "categorical",
+  "StockCode": "categorical"
+ },
+ "columns": {
+  "Quantity": "Quantity",
+  "Price": "Price",
+  "Country": "Country",
+  "StockCode": "StockCode"
+ },
+ "loo_warmup": [
+  {
+   "Quantity": 0.660113,
+   "Price": 0.642938,
+   "Country": 0.00139315,
+   "StockCode": 0.00112115
+  },
+  {
+   "Quantity": 0.0841812,
+   "Price": 0.115447,
+   "Country": 0.00110258,
+   "StockCode": 0.00108714
+  },
+  {
+   "Quantity": 0.0841575,
+   "Price": 0.287133,
+   "Country": 0.0012317,
+   "StockCode": 0.00107919
+  },
+  {
+   "Quantity": 0.157328,
+   "Price": 0.115695,
+   "Country": 0.00214354,
+   "StockCode": 0.00112077
+  },
+  {
+   "Quantity": 0.595124,
+   "Price": 0.102903,
+   "Country": 0.0024177,
+   "StockCode": 0.00134265
+  }
+ ],
+ "consecutive_warmup": [
+  {
+   "Quantity": 0.735403,
+   "Price": 0.59724,
+   "Country": 0.000699135,
+   "StockCode": 0.00132495
+  },
+  {
+   "Quantity": 0.0841377,
+   "Price": 0.210598,
+   "Country": 0.00160171,
+   "StockCode": 0.00118926
+  },
+  {
+   "Quantity": 0.153138,
+   "Price": 0.285895,
+   "Country": 0.00270005,
+   "StockCode": 0.00132455
+  },
+  {
+   "Quantity": 0.621721,
+   "Price": 0.101769,
+   "Country": 0.00364889,
+   "StockCode": 0.0017321
+  }
+ ],
+ "loo_warmup_quality": [
+  {
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9996342477140482,
+    "Price": 0.9994014962593516,
+    "Country": 0.999002493765586,
+    "StockCode": 0.9994679966749792
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.999667497921862,
+    "Price": 0.9992684954280964,
+    "Country": 0.9990689941812136,
+    "StockCode": 0.9995012468827931
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9993017456359102,
+    "Price": 0.999334995843724,
+    "Country": 0.9995344970906068,
+    "StockCode": 0.999334995843724
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9992352452202826,
+    "Price": 0.9995012468827931,
+    "Country": 0.9994679966749792,
+    "StockCode": 0.9993017456359102
+   },
+   "unexpected_fraction": {}
+  },
+  {
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9992019950124689,
+    "Price": 0.9995344970906068,
+    "Country": 0.999334995843724,
+    "StockCode": 0.9994347464671655
+   },
+   "unexpected_fraction": {}
+  }
+ ],
+ "batches": [
+  {
+   "t": 1,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9996342477140482,
+    "Price": 0.9994014962593516,
+    "Country": 0.999002493765586,
+    "StockCode": 0.9994679966749792
+   },
+   "unexpected_fraction": {},
+   "distance_previous": null,
+   "distance_warmup": {
+    "Quantity": 0.659989,
+    "Price": 0.642938,
+    "Country": 0.0011146,
+    "StockCode": 0.00112115
+   }
+  },
+  {
+   "t": 2,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.999667497921862,
+    "Price": 0.9992684954280964,
+    "Country": 0.9990689941812136,
+    "StockCode": 0.9995012468827931
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.735403,
+    "Price": 0.59724,
+    "Country": 0.000699135,
+    "StockCode": 0.00132495
+   },
+   "distance_warmup": {
+    "Quantity": 0.0306844,
+    "Price": 0.0906484,
+    "Country": 0.000882115,
+    "StockCode": 0.00108714
+   }
+  },
+  {
+   "t": 3,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9993017456359102,
+    "Price": 0.999334995843724,
+    "Country": 0.9995344970906068,
+    "StockCode": 0.999334995843724
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.0841377,
+    "Price": 0.210598,
+    "Country": 0.00160171,
+    "StockCode": 0.00118926
+   },
+   "distance_warmup": {
+    "Quantity": 0.0521563,
+    "Price": 0.287133,
+    "Country": 0.000985298,
+    "StockCode": 0.00105335
+   }
+  },
+  {
+   "t": 4,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9992352452202826,
+    "Price": 0.9995012468827931,
+    "Country": 0.9994679966749792,
+    "StockCode": 0.9993017456359102
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.153138,
+    "Price": 0.285895,
+    "Country": 0.00270005,
+    "StockCode": 0.00132455
+   },
+   "distance_warmup": {
+    "Quantity": 0.157405,
+    "Price": 0.0225323,
+    "Country": 0.00171476,
+    "StockCode": 0.00105285
+   }
+  },
+  {
+   "t": 5,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9992019950124689,
+    "Price": 0.9995344970906068,
+    "Country": 0.999334995843724,
+    "StockCode": 0.9994347464671655
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.621721,
+    "Price": 0.101769,
+    "Country": 0.00364889,
+    "StockCode": 0.0017321
+   },
+   "distance_warmup": {
+    "Quantity": 0.595416,
+    "Price": 0.102903,
+    "Country": 0.00193413,
+    "StockCode": 0.00121698
+   }
+  },
+  {
+   "t": 6,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9994347464671655,
+    "Price": 0.9991354945968413,
+    "Country": 0.9994347464671655,
+    "StockCode": 0.9995012468827931
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.418233,
+    "Price": 0.763338,
+    "Country": 0.0149964,
+    "StockCode": 0.00135893
+   },
+   "distance_warmup": {
+    "Quantity": 0.767659,
+    "Price": 0.795557,
+    "Country": 0.0130623,
+    "StockCode": 0.00116259
+   }
+  },
+  {
+   "t": 7,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9992684954280964,
+    "Price": 0.9994347464671655,
+    "Country": 0.9994679966749792,
+    "StockCode": 0.999334995843724
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.456106,
+    "Price": 0.7633,
+    "Country": 0.0152003,
+    "StockCode": 0.00135893
+   },
+   "distance_warmup": {
+    "Quantity": 0.513001,
+    "Price": 0.103837,
+    "Country": 0.0282625,
+    "StockCode": 0.00113539
+   }
+  },
+  {
+   "t": 8,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9994014962593516,
+    "Price": 0.9994347464671655,
+    "Country": 0.9993017456359102,
+    "StockCode": 0.9993682460515378
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.251229,
+    "Price": 0.515401,
+    "Country": 0.0126954,
+    "StockCode": 0.00132518
+   },
+   "distance_warmup": {
+    "Quantity": 0.694568,
+    "Price": 0.576943,
+    "Country": 0.040958,
+    "StockCode": 0.00116259
+   }
+  },
+  {
+   "t": 9,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9993017456359102,
+    "Price": 0.9995677472984206,
+    "Country": 0.999168744804655,
+    "StockCode": 0.9994679966749792
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.541019,
+    "Price": 0.59544,
+    "Country": 0.0132609,
+    "StockCode": 0.00139309
+   },
+   "distance_warmup": {
+    "Quantity": 0.145613,
+    "Price": 0.4482,
+    "Country": 0.0542189,
+    "StockCode": 0.00115513
+   }
+  },
+  {
+   "t": 10,
+   "schema_anomalies": [],
+   "records": 30075,
+   "present_fraction": {
+    "Quantity": 0.9997007481296758,
+    "Price": 0.9991354945968413,
+    "Country": 0.9995012468827931,
+    "StockCode": 0.999168744804655
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.564169,
+    "Price": 0.163758,
+    "Country": 0.012696,
+    "StockCode": 0.00129142
+   },
+   "distance_warmup": {
+    "Quantity": 0.718016,
+    "Price": 0.325078,
+    "Country": 0.0669149,
+    "StockCode": 0.00114219
+   }
+  },
+  {
+   "t": 11,
+   "schema_anomalies": [],
+   "records": 30225,
+   "present_fraction": {
+    "Quantity": 0.998014888337469,
+    "Price": 0.9979156327543425,
+    "Country": 0.9982133995037221,
+    "StockCode": 0.9984119106699751
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.102197,
+    "Price": 0.581881,
+    "Country": 0.017551,
+    "StockCode": 0.00125203
+   },
+   "distance_warmup": {
+    "Quantity": 0.738201,
+    "Price": 0.342355,
+    "Country": 0.0844659,
+    "StockCode": 0.00115051
+   }
+  },
+  {
+   "t": 12,
+   "schema_anomalies": [],
+   "records": 30225,
+   "present_fraction": {
+    "Quantity": 0.9982795698924731,
+    "Price": 0.9982795698924731,
+    "Country": 0.997948717948718,
+    "StockCode": 0.9980479735318445
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.826281,
+    "Price": 0.550754,
+    "Country": 0.014101,
+    "StockCode": 0.00148946
+   },
+   "distance_warmup": {
+    "Quantity": 0.112334,
+    "Price": 0.33207,
+    "Country": 0.0985669,
+    "StockCode": 0.00111709
+   }
+  },
+  {
+   "t": 13,
+   "schema_anomalies": [],
+   "records": 30225,
+   "present_fraction": {
+    "Quantity": 0.9983126550868486,
+    "Price": 0.9976178660049628,
+    "Country": 0.9983126550868486,
+    "StockCode": 0.9983126550868486
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.790133,
+    "Price": 0.519245,
+    "Country": 0.0139199,
+    "StockCode": 0.00121832
+   },
+   "distance_warmup": {
+    "Quantity": 0.749659,
+    "Price": 0.253883,
+    "Country": 0.112487,
+    "StockCode": 0.00115063
+   }
+  },
+  {
+   "t": 14,
+   "schema_anomalies": [],
+   "records": 30375,
+   "present_fraction": {
+    "Quantity": 0.9967407407407407,
+    "Price": 0.9975637860082305,
+    "Country": 0.996477366255144,
+    "StockCode": 0.9968724279835391
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.682242,
+    "Price": 0.659493,
+    "Country": 0.0164784,
+    "StockCode": 0.00165234
+   },
+   "distance_warmup": {
+    "Quantity": 0.0760191,
+    "Price": 0.763924,
+    "Country": 0.128965,
+    "StockCode": 0.0011128
+   }
+  },
+  {
+   "t": 15,
+   "schema_anomalies": [],
+   "records": 30375,
+   "present_fraction": {
+    "Quantity": 0.9965761316872428,
+    "Price": 0.9971687242798354,
+    "Country": 0.9968724279835391,
+    "StockCode": 0.997037037037037
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.501756,
+    "Price": 0.707944,
+    "Country": 0.0114424,
+    "StockCode": 0.00131512
+   },
+   "distance_warmup": {
+    "Quantity": 0.585761,
+    "Price": 0.151746,
+    "Country": 0.140408,
+    "StockCode": 0.00107889
+   }
+  },
+  {
+   "t": 16,
+   "schema_anomalies": [],
+   "records": 30375,
+   "present_fraction": {
+    "Quantity": 0.9967407407407407,
+    "Price": 0.9973991769547325,
+    "Country": 0.997037037037037,
+    "StockCode": 0.996477366255144
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.09649,
+    "Price": 0.290019,
+    "Country": 0.00815224,
+    "StockCode": 0.00124819
+   },
+   "distance_warmup": {
+    "Quantity": 0.629751,
+    "Price": 0.407176,
+    "Country": 0.14856,
+    "StockCode": 0.00114698
+   }
+  },
+  {
+   "t": 17,
+   "schema_anomalies": [],
+   "records": 30750,
+   "present_fraction": {
+    "Quantity": 0.993430894308943,
+    "Price": 0.9936585365853658,
+    "Country": 0.9946016260162601,
+    "StockCode": 0.9939186991869918
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.386125,
+    "Price": 0.506191,
+    "Country": 0.0274727,
+    "StockCode": 0.00153651
+   },
+   "distance_warmup": {
+    "Quantity": 0.399256,
+    "Price": 0.630696,
+    "Country": 0.176033,
+    "StockCode": 0.00127137
+   }
+  },
+  {
+   "t": 18,
+   "schema_anomalies": [],
+   "records": 30750,
+   "present_fraction": {
+    "Quantity": 0.9938536585365854,
+    "Price": 0.9937886178861789,
+    "Country": 0.9933658536585366,
+    "StockCode": 0.9946016260162601
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.151855,
+    "Price": 0.106466,
+    "Country": 0.00706425,
+    "StockCode": 0.00126929
+   },
+   "distance_warmup": {
+    "Quantity": 0.496466,
+    "Price": 0.627432,
+    "Country": 0.183097,
+    "StockCode": 0.00113488
+   }
+  },
+  {
+   "t": 19,
+   "schema_anomalies": [],
+   "records": 30750,
+   "present_fraction": {
+    "Quantity": 0.9936910569105691,
+    "Price": 0.9940487804878049,
+    "Country": 0.9939837398373984,
+    "StockCode": 0.9938861788617886
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.850009,
+    "Price": 0.779325,
+    "Country": 0.0137731,
+    "StockCode": 0.00136854
+   },
+   "distance_warmup": {
+    "Quantity": 0.746208,
+    "Price": 0.514305,
+    "Country": 0.19687,
+    "StockCode": 0.00116938
+   }
+  },
+  {
+   "t": 20,
+   "schema_anomalies": [],
+   "records": 30750,
+   "present_fraction": {
+    "Quantity": 0.9933333333333333,
+    "Price": 0.9941138211382113,
+    "Country": 0.9939512195121951,
+    "StockCode": 0.9942113821138211
+   },
+   "unexpected_fraction": {},
+   "distance_previous": {
+    "Quantity": 0.752797,
+    "Price": 0.296172,
+    "Country": 0.00835226,
+    "StockCode": 0.0013023
+   },
+   "distance_warmup": {
+    "Quantity": 0.774011,
+    "Price": 0.31181,
+    "Country": 0.205222,
+    "StockCode": 0.00125097
+   }
+  }
+ ]
+}

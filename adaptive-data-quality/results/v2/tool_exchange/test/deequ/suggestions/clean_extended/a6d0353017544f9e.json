@@ -1,0 +1,221 @@
+{
+ "dataset": "bts_airline",
+ "warm_hash": "a6d0353017544f9e",
+ "variant": "clean_extended",
+ "warmup": "clean",
+ "rows": 248125,
+ "rule_set": "DEFAULT+STRING+COMMON",
+ "columns": {
+  "DepDelay": "DepDelay",
+  "TaxiOut": "TaxiOut",
+  "AirTime": "AirTime",
+  "Distance": "Distance",
+  "Reporting_Airline": "Reporting_Airline",
+  "Origin": "Origin",
+  "OriginState": "OriginState"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(TaxiOut,None,None))",
+   "column_name": "TaxiOut",
+   "current_value": "Completeness: 1.0",
+   "description": "'TaxiOut' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"TaxiOut\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('TaxiOut' has no negative values,TaxiOut >= 0,None,List(TaxiOut),None))",
+   "column_name": "TaxiOut",
+   "current_value": "Minimum: 1.0",
+   "description": "'TaxiOut' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"TaxiOut\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(AirTime,None,None))",
+   "column_name": "AirTime",
+   "current_value": "Completeness: 1.0",
+   "description": "'AirTime' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"AirTime\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('AirTime' has no negative values,AirTime >= 0,None,List(AirTime),None))",
+   "column_name": "AirTime",
+   "current_value": "Minimum: 8.0",
+   "description": "'AirTime' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"AirTime\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Reporting_Airline,None,None))",
+   "column_name": "Reporting_Airline",
+   "current_value": "Completeness: 1.0",
+   "description": "'Reporting_Airline' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Reporting_Airline\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Reporting_Airline' has value range 'WN', 'DL', 'AA', 'UA', 'OO', 'YX', 'MQ', 'NK', 'B6', 'AS', 'OH', 'F9', '9E', 'G4', 'HA',`Reporting_Airline` IN ('WN', 'DL', 'AA', 'UA', 'OO', 'YX', 'MQ', 'NK', 'B6', 'AS', 'OH', 'F9', '9E', 'G4', 'HA'),None,List(Reporting_Airline),None))",
+   "column_name": "Reporting_Airline",
+   "current_value": "Compliance: 1",
+   "description": "'Reporting_Airline' has value range 'WN', 'DL', 'AA', 'UA', 'OO', 'YX', 'MQ', 'NK', 'B6', 'AS', 'OH', 'F9', '9E', 'G4', 'HA'",
+   "suggesting_rule": "CategoricalRangeRule(com.amazon.deequ.suggestions.rules.CategoricalRangeRule$$$Lambda$2068/0x0000008001b90000@7846b975)",
+   "rule_description": "If we see a categorical range for a column, we suggest an IS IN (...) constraint",
+   "code_for_constraint": ".isContainedIn(\"Reporting_Airline\", Array(\"WN\", \"DL\", \"AA\", \"UA\", \"OO\", \"YX\", \"MQ\", \"NK\", \"B6\", \"AS\", \"OH\", \"F9\", \"9E\", \"G4\", \"HA\"))"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Reporting_Airline' has value range 'WN', 'DL', 'AA', 'UA', 'OO', 'YX', 'MQ', 'NK', 'B6', 'AS', 'OH' for at least 91.0% of values,`Reporting_Airline` IN ('WN', 'DL', 'AA', 'UA', 'OO', 'YX', 'MQ', 'NK', 'B6', 'AS', 'OH'),None,List(Reporting_Airline),None))",
+   "column_name": "Reporting_Airline",
+   "current_value": "Compliance: 0.9153168765743073",
+   "description": "'Reporting_Airline' has value range 'WN', 'DL', 'AA', 'UA', 'OO', 'YX', 'MQ', 'NK', 'B6', 'AS', 'OH' for at least 91.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2069/0x0000008001b90638@7e7e6b7b,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"Reporting_Airline\", Array(\"WN\", \"DL\", \"AA\", \"UA\", \"OO\", \"YX\", \"MQ\", \"NK\", \"B6\", \"AS\", \"OH\"), _ >= 0.91, Some(\"It should be above 0.91!\"))"
+  },
+  {
+   "constraint_name": "MinLengthConstraint(MinLength(Reporting_Airline,None,None))",
+   "column_name": "Reporting_Airline",
+   "current_value": "MinLength: 2.0",
+   "description": "The length of 'Reporting_Airline' >= 2.0",
+   "suggesting_rule": "HasMinLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Minimum length constraint",
+   "code_for_constraint": ".hasMinLength(\"Reporting_Airline\", _ >= 2.0)"
+  },
+  {
+   "constraint_name": "MaxLengthConstraint(MaxLength(Reporting_Airline,None,None))",
+   "column_name": "Reporting_Airline",
+   "current_value": "MaxLength: 1.0",
+   "description": "The length of 'Reporting_Airline' <= 2.0",
+   "suggesting_rule": "HasMaxLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Maximum length constraint",
+   "code_for_constraint": ".hasMaxLength(\"Reporting_Airline\", _ <= 2.0)"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Origin,None,None))",
+   "column_name": "Origin",
+   "current_value": "Completeness: 1.0",
+   "description": "'Origin' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Origin\")"
+  },
+  {
+   "constraint_name": "MinLengthConstraint(MinLength(Origin,None,None))",
+   "column_name": "Origin",
+   "current_value": "MinLength: 3.0",
+   "description": "The length of 'Origin' >= 3.0",
+   "suggesting_rule": "HasMinLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Minimum length constraint",
+   "code_for_constraint": ".hasMinLength(\"Origin\", _ >= 3.0)"
+  },
+  {
+   "constraint_name": "MaxLengthConstraint(MaxLength(Origin,None,None))",
+   "column_name": "Origin",
+   "current_value": "MaxLength: 1.0",
+   "description": "The length of 'Origin' <= 3.0",
+   "suggesting_rule": "HasMaxLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Maximum length constraint",
+   "code_for_constraint": ".hasMaxLength(\"Origin\", _ <= 3.0)"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(OriginState,None,None))",
+   "column_name": "OriginState",
+   "current_value": "Completeness: 1.0",
+   "description": "'OriginState' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"OriginState\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('OriginState' has value range 'TX', 'CA', 'FL', 'IL', 'GA', 'NY', 'CO', 'NC', 'VA', 'AZ', 'NV', 'WA', 'MI', 'PA', 'TN', 'MA', 'NJ', 'MN', 'HI', 'MO', 'UT', 'MD', 'OH', 'KY', 'OR', 'LA', 'SC', 'IN', 'WI', 'PR', 'OK', 'AK', 'ID', 'AL', 'NE', 'NM', 'MT', 'AR', 'IA', 'CT', 'ND', 'KS', 'RI', 'ME', 'SD', 'MS', 'WY', 'VI', 'VT', 'NH', 'WV', 'TT',`OriginState` IN ('TX', 'CA', 'FL', 'IL', 'GA', 'NY', 'CO', 'NC', 'VA', 'AZ', 'NV', 'WA', 'MI', 'PA', 'TN', 'MA', 'NJ', 'MN', 'HI', 'MO', 'UT', 'MD', 'OH', 'KY', 'OR', 'LA', 'SC', 'IN', 'WI', 'PR', 'OK', 'AK', 'ID', 'AL', 'NE', 'NM', 'MT', 'AR', 'IA', 'CT', 'ND', 'KS', 'RI', 'ME', 'SD', 'MS', 'WY', 'VI', 'VT', 'NH', 'WV', 'TT'),None,List(OriginState),None))",
+   "column_name": "OriginState",
+   "current_value": "Compliance: 1",
+   "description": "'OriginState' has value range 'TX', 'CA', 'FL', 'IL', 'GA', 'NY', 'CO', 'NC', 'VA', 'AZ', 'NV', 'WA', 'MI', 'PA', 'TN', 'MA', 'NJ', 'MN', 'HI', 'MO', 'UT', 'MD', 'OH', 'KY', 'OR', 'LA', 'SC', 'IN', 'WI', 'PR', 'OK', 'AK', 'ID', 'AL', 'NE', 'NM', 'MT', 'AR', 'IA', 'CT', 'ND', 'KS', 'RI', 'ME', 'SD', 'MS', 'WY', 'VI', 'VT', 'NH', 'WV', 'TT'",
+   "suggesting_rule": "CategoricalRangeRule(com.amazon.deequ.suggestions.rules.CategoricalRangeRule$$$Lambda$2068/0x0000008001b90000@7846b975)",
+   "rule_description": "If we see a categorical range for a column, we suggest an IS IN (...) constraint",
+   "code_for_constraint": ".isContainedIn(\"OriginState\", Array(\"TX\", \"CA\", \"FL\", \"IL\", \"GA\", \"NY\", \"CO\", \"NC\", \"VA\", \"AZ\", \"NV\", \"WA\", \"MI\", \"PA\", \"TN\", \"MA\", \"NJ\", \"MN\", \"HI\", \"MO\", \"UT\", \"MD\", \"OH\", \"KY\", \"OR\", \"LA\", \"SC\", \"IN\", \"WI\", \"PR\", \"OK\", \"AK\", \"ID\", \"AL\", \"NE\", \"NM\", \"MT\", \"AR\", \"IA\", \"CT\", \"ND\", \"KS\", \"RI\", \"ME\", \"SD\", \"MS\", \"WY\", \"VI\", \"VT\", \"NH\", \"WV\", \"TT\"))"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('OriginState' has value range 'TX', 'CA', 'FL', 'IL', 'GA', 'NY', 'CO', 'NC', 'VA', 'AZ', 'NV', 'WA', 'MI', 'PA', 'TN', 'MA', 'NJ', 'MN', 'HI', 'MO', 'UT', 'MD', 'OH', 'KY', 'OR', 'LA' for at least 90.0% of values,`OriginState` IN ('TX', 'CA', 'FL', 'IL', 'GA', 'NY', 'CO', 'NC', 'VA', 'AZ', 'NV', 'WA', 'MI', 'PA', 'TN', 'MA', 'NJ', 'MN', 'HI', 'MO', 'UT', 'MD', 'OH', 'KY', 'OR', 'LA'),None,List(OriginState),None))",
+   "column_name": "OriginState",
+   "current_value": "Compliance: 0.9097350125944585",
+   "description": "'OriginState' has value range 'TX', 'CA', 'FL', 'IL', 'GA', 'NY', 'CO', 'NC', 'VA', 'AZ', 'NV', 'WA', 'MI', 'PA', 'TN', 'MA', 'NJ', 'MN', 'HI', 'MO', 'UT', 'MD', 'OH', 'KY', 'OR', 'LA' for at least 90.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2069/0x0000008001b90638@7e7e6b7b,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"OriginState\", Array(\"TX\", \"CA\", \"FL\", \"IL\", \"GA\", \"NY\", \"CO\", \"NC\", \"VA\", \"AZ\", \"NV\", \"WA\", \"MI\", \"PA\", \"TN\", \"MA\", \"NJ\", \"MN\", \"HI\", \"MO\", \"UT\", \"MD\", \"OH\", \"KY\", \"OR\", \"LA\"), _ >= 0.9, Some(\"It should be above 0.9!\"))"
+  },
+  {
+   "constraint_name": "MinLengthConstraint(MinLength(OriginState,None,None))",
+   "column_name": "OriginState",
+   "current_value": "MinLength: 2.0",
+   "description": "The length of 'OriginState' >= 2.0",
+   "suggesting_rule": "HasMinLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Minimum length constraint",
+   "code_for_constraint": ".hasMinLength(\"OriginState\", _ >= 2.0)"
+  },
+  {
+   "constraint_name": "MaxLengthConstraint(MaxLength(OriginState,None,None))",
+   "column_name": "OriginState",
+   "current_value": "MaxLength: 1.0",
+   "description": "The length of 'OriginState' <= 2.0",
+   "suggesting_rule": "HasMaxLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Maximum length constraint",
+   "code_for_constraint": ".hasMaxLength(\"OriginState\", _ <= 2.0)"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Distance,None,None))",
+   "column_name": "Distance",
+   "current_value": "Completeness: 1.0",
+   "description": "'Distance' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Distance\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Distance' has no negative values,Distance >= 0,None,List(Distance),None))",
+   "column_name": "Distance",
+   "current_value": "Minimum: 31.0",
+   "description": "'Distance' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"Distance\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(DepDelay,None,None))",
+   "column_name": "DepDelay",
+   "current_value": "Completeness: 1.0",
+   "description": "'DepDelay' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"DepDelay\")"
+  }
+ ],
+ "constraints_verified": [
+  ".isComplete(\"AirTime\")",
+  ".isNonNegative(\"AirTime\")",
+  ".isComplete(\"DepDelay\")",
+  ".isComplete(\"Distance\")",
+  ".isNonNegative(\"Distance\")",
+  ".isComplete(\"Origin\")",
+  ".hasMinLength(\"Origin\", _ >= 3.0)",
+  ".hasMaxLength(\"Origin\", _ <= 3.0)",
+  ".isComplete(\"OriginState\")",
+  ".isContainedIn(\"OriginState\", Array(\"TX\", \"CA\", \"FL\", \"IL\", \"GA\", \"NY\", \"CO\", \"NC\", \"VA\", \"AZ\", \"NV\", \"WA\", \"MI\", \"PA\", \"TN\", \"MA\", \"NJ\", \"MN\", \"HI\", \"MO\", \"UT\", \"MD\", \"OH\", \"KY\", \"OR\", \"LA\", \"SC\", \"IN\", \"WI\", \"PR\", \"OK\", \"AK\", \"ID\", \"AL\", \"NE\", \"NM\", \"MT\", \"AR\", \"IA\", \"CT\", \"ND\", \"KS\", \"RI\", \"ME\", \"SD\", \"MS\", \"WY\", \"VI\", \"VT\", \"NH\", \"WV\", \"TT\"))",
+  ".isContainedIn(\"OriginState\", Array(\"TX\", \"CA\", \"FL\", \"IL\", \"GA\", \"NY\", \"CO\", \"NC\", \"VA\", \"AZ\", \"NV\", \"WA\", \"MI\", \"PA\", \"TN\", \"MA\", \"NJ\", \"MN\", \"HI\", \"MO\", \"UT\", \"MD\", \"OH\", \"KY\", \"OR\", \"LA\"), _ >= 0.9, Some(\"It should be above 0.9!\"))",
+  ".hasMinLength(\"OriginState\", _ >= 2.0)",
+  ".hasMaxLength(\"OriginState\", _ <= 2.0)",
+  ".isComplete(\"Reporting_Airline\")",
+  ".isContainedIn(\"Reporting_Airline\", Array(\"WN\", \"DL\", \"AA\", \"UA\", \"OO\", \"YX\", \"MQ\", \"NK\", \"B6\", \"AS\", \"OH\", \"F9\", \"9E\", \"G4\", \"HA\"))",
+  ".isContainedIn(\"Reporting_Airline\", Array(\"WN\", \"DL\", \"AA\", \"UA\", \"OO\", \"YX\", \"MQ\", \"NK\", \"B6\", \"AS\", \"OH\"), _ >= 0.91, Some(\"It should be above 0.91!\"))",
+  ".hasMinLength(\"Reporting_Airline\", _ >= 2.0)",
+  ".hasMaxLength(\"Reporting_Airline\", _ <= 2.0)",
+  ".isComplete(\"TaxiOut\")",
+  ".isNonNegative(\"TaxiOut\")"
+ ]
+}

@@ -1,0 +1,982 @@
+{
+ "unit": {
+  "dataset": "chicago_food",
+  "seed": 1004,
+  "scenario": "C_degradation",
+  "warm_hash": "8d126819dcae97b0",
+  "warm_clean_hash": "9f4e48864d480d02",
+  "series_hash": "ac235d1320d2661b",
+  "suggest": true,
+  "series": true,
+  "verify": true,
+  "n_batches": 20,
+  "warmup": 5,
+  "rows": [
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10025,
+   10075,
+   10075,
+   10075,
+   10125,
+   10125,
+   10125,
+   10250,
+   10250,
+   10250,
+   10250
+  ]
+ },
+ "schema": "feature {\n  name: \"Latitude\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Longitude\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: FLOAT\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Risk\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  domain: \"Risk\"\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Results\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  domain: \"Results\"\n  presence {\n    min_count: 1\n  }\n}\nfeature {\n  name: \"Facility_Type\"\n  value_count {\n    min: 1\n    max: 1\n  }\n  type: BYTES\n  presence {\n    min_count: 1\n  }\n}\nstring_domain {\n  name: \"Risk\"\n  value: \"All\"\n  value: \"INVALID_AHONK\"\n  value: \"INVALID_AMCAF\"\n  value: \"INVALID_AVCFM\"\n  value: \"INVALID_AVJSL\"\n  value: \"INVALID_AYARN\"\n  value: \"INVALID_BRRRN\"\n  value: \"INVALID_CKCDW\"\n  value: \"INVALID_CYEPH\"\n  value: \"INVALID_GGWQE\"\n  value: \"INVALID_GNIIJ\"\n  value: \"INVALID_GNNJV\"\n  value: \"INVALID_GVRNA\"\n  value: \"INVALID_GXVNE\"\n  value: \"INVALID_IPMGO\"\n  value: \"INVALID_JOJWE\"\n  value: \"INVALID_LECRC\"\n  value: \"INVALID_MNELA\"\n  value: \"INVALID_NLHCN\"\n  value: \"INVALID_OBUTO\"\n  value: \"INVALID_PFNJO\"\n  value: \"INVALID_QBPYL\"\n  value: \"INVALID_QGMCU\"\n  value: \"INVALID_SSFBG\"\n  value: \"INVALID_TFYXW\"\n  value: \"INVALID_ULXZA\"\n  value: \"INVALID_VRPAN\"\n  value: \"INVALID_XIPDR\"\n  value: \"INVALID_YLNIA\"\n  value: \"INVALID_YNJGF\"\n  value: \"INVALID_ZMROR\"\n  value: \"Risk 1 (High)\"\n  value: \"Risk 2 (Medium)\"\n  value: \"Risk 3 (Low)\"\n}\nstring_domain {\n  name: \"Results\"\n  value: \"Business Not Located\"\n  value: \"Fail\"\n  value: \"INVALID_APIYO\"\n  value: \"INVALID_BVNMG\"\n  value: \"INVALID_BWBRJ\"\n  value: \"INVALID_CPSKK\"\n  value: \"INVALID_DINLA\"\n  value: \"INVALID_DPAYE\"\n  value: \"INVALID_DVTTC\"\n  value: \"INVALID_ECBFZ\"\n  value: \"INVALID_ENLTY\"\n  value: \"INVALID_GKCJU\"\n  value: \"INVALID_HQWOI\"\n  value: \"INVALID_IAFUI\"\n  value: \"INVALID_ILXTV\"\n  value: \"INVALID_IPKZO\"\n  value: \"INVALID_JAWFX\"\n  value: \"INVALID_KMRDL\"\n  value: \"INVALID_LVBNA\"\n  value: \"INVALID_MDNZH\"\n  value: \"INVALID_NHCWV\"\n  value: \"INVALID_NLTLU\"\n  value: \"INVALID_OCAWO\"\n  value: \"INVALID_PDRZO\"\n  value: \"INVALID_ROSLD\"\n  value: \"INVALID_TDFZG\"\n  value: \"INVALID_TGOTK\"\n  value: \"INVALID_TUSHL\"\n  value: \"INVALID_UKRRJ\"\n  value: \"INVALID_ULZIB\"\n  value: \"INVALID_UOJXE\"\n  value: \"INVALID_WYUOM\"\n  value: \"INVALID_XGFTX\"\n  value: \"INVALID_XUDDW\"\n  value: \"INVALID_YMTGK\"\n  value: \"INVALID_YPZYK\"\n  value: \"INVALID_YRJIP\"\n  value: \"INVALID_YVPXR\"\n  value: \"INVALID_ZGRZU\"\n  value: \"INVALID_ZYXSB\"\n  value: \"No Entry\"\n  value: \"Not Ready\"\n  value: \"Out of Business\"\n  value: \"Pass\"\n  value: \"Pass w/ Conditions\"\n}\n",
+ "feature_kind": {
+  "Latitude": "numeric",
+  "Longitude": "numeric",
+  "Risk": "categorical",
+  "Results": "categorical",
+  "Facility_Type": "categorical"
+ },
+ "columns": {
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Risk": "Risk",
+  "Results": "Results",
+  "Facility_Type": "Facility Type"
+ },
+ "loo_warmup": [
+  {
+   "Latitude": 0.0458451,
+   "Longitude": 0.0779477,
+   "Risk": 0.000424152,
+   "Results": 0.00426654,
+   "Facility_Type": 0.00450129
+  },
+  {
+   "Latitude": 0.156273,
+   "Longitude": 0.0789152,
+   "Risk": 0.00227619,
+   "Results": 0.00651149,
+   "Facility_Type": 0.00466848
+  },
+  {
+   "Latitude": 0.0849116,
+   "Longitude": 0.0695294,
+   "Risk": 0.00811296,
+   "Results": 0.00471787,
+   "Facility_Type": 0.00778599
+  },
+  {
+   "Latitude": 0.117252,
+   "Longitude": 0.0772729,
+   "Risk": 0.00565831,
+   "Results": 0.00227639,
+   "Facility_Type": 0.00847438
+  },
+  {
+   "Latitude": 0.159187,
+   "Longitude": 0.0446042,
+   "Risk": 0.00246148,
+   "Results": 0.00449238,
+   "Facility_Type": 0.00628017
+  }
+ ],
+ "consecutive_warmup": [
+  {
+   "Latitude": 0.124305,
+   "Longitude": 0.0719265,
+   "Risk": 0.00196076,
+   "Results": 0.0026938,
+   "Facility_Type": 0.00526571
+  },
+  {
+   "Latitude": 0.099847,
+   "Longitude": 0.0784314,
+   "Risk": 0.00831108,
+   "Results": 0.00898351,
+   "Facility_Type": 0.00608203
+  },
+  {
+   "Latitude": 0.154608,
+   "Longitude": 0.076087,
+   "Risk": 0.00942662,
+   "Results": 0.0025178,
+   "Facility_Type": 0.00689912
+  },
+  {
+   "Latitude": 0.0454322,
+   "Longitude": 0.0928711,
+   "Risk": 0.0044423,
+   "Results": 0.00315153,
+   "Facility_Type": 0.00748578
+  }
+ ],
+ "loo_warmup_quality": [
+  {
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9996009975062344,
+    "Longitude": 0.9992019950124689,
+    "Risk": 0.9995012468827931,
+    "Results": 0.9998004987531172,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0005988023952095808,
+    "Results": 0.0008979347500748278
+   }
+  },
+  {
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9997007481296758,
+    "Longitude": 0.9997007481296758,
+    "Risk": 0.9993017456359102,
+    "Results": 0.9998004987531172,
+    "Facility_Type": 0.999002493765586
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0008983829107606308,
+    "Results": 0.00019954105557218397
+   }
+  },
+  {
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9995012468827931,
+    "Longitude": 0.9997007481296758,
+    "Risk": 0.9997007481296758,
+    "Results": 0.9993017456359102,
+    "Facility_Type": 0.9993017456359102
+   },
+   "unexpected_fraction": {
+    "Risk": 0.00029934144881261224,
+    "Results": 0.0011978438810141745
+   }
+  },
+  {
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9996009975062344,
+    "Longitude": 0.9994014962593516,
+    "Risk": 0.9994014962593516,
+    "Results": 0.9997007481296758,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0006986725222078052,
+    "Results": 0.0003991219317501497
+   }
+  },
+  {
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9995012468827931,
+    "Longitude": 0.9996009975062344,
+    "Risk": 0.9996009975062344,
+    "Results": 0.9994014962593516,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0004989522003792037,
+    "Results": 0.001097913963469408
+   }
+  }
+ ],
+ "batches": [
+  {
+   "t": 1,
+   "schema_anomalies": [],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9996009975062344,
+    "Longitude": 0.9992019950124689,
+    "Risk": 0.9995012468827931,
+    "Results": 0.9998004987531172,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0,
+    "Results": 0.0
+   },
+   "distance_previous": null,
+   "distance_warmup": {
+    "Latitude": 0.0458615,
+    "Longitude": 0.0781137,
+    "Risk": 0.000339321,
+    "Results": 0.00341306,
+    "Facility_Type": 0.00360094
+   }
+  },
+  {
+   "t": 2,
+   "schema_anomalies": [],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9997007481296758,
+    "Longitude": 0.9997007481296758,
+    "Risk": 0.9993017456359102,
+    "Results": 0.9998004987531172,
+    "Facility_Type": 0.999002493765586
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0,
+    "Results": 0.0
+   },
+   "distance_previous": {
+    "Latitude": 0.124305,
+    "Longitude": 0.0719265,
+    "Risk": 0.00196076,
+    "Results": 0.0026938,
+    "Facility_Type": 0.00526571
+   },
+   "distance_warmup": {
+    "Latitude": 0.148358,
+    "Longitude": 0.0791473,
+    "Risk": 0.00182104,
+    "Results": 0.00520893,
+    "Facility_Type": 0.00373506
+   }
+  },
+  {
+   "t": 3,
+   "schema_anomalies": [],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9995012468827931,
+    "Longitude": 0.9997007481296758,
+    "Risk": 0.9997007481296758,
+    "Results": 0.9993017456359102,
+    "Facility_Type": 0.9993017456359102
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0,
+    "Results": 0.0
+   },
+   "distance_previous": {
+    "Latitude": 0.099847,
+    "Longitude": 0.0784314,
+    "Risk": 0.00831108,
+    "Results": 0.00898351,
+    "Facility_Type": 0.00608203
+   },
+   "distance_warmup": {
+    "Latitude": 0.0849465,
+    "Longitude": 0.000107906,
+    "Risk": 0.00649004,
+    "Results": 0.00377458,
+    "Facility_Type": 0.00622879
+   }
+  },
+  {
+   "t": 4,
+   "schema_anomalies": [],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9996009975062344,
+    "Longitude": 0.9994014962593516,
+    "Risk": 0.9994014962593516,
+    "Results": 0.9997007481296758,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0,
+    "Results": 0.0
+   },
+   "distance_previous": {
+    "Latitude": 0.154608,
+    "Longitude": 0.076087,
+    "Risk": 0.00942662,
+    "Results": 0.0025178,
+    "Facility_Type": 0.00689912
+   },
+   "distance_warmup": {
+    "Latitude": 0.117567,
+    "Longitude": 0.0773773,
+    "Risk": 0.00452676,
+    "Results": 0.00182107,
+    "Facility_Type": 0.00677934
+   }
+  },
+  {
+   "t": 5,
+   "schema_anomalies": [],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9995012468827931,
+    "Longitude": 0.9996009975062344,
+    "Risk": 0.9996009975062344,
+    "Results": 0.9994014962593516,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0,
+    "Results": 0.0
+   },
+   "distance_previous": {
+    "Latitude": 0.0454322,
+    "Longitude": 0.0928711,
+    "Risk": 0.0044423,
+    "Results": 0.00315153,
+    "Facility_Type": 0.00748578
+   },
+   "distance_warmup": {
+    "Latitude": 0.101985,
+    "Longitude": 0.0445504,
+    "Risk": 0.00196914,
+    "Results": 0.00359409,
+    "Facility_Type": 0.00502401
+   }
+  },
+  {
+   "t": 6,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ECZJM (<1%), INVALID_ENCOR (<1%), INVALID_EVCAU (<1%), INVALID_GMVFN (<1%), INVALID_MQGVW (<1%), INVALID_QOLJX (<1%), INVALID_VWQYB (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_DJJUA (<1%), INVALID_EVJZB (<1%), INVALID_KAVGB (<1%), INVALID_LFPLW (<1%), INVALID_LIXZX (<1%), INVALID_NBFDL (<1%), INVALID_OAIBW (<1%), INVALID_PIHBH (<1%), INVALID_RCXRY (<1%). "
+    }
+   ],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9995012468827931,
+    "Longitude": 0.9998004987531172,
+    "Risk": 0.9995012468827931,
+    "Results": 0.9993017456359102,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0008982035928143712,
+    "Results": 0.0006987422639249351
+   },
+   "distance_previous": {
+    "Latitude": 0.0623631,
+    "Longitude": 0.0429958,
+    "Risk": 0.00628051,
+    "Results": 0.0118259,
+    "Facility_Type": 0.00728616
+   },
+   "distance_warmup": {
+    "Latitude": 0.0321313,
+    "Longitude": 0.0186037,
+    "Risk": 0.00431138,
+    "Results": 0.00952509,
+    "Facility_Type": 0.00418427
+   }
+  },
+  {
+   "t": 7,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_CJMVB (<1%), INVALID_FEKCE (<1%), INVALID_RPVRR (<1%), INVALID_TPPSS (<1%), INVALID_URZKC (<1%), INVALID_VILOO (<1%), INVALID_YUAMT (<1%), INVALID_YYUND (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ABUBZ (<1%), INVALID_AJMJX (<1%), INVALID_EIBSK (<1%), INVALID_KNXKL (<1%), INVALID_PRPZA (<1%), INVALID_UFHNV (<1%), INVALID_VMOEK (<1%). "
+    }
+   ],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9996009975062344,
+    "Longitude": 0.9995012468827931,
+    "Risk": 0.9993017456359102,
+    "Results": 0.9996009975062344,
+    "Facility_Type": 0.9995012468827931
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0006987422639249351,
+    "Results": 0.0007983235206067259
+   },
+   "distance_previous": {
+    "Latitude": 0.022268,
+    "Longitude": 0.0417326,
+    "Risk": 0.00174578,
+    "Results": 0.00802823,
+    "Facility_Type": 0.00991101
+   },
+   "distance_warmup": {
+    "Latitude": 0.060284,
+    "Longitude": 0.0622341,
+    "Risk": 0.00409916,
+    "Results": 0.00492965,
+    "Facility_Type": 0.0116787
+   }
+  },
+  {
+   "t": 8,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_BLXGU (<1%), INVALID_HHFFP (<1%), INVALID_LZFYU (<1%), INVALID_MYWOS (<1%), INVALID_NBSFT (<1%), INVALID_OGIEI (<1%), INVALID_ONQPT (<1%), INVALID_OTFCF (<1%), INVALID_PGYKP (<1%), INVALID_QNITE (<1%), INVALID_UFITY (<1%), INVALID_WPMTI (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_EQFFQ (<1%), INVALID_KHVAZ (<1%), INVALID_KSHGR (<1%), INVALID_MEWEJ (<1%), INVALID_MVZBH (<1%), INVALID_NCURL (<1%), INVALID_PXREG (<1%), INVALID_QEXBK (<1%), INVALID_VTNWS (<1%). "
+    }
+   ],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9998004987531172,
+    "Longitude": 0.9995012468827931,
+    "Risk": 0.9993017456359102,
+    "Results": 0.9994014962593516,
+    "Facility_Type": 0.9995012468827931
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0008983829107606308,
+    "Results": 0.001197724323784809
+   },
+   "distance_previous": {
+    "Latitude": 0.0427298,
+    "Longitude": 0.0713498,
+    "Risk": 0.00628868,
+    "Results": 0.00874393,
+    "Facility_Type": 0.00528942
+   },
+   "distance_warmup": {
+    "Latitude": 0.0144276,
+    "Longitude": 0.0928606,
+    "Risk": 0.00438139,
+    "Results": 0.00688783,
+    "Facility_Type": 0.00638924
+   }
+  },
+  {
+   "t": 9,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AHDHQ (<1%), INVALID_BUZQS (<1%), INVALID_EHIEM (<1%), INVALID_IFSTS (<1%), INVALID_JNGJY (<1%), INVALID_LIUZG (<1%), INVALID_SAUKG (<1%), INVALID_SFJBK (<1%), INVALID_UFJTH (<1%), INVALID_URNUX (<1%), INVALID_WLVIP (<1%), INVALID_YFMEG (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_DFCUK (<1%), INVALID_EOPQT (<1%), INVALID_PQEYZ (<1%), INVALID_QADSN (<1%), INVALID_SRDXV (<1%). "
+    }
+   ],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9993017456359102,
+    "Longitude": 0.9999002493765586,
+    "Risk": 0.9994014962593516,
+    "Results": 0.9995012468827931,
+    "Facility_Type": 0.9994014962593516
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0004990518015770037,
+    "Results": 0.0011976047904191617
+   },
+   "distance_previous": {
+    "Latitude": 0.10388,
+    "Longitude": 0.102182,
+    "Risk": 0.00781024,
+    "Results": 0.00946222,
+    "Facility_Type": 0.00611874
+   },
+   "distance_warmup": {
+    "Latitude": 0.105015,
+    "Longitude": 0.0829698,
+    "Risk": 0.00342885,
+    "Results": 0.00258782,
+    "Facility_Type": 0.00558161
+   }
+  },
+  {
+   "t": 10,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ACDPL (<1%), INVALID_CUKZV (<1%), INVALID_FFUZV (<1%), INVALID_LEHKG (<1%), INVALID_ORTGC (<1%), INVALID_PCMLO (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_DLQXV (<1%), INVALID_ERFPB (<1%), INVALID_FBSRY (<1%), INVALID_JHBMV (<1%), INVALID_LXCAZ (<1%), INVALID_OFFXZ (<1%), INVALID_WYEQQ (<1%). "
+    }
+   ],
+   "records": 10025,
+   "present_fraction": {
+    "Latitude": 0.9992019950124689,
+    "Longitude": 0.9997007481296758,
+    "Risk": 0.9997007481296758,
+    "Results": 0.9997007481296758,
+    "Facility_Type": 0.9992019950124689
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0006984633805627619,
+    "Results": 0.0005986828976252245
+   },
+   "distance_previous": {
+    "Latitude": 0.147341,
+    "Longitude": 0.0505284,
+    "Risk": 0.00571455,
+    "Results": 0.005727,
+    "Facility_Type": 0.00542881
+   },
+   "distance_warmup": {
+    "Latitude": 0.151653,
+    "Longitude": 0.0963009,
+    "Risk": 0.0022857,
+    "Results": 0.00315261,
+    "Facility_Type": 0.0056993
+   }
+  },
+  {
+   "t": 11,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_CKNEP (<1%), INVALID_DZPSW (<1%), INVALID_ENDSN (<1%), INVALID_ESZOI (<1%), INVALID_IENPW (<1%), INVALID_IKVRP (<1%), INVALID_KANIL (<1%), INVALID_KXHRU (<1%), INVALID_LAYWX (<1%), INVALID_LEVSL (<1%), INVALID_MRIJH (<1%), INVALID_NHXXY (<1%), INVALID_PLMUY (<1%), INVALID_QORYJ (<1%), INVALID_QTRBQ (<1%), INVALID_RJRFL (<1%), INVALID_RRXHH (<1%), INVALID_SYGQW (<1%), INVALID_VZFZT (<1%), INVALID_WZFQI (<1%), INVALID_YBLQL (<1%), INVALID_ZGCSB (<1%), INVALID_ZKTIK (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AVSQL (<1%), INVALID_DKDPE (<1%), INVALID_HBKOC (<1%), INVALID_HBOXK (<1%), INVALID_KRQVU (<1%), INVALID_KYUXZ (<1%), INVALID_MENLI (<1%), INVALID_MGGHP (<1%), INVALID_MPVND (<1%), INVALID_NKDXG (<1%), INVALID_PZFPL (<1%), INVALID_QFKGE (<1%), INVALID_QONZF (<1%), INVALID_QYIDC (<1%), INVALID_VUQRS (<1%), INVALID_VYQRF (<1%), INVALID_XEMES (<1%), INVALID_XMKHH (<1%), INVALID_YJJCH (<1%), INVALID_YXXGN (<1%), INVALID_ZGMIZ (<1%). "
+    }
+   ],
+   "records": 10075,
+   "present_fraction": {
+    "Latitude": 0.9990074441687344,
+    "Longitude": 0.9983126550868486,
+    "Risk": 0.9984119106699751,
+    "Results": 0.9984119106699751,
+    "Facility_Type": 0.9984119106699751
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0020876826722338203,
+    "Results": 0.0022865095933989462
+   },
+   "distance_previous": {
+    "Latitude": 0.147566,
+    "Longitude": 0.0989497,
+    "Risk": 0.0021672,
+    "Results": 0.00545638,
+    "Facility_Type": 0.006881
+   },
+   "distance_warmup": {
+    "Latitude": 0.075825,
+    "Longitude": 0.0215648,
+    "Risk": 0.0044529,
+    "Results": 0.00344587,
+    "Facility_Type": 0.00290707
+   }
+  },
+  {
+   "t": 12,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_DESJM (<1%), INVALID_DHZSQ (<1%), INVALID_GNKQH (<1%), INVALID_GZFXG (<1%), INVALID_HGDGE (<1%), INVALID_IDXSE (<1%), INVALID_LDCPN (<1%), INVALID_LVYQJ (<1%), INVALID_MNFCM (<1%), INVALID_PFXAC (<1%), INVALID_QEEPG (<1%), INVALID_QNBAX (<1%), INVALID_RZMIC (<1%), INVALID_SJGTG (<1%), INVALID_TVPVV (<1%), INVALID_UKYAQ (<1%), INVALID_UQEER (<1%), INVALID_VDVCQ (<1%), INVALID_VQYFU (<1%), INVALID_WEHVN (<1%), INVALID_XNIDN (<1%), INVALID_YHTHR (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ABMPL (<1%), INVALID_ACYAW (<1%), INVALID_AXSNC (<1%), INVALID_BOUTV (<1%), INVALID_ELQZP (<1%), INVALID_ELVTL (<1%), INVALID_FGMAF (<1%), INVALID_FRKVU (<1%), INVALID_FTGZY (<1%), INVALID_GBIIQ (<1%), INVALID_GDWER (<1%), INVALID_GHQIM (<1%), INVALID_GKEMI (<1%), INVALID_JREGM (<1%), INVALID_JUUTB (<1%), INVALID_JVEPC (<1%), INVALID_JZXUP (<1%), INVALID_KANND (<1%), INVALID_KBKRN (<1%), INVALID_KTDUA (<1%), INVALID_MVLHR (<1%), INVALID_OKOJF (<1%), INVALID_ONXEW (<1%), INVALID_TGQBV (<1%), INVALID_UEWIP (<1%), INVALID_VLDEE (<1%), INVALID_WJFWH (<1%), INVALID_WQZXY (<1%), INVALID_XSIGM (<1%), INVALID_YLZRH (<1%), INVALID_ZNXRJ (<1%), INVALID_ZOONP (<1%). "
+    }
+   ],
+   "records": 10075,
+   "present_fraction": {
+    "Latitude": 0.9991066997518611,
+    "Longitude": 0.9982133995037221,
+    "Risk": 0.9982133995037221,
+    "Results": 0.9981141439205955,
+    "Facility_Type": 0.9989081885856079
+   },
+   "unexpected_fraction": {
+    "Risk": 0.003181863378741175,
+    "Results": 0.0021877486077963404
+   },
+   "distance_previous": {
+    "Latitude": 0.0963974,
+    "Longitude": 0.0111004,
+    "Risk": 0.00223741,
+    "Results": 0.00451637,
+    "Facility_Type": 0.00532157
+   },
+   "distance_warmup": {
+    "Latitude": 0.0269167,
+    "Longitude": 0.0327253,
+    "Risk": 0.00669031,
+    "Results": 0.00262593,
+    "Facility_Type": 0.00413988
+   }
+  },
+  {
+   "t": 13,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_CNWZW (<1%), INVALID_GIIII (<1%), INVALID_IEIKJ (<1%), INVALID_JEDRK (<1%), INVALID_KMBFZ (<1%), INVALID_LHIDC (<1%), INVALID_LKEYP (<1%), INVALID_NWZRS (<1%), INVALID_PVLIR (<1%), INVALID_QYSNV (<1%), INVALID_ROIOR (<1%), INVALID_STLLF (<1%), INVALID_TYCEP (<1%), INVALID_USIUE (<1%), INVALID_UXNIS (<1%), INVALID_VFSXO (<1%), INVALID_VIOUE (<1%), INVALID_VPSAK (<1%), INVALID_VZDUF (<1%), INVALID_WZUDO (<1%), INVALID_XBEQS (<1%), INVALID_XSDGA (<1%), INVALID_YXOSN (<1%), INVALID_ZAYUV (<1%), INVALID_ZGRGC (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ARVLD (<1%), INVALID_BGJBU (<1%), INVALID_BWDBH (<1%), INVALID_CUBOP (<1%), INVALID_DFRIT (<1%), INVALID_DSGQG (<1%), INVALID_EEOCS (<1%), INVALID_EOWSO (<1%), INVALID_FUNCR (<1%), INVALID_GACNS (<1%), INVALID_GBHXS (<1%), INVALID_GHUZT (<1%), INVALID_HGGDW (<1%), INVALID_IAGPU (<1%), INVALID_IRMGP (<1%), INVALID_JVKTS (<1%), INVALID_ORWZV (<1%), INVALID_PHUUZ (<1%), INVALID_QFEGQ (<1%), INVALID_QRGEG (<1%), INVALID_QYZXA (<1%), INVALID_RLTLU (<1%), INVALID_SIUGK (<1%), INVALID_XIVJC (<1%), INVALID_XXNIK (<1%), INVALID_ZQILQ (<1%). "
+    }
+   ],
+   "records": 10075,
+   "present_fraction": {
+    "Latitude": 0.9985111662531018,
+    "Longitude": 0.9985111662531018,
+    "Risk": 0.9987096774193548,
+    "Results": 0.9979156327543425,
+    "Facility_Type": 0.9989081885856079
+   },
+   "unexpected_fraction": {
+    "Risk": 0.002583979328165375,
+    "Results": 0.0024865725084543466
+   },
+   "distance_previous": {
+    "Latitude": 0.0209116,
+    "Longitude": 0.0739187,
+    "Risk": 0.0102629,
+    "Results": 0.00358529,
+    "Facility_Type": 0.00288156
+   },
+   "distance_warmup": {
+    "Latitude": 0.00555361,
+    "Longitude": 0.044423,
+    "Risk": 0.00627042,
+    "Results": 0.00157641,
+    "Facility_Type": 0.00422937
+   }
+  },
+  {
+   "t": 14,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AIMDU (<1%), INVALID_ARTZW (<1%), INVALID_BKDRR (<1%), INVALID_CGKGD (<1%), INVALID_CLMAE (<1%), INVALID_CSZGW (<1%), INVALID_EBGSU (<1%), INVALID_EFKUV (<1%), INVALID_FZRKH (<1%), INVALID_HYGQM (<1%), INVALID_JAPKB (<1%), INVALID_JBFKE (<1%), INVALID_JVQQN (<1%), INVALID_LEOAV (<1%), INVALID_LKGRQ (<1%), INVALID_LYRFK (<1%), INVALID_MNYSA (<1%), INVALID_MPYDZ (<1%), INVALID_NBUTA (<1%), INVALID_NDWDK (<1%), INVALID_NPSOJ (<1%), INVALID_NUXCH (<1%), INVALID_QGYKN (<1%), INVALID_QRTJA (<1%), INVALID_RMFGM (<1%), INVALID_RSLSM (<1%), INVALID_TPEJQ (<1%), INVALID_UEUSX (<1%), INVALID_VDVRB (<1%), INVALID_VERRP (<1%), INVALID_VJSCQ (<1%), INVALID_VNCBG (<1%), INVALID_VNPQE (<1%), INVALID_XAYLQ (<1%), INVALID_XZMTX (<1%), INVALID_ZCZAF (<1%), INVALID_ZFJJB (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AWLCQ (<1%), INVALID_BJOGV (<1%), INVALID_DDOLY (<1%), INVALID_DUUFH (<1%), INVALID_DVCNN (<1%), INVALID_DWAIZ (<1%), INVALID_ECUDD (<1%), INVALID_EGWBM (<1%), INVALID_EQXUJ (<1%), INVALID_EYHPU (<1%), INVALID_HOZDI (<1%), INVALID_ICFTI (<1%), INVALID_IOPGE (<1%), INVALID_IQPKM (<1%), INVALID_ISPZE (<1%), INVALID_ITEUJ (<1%), INVALID_LFZAY (<1%), INVALID_LQXKR (<1%), INVALID_MCAUY (<1%), INVALID_MCBCL (<1%), INVALID_NDCUX (<1%), INVALID_NPHML (<1%), INVALID_NTBDK (<1%), INVALID_OWDDP (<1%), INVALID_PSMDX (<1%), INVALID_QJXGR (<1%), INVALID_QQSSS (<1%), INVALID_RXVIK (<1%), INVALID_SWPOK (<1%), INVALID_TJHFE (<1%), INVALID_TMXWC (<1%), INVALID_TYBDP (<1%), INVALID_UHQFL (<1%), INVALID_VTYWF (<1%), INVALID_VYQVO (<1%), INVALID_XKZOG (<1%), INVALID_YEQFT (<1%). "
+    }
+   ],
+   "records": 10125,
+   "present_fraction": {
+    "Latitude": 0.997037037037037,
+    "Longitude": 0.9979259259259259,
+    "Risk": 0.9980246913580247,
+    "Results": 0.9971358024691358,
+    "Facility_Type": 0.9975308641975309
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0036615536862939137,
+    "Results": 0.0036648177496038034
+   },
+   "distance_previous": {
+    "Latitude": 0.00903471,
+    "Longitude": 0.0538873,
+    "Risk": 0.00352284,
+    "Results": 0.00583391,
+    "Facility_Type": 0.00534162
+   },
+   "distance_warmup": {
+    "Latitude": 0.015266,
+    "Longitude": 0.0111978,
+    "Risk": 0.00274758,
+    "Results": 0.00685955,
+    "Facility_Type": 0.00424598
+   }
+  },
+  {
+   "t": 15,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AOSIV (<1%), INVALID_BJBCL (<1%), INVALID_CLHVE (<1%), INVALID_DKMKL (<1%), INVALID_FAQSQ (<1%), INVALID_FGVMF (<1%), INVALID_FWGBG (<1%), INVALID_GPGZN (<1%), INVALID_HICEP (<1%), INVALID_IUEFF (<1%), INVALID_JFQUT (<1%), INVALID_JHWVO (<1%), INVALID_JNWJT (<1%), INVALID_JSJSI (<1%), INVALID_KBBCO (<1%), INVALID_LCKBK (<1%), INVALID_MWGLI (<1%), INVALID_MZDPG (<1%), INVALID_NAVHR (<1%), INVALID_NBKLJ (<1%), INVALID_NNHGX (<1%), INVALID_NNIUN (<1%), INVALID_NUBNX (<1%), INVALID_PZFOA (<1%), INVALID_ROOGF (<1%), INVALID_SSCTV (<1%), INVALID_SXIVB (<1%), INVALID_TIGTL (<1%), INVALID_TMFXJ (<1%), INVALID_TPIZZ (<1%), INVALID_UFSWJ (<1%), INVALID_VMBOP (<1%), INVALID_VNAIO (<1%), INVALID_VVXWR (<1%), INVALID_VYRYN (<1%), INVALID_WKMYS (<1%), INVALID_XAXFD (<1%), INVALID_YDXEQ (<1%), INVALID_YWYKA (<1%), INVALID_YYFXK (<1%), INVALID_ZDSOK (<1%), INVALID_ZFIGK (<1%), INVALID_ZHUKX (<1%), INVALID_ZQKFX (<1%), INVALID_ZYWQV (<1%), INVALID_ZZDGB (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AXEYW (<1%), INVALID_BICIP (<1%), INVALID_BSSQY (<1%), INVALID_DTFSK (<1%), INVALID_EKUPZ (<1%), INVALID_ESJZA (<1%), INVALID_FLMWT (<1%), INVALID_FUNDU (<1%), INVALID_GDVVD (<1%), INVALID_GTDWK (<1%), INVALID_GXLSE (<1%), INVALID_HWSSV (<1%), INVALID_ICOKY (<1%), INVALID_ITMQP (<1%), INVALID_IYGAG (<1%), INVALID_KMUYY (<1%), INVALID_LAXWR (<1%), INVALID_LLJJN (<1%), INVALID_LWECV (<1%), INVALID_MISVT (<1%), INVALID_MUQFN (<1%), INVALID_NIRFH (<1%), INVALID_NKFKO (<1%), INVALID_PEATM (<1%), INVALID_QOUMS (<1%), INVALID_QPZJE (<1%), INVALID_QSEXT (<1%), INVALID_TOCOI (<1%), INVALID_VYNWU (<1%), INVALID_WHVAC (<1%), INVALID_WSVVQ (<1%), INVALID_WXGWK (<1%), INVALID_XLONE (<1%), INVALID_YGNAU (<1%), INVALID_YGYJW (<1%), INVALID_YONJI (<1%), INVALID_YWLPA (<1%), INVALID_ZMABI (<1%). "
+    }
+   ],
+   "records": 10125,
+   "present_fraction": {
+    "Latitude": 0.9977283950617284,
+    "Longitude": 0.9976296296296296,
+    "Risk": 0.9981234567901235,
+    "Results": 0.997037037037037,
+    "Facility_Type": 0.9971358024691358
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0037601424896101326,
+    "Results": 0.004556711243189698
+   },
+   "distance_previous": {
+    "Latitude": 0.0061529,
+    "Longitude": 0.00708045,
+    "Risk": 0.00393367,
+    "Results": 0.00602776,
+    "Facility_Type": 0.00418391
+   },
+   "distance_warmup": {
+    "Latitude": 0.0213783,
+    "Longitude": 0.0127832,
+    "Risk": 0.00388011,
+    "Results": 0.00551206,
+    "Facility_Type": 0.00479533
+   }
+  },
+  {
+   "t": 16,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ANHVN (<1%), INVALID_BVZUY (<1%), INVALID_BYUTJ (<1%), INVALID_CPQHT (<1%), INVALID_CVGMX (<1%), INVALID_DBTZC (<1%), INVALID_DEFRR (<1%), INVALID_EGMFG (<1%), INVALID_ERFCA (<1%), INVALID_EZLYM (<1%), INVALID_GGEQF (<1%), INVALID_GJNOO (<1%), INVALID_GTOZU (<1%), INVALID_GTXQH (<1%), INVALID_HQLGF (<1%), INVALID_IBOSU (<1%), INVALID_JJFNZ (<1%), INVALID_JMYJQ (<1%), INVALID_JWVUH (<1%), INVALID_KDGSM (<1%), INVALID_KERAB (<1%), INVALID_LPBCO (<1%), INVALID_LPMET (<1%), INVALID_MBAUL (<1%), INVALID_MEGIU (<1%), INVALID_MGMEN (<1%), INVALID_NHMFP (<1%), INVALID_NSCHQ (<1%), INVALID_ODTKH (<1%), INVALID_OJMGG (<1%), INVALID_ORBAP (<1%), INVALID_PDTZU (<1%), INVALID_RCRNU (<1%), INVALID_RHBUP (<1%), INVALID_RODZE (<1%), INVALID_TIBFV (<1%), INVALID_TLBDD (<1%), INVALID_TTYFA (<1%), INVALID_UPVUG (<1%), INVALID_WOTJU (<1%), INVALID_YNENC (<1%), INVALID_ZLGEL (<1%), INVALID_ZQKAX (<1%), INVALID_ZXZPJ (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AUOZW (<1%), INVALID_BZTJU (<1%), INVALID_CDTOM (<1%), INVALID_DIMRR (<1%), INVALID_DMHBK (<1%), INVALID_EOKVV (<1%), INVALID_EPPYC (<1%), INVALID_FUXAW (<1%), INVALID_GERUA (<1%), INVALID_GJSVJ (<1%), INVALID_HSDTC (<1%), INVALID_KCWKI (<1%), INVALID_KINWR (<1%), INVALID_KLRDM (<1%), INVALID_KSBVA (<1%), INVALID_KYJYA (<1%), INVALID_MTNWJ (<1%), INVALID_NEGAN (<1%), INVALID_NIYCJ (<1%), INVALID_NNRID (<1%), INVALID_PFVKY (<1%), INVALID_PSLDA (<1%), INVALID_PVYBR (<1%), INVALID_QECEY (<1%), INVALID_QFTRA (<1%), INVALID_QKMFP (<1%), INVALID_QOTNY (<1%), INVALID_QPKDW (<1%), INVALID_TOFHE (<1%), INVALID_TZGFU (<1%), INVALID_UGABE (<1%), INVALID_VDOIJ (<1%), INVALID_VEWHM (<1%), INVALID_VKYSC (<1%), INVALID_WHJQT (<1%), INVALID_WVKXP (<1%), INVALID_XEALZ (<1%), INVALID_XKWHP (<1%), INVALID_XMQXU (<1%), INVALID_YMXWW (<1%), INVALID_ZILAK (<1%), INVALID_ZOQHV (<1%). "
+    }
+   ],
+   "records": 10125,
+   "present_fraction": {
+    "Latitude": 0.997037037037037,
+    "Longitude": 0.9975308641975309,
+    "Risk": 0.9972345679012345,
+    "Results": 0.9982222222222222,
+    "Facility_Type": 0.9976296296296296
+   },
+   "unexpected_fraction": {
+    "Risk": 0.0041596513815984944,
+    "Results": 0.004353418422875235
+   },
+   "distance_previous": {
+    "Latitude": 0.064202,
+    "Longitude": 0.00662545,
+    "Risk": 0.00888856,
+    "Results": 0.0107151,
+    "Facility_Type": 0.00857087
+   },
+   "distance_warmup": {
+    "Latitude": 0.0469973,
+    "Longitude": 0.0182928,
+    "Risk": 0.00894692,
+    "Results": 0.0117965,
+    "Facility_Type": 0.00377555
+   }
+  },
+  {
+   "t": 17,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ADEJY (<1%), INVALID_AJDSW (<1%), INVALID_BMRCY (<1%), INVALID_BSWYC (<1%), INVALID_CKHWR (<1%), INVALID_CMKDS (<1%), INVALID_CZXYH (<1%), INVALID_DEDQL (<1%), INVALID_DICPD (<1%), INVALID_DUTOF (<1%), INVALID_ECIWB (<1%), INVALID_EGDFL (<1%), INVALID_EHPOO (<1%), INVALID_GOKWN (<1%), INVALID_HEJZD (<1%), INVALID_HGJYZ (<1%), INVALID_HOCYH (<1%), INVALID_HPWYK (<1%), INVALID_ICGAQ (<1%), INVALID_IEPTB (<1%), INVALID_IHMPH (<1%), INVALID_IIIQH (<1%), INVALID_IPHRY (<1%), INVALID_IVAFO (<1%), INVALID_IWYUB (<1%), INVALID_JFTQS (<1%), INVALID_KAZLS (<1%), INVALID_KBBRK (<1%), INVALID_KQBER (<1%), INVALID_KQULM (<1%), INVALID_LQSPF (<1%), INVALID_MANOY (<1%), INVALID_MGDZT (<1%), INVALID_MVGLL (<1%), INVALID_NIGPG (<1%), INVALID_NLTKV (<1%), INVALID_NNGJW (<1%), INVALID_NROFB (<1%), INVALID_NYGTV (<1%), INVALID_OJPWZ (<1%), INVALID_OLWAM (<1%), INVALID_ONJAZ (<1%), INVALID_OQHCV (<1%), INVALID_OQHHD (<1%), INVALID_OVUOG (<1%), INVALID_PAJKK (<1%), INVALID_PBTXK (<1%), INVALID_PFBKN (<1%), INVALID_PGQJS (<1%), INVALID_PJQNT (<1%), INVALID_QBCZN (<1%), INVALID_QNGWY (<1%), INVALID_RPTTA (<1%), INVALID_RWYSB (<1%), INVALID_SDWJX (<1%), INVALID_SKXWM (<1%), INVALID_SQNYD (<1%), INVALID_SWRXP (<1%), INVALID_SXFUT (<1%), INVALID_TALIN (<1%), INVALID_TBEGJ (<1%), INVALID_TERBW (<1%), INVALID_TFWXO (<1%), INVALID_TJFQN (<1%), INVALID_TRXDW (<1%), INVALID_UCSZL (<1%), INVALID_UICPX (<1%), INVALID_UVYKI (<1%), INVALID_UXOSI (<1%), INVALID_VGOSV (<1%), INVALID_VKEJT (<1%), INVALID_VNBZH (<1%), INVALID_WFMNB (<1%), INVALID_WQCII (<1%), INVALID_XBYIM (<1%), INVALID_XEEOX (<1%), INVALID_XIJYM (<1%), INVALID_YTIIN (<1%), INVALID_ZNGIW (<1%), INVALID_ZWUCA (<1%), INVALID_ZYNXR (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AHEVK (<1%), INVALID_ALFJF (<1%), INVALID_ANSVX (<1%), INVALID_AVXIN (<1%), INVALID_BNNMT (<1%), INVALID_BRKOX (<1%), INVALID_BZXGT (<1%), INVALID_CMHYZ (<1%), INVALID_DHKZL (<1%), INVALID_DMJOH (<1%), INVALID_DURZN (<1%), INVALID_DWZAA (<1%), INVALID_EBTDL (<1%), INVALID_EPZLE (<1%), INVALID_EWWTW (<1%), INVALID_FCOHU (<1%), INVALID_FETOR (<1%), INVALID_GASMU (<1%), INVALID_GFBIS (<1%), INVALID_GICKB (<1%), INVALID_GLVSN (<1%), INVALID_GMWCY (<1%), INVALID_GNJLS (<1%), INVALID_GVVBU (<1%), INVALID_GYKLV (<1%), INVALID_HNICD (<1%), INVALID_HPDGF (<1%), INVALID_IDTCQ (<1%), INVALID_IDUXO (<1%), INVALID_ILATX (<1%), INVALID_INPUU (<1%), INVALID_JKASH (<1%), INVALID_JRVBA (<1%), INVALID_JTSMD (<1%), INVALID_JXRPV (<1%), INVALID_JZAWG (<1%), INVALID_JZPWD (<1%), INVALID_KJEOG (<1%), INVALID_KJORN (<1%), INVALID_KTKLO (<1%), INVALID_KWUMM (<1%), INVALID_LPSHE (<1%), INVALID_LTGVI (<1%), INVALID_MAXKW (<1%), INVALID_NAIDQ (<1%), INVALID_NJREC (<1%), INVALID_NMQEO (<1%), INVALID_NWXOC (<1%), INVALID_OIELK (<1%), INVALID_PDOSS (<1%), INVALID_PJNDT (<1%), INVALID_PSSOQ (<1%), INVALID_QDMLI (<1%), INVALID_QDNKF (<1%), INVALID_QHHXN (<1%), INVALID_QJLRL (<1%), INVALID_QTBVO (<1%), INVALID_QWOGP (<1%), INVALID_QZFJE (<1%), INVALID_REVKT (<1%), INVALID_RYKQE (<1%), INVALID_SDGOU (<1%), INVALID_SSXGR (<1%), INVALID_SWBYK (<1%), INVALID_TAHBM (<1%), INVALID_TJRVY (<1%), INVALID_TJZGM (<1%), INVALID_UAUHO (<1%), INVALID_UUEFL (<1%), INVALID_VMBNT (<1%), INVALID_VMFJS (<1%), INVALID_VXDAE (<1%), INVALID_WHRQR (<1%), INVALID_WMAQA (<1%), INVALID_XBLRC (<1%), INVALID_XMFHW (<1%), INVALID_XUELB (<1%), INVALID_XWJAX (<1%), INVALID_XWORQ (<1%), INVALID_YAEHE (<1%), INVALID_YFTYL (<1%), INVALID_YJKUZ (<1%), INVALID_YXPPN (<1%), INVALID_ZEDKT (<1%), INVALID_ZOCXG (<1%), INVALID_ZXLZN (<1%). "
+    }
+   ],
+   "records": 10250,
+   "present_fraction": {
+    "Latitude": 0.9953170731707317,
+    "Longitude": 0.9957073170731707,
+    "Risk": 0.9950243902439024,
+    "Results": 0.9947317073170732,
+    "Facility_Type": 0.9948292682926829
+   },
+   "unexpected_fraction": {
+    "Risk": 0.008432199235219139,
+    "Results": 0.007944291879168302
+   },
+   "distance_previous": {
+    "Latitude": 0.0614525,
+    "Longitude": 0.0173258,
+    "Risk": 0.00572423,
+    "Results": 0.00784957,
+    "Facility_Type": 0.0144743
+   },
+   "distance_warmup": {
+    "Latitude": 0.0203455,
+    "Longitude": 0.0129641,
+    "Risk": 0.0104456,
+    "Results": 0.00441661,
+    "Facility_Type": 0.0106988
+   }
+  },
+  {
+   "t": 18,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ANCUR (<1%), INVALID_ANIRN (<1%), INVALID_ASTAZ (<1%), INVALID_BKQXY (<1%), INVALID_BOOES (<1%), INVALID_BSUPH (<1%), INVALID_BTUJT (<1%), INVALID_CBWHX (<1%), INVALID_COMSH (<1%), INVALID_CROOA (<1%), INVALID_DAYGC (<1%), INVALID_DIBTZ (<1%), INVALID_DLVVD (<1%), INVALID_DNBYZ (<1%), INVALID_DPXVO (<1%), INVALID_DQYOV (<1%), INVALID_DVDBJ (<1%), INVALID_DXCOH (<1%), INVALID_EQPNC (<1%), INVALID_FANGC (<1%), INVALID_FDXCK (<1%), INVALID_FXGBG (<1%), INVALID_GEXAU (<1%), INVALID_GJRCW (<1%), INVALID_GLVRR (<1%), INVALID_GTCCN (<1%), INVALID_HBDCI (<1%), INVALID_HGABO (<1%), INVALID_HIYDC (<1%), INVALID_HKOTE (<1%), INVALID_HXBVN (<1%), INVALID_JFQTF (<1%), INVALID_JGDLG (<1%), INVALID_JLIUO (<1%), INVALID_JLWOR (<1%), INVALID_KCAVZ (<1%), INVALID_KDRPW (<1%), INVALID_KJIDL (<1%), INVALID_KVQKQ (<1%), INVALID_KVQPY (<1%), INVALID_LMWYX (<1%), INVALID_MGAHL (<1%), INVALID_MHFRL (<1%), INVALID_MHOQL (<1%), INVALID_NSFIR (<1%), INVALID_NVTVJ (<1%), INVALID_NWWXK (<1%), INVALID_OLFRT (<1%), INVALID_OPRAB (<1%), INVALID_OPVHI (<1%), INVALID_OXFWF (<1%), INVALID_PBFVG (<1%), INVALID_PIQDM (<1%), INVALID_PPDGU (<1%), INVALID_PPUHZ (<1%), INVALID_PSIOL (<1%), INVALID_QARPS (<1%), INVALID_QSYAW (<1%), INVALID_QTBFB (<1%), INVALID_SESJZ (<1%), INVALID_SMHCG (<1%), INVALID_TJATM (<1%), INVALID_TJHAD (<1%), INVALID_TMPEJ (<1%), INVALID_TSCVM (<1%), INVALID_TWFOH (<1%), INVALID_TZWYU (<1%), INVALID_UEBLY (<1%), INVALID_UENDY (<1%), INVALID_UHHCY (<1%), INVALID_UHSTC (<1%), INVALID_USOGW (<1%), INVALID_VJVGX (<1%), INVALID_VUFJK (<1%), INVALID_WAHMG (<1%), INVALID_WMJRI (<1%), INVALID_WRZFR (<1%), INVALID_XCROJ (<1%), INVALID_XOZUV (<1%), INVALID_YQSFY (<1%), INVALID_YTNQA (<1%), INVALID_ZELGV (<1%), INVALID_ZEURM (<1%), INVALID_ZUROB (<1%), INVALID_ZZMEN (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ABLWJ (<1%), INVALID_ABSSL (<1%), INVALID_AEOIC (<1%), INVALID_AJNXI (<1%), INVALID_AJTQZ (<1%), INVALID_BEBOF (<1%), INVALID_BFJJU (<1%), INVALID_BIQQR (<1%), INVALID_BLIDF (<1%), INVALID_BVCQT (<1%), INVALID_CRNZI (<1%), INVALID_DMEON (<1%), INVALID_DOAOW (<1%), INVALID_DQOQC (<1%), INVALID_DYJMK (<1%), INVALID_EEFGL (<1%), INVALID_EIJCP (<1%), INVALID_ELRBL (<1%), INVALID_EPLQP (<1%), INVALID_FUUMS (<1%), INVALID_HVVXT (<1%), INVALID_HYDID (<1%), INVALID_ISITG (<1%), INVALID_IUZUZ (<1%), INVALID_JBQTK (<1%), INVALID_JTGWZ (<1%), INVALID_KJWED (<1%), INVALID_KUYUL (<1%), INVALID_MERMJ (<1%), INVALID_MNNRW (<1%), INVALID_MVGZR (<1%), INVALID_MWCOB (<1%), INVALID_MWEMQ (<1%), INVALID_NMHZD (<1%), INVALID_NPVUP (<1%), INVALID_OEDSF (<1%), INVALID_OFTSE (<1%), INVALID_OLCES (<1%), INVALID_OLVYX (<1%), INVALID_PBINK (<1%), INVALID_QDMQQ (<1%), INVALID_QTZTL (<1%), INVALID_RQNNL (<1%), INVALID_RRDLV (<1%), INVALID_RUQGT (<1%), INVALID_RZBZH (<1%), INVALID_SNGXU (<1%), INVALID_SPDTK (<1%), INVALID_SWPHI (<1%), INVALID_TBYTF (<1%), INVALID_TTPSS (<1%), INVALID_UBNCR (<1%), INVALID_UGLPZ (<1%), INVALID_ULZGI (<1%), INVALID_VBUSF (<1%), INVALID_VKWKP (<1%), INVALID_VPUJA (<1%), INVALID_VQPWY (<1%), INVALID_VWOEE (<1%), INVALID_WATHV (<1%), INVALID_WPTLZ (<1%), INVALID_WWWPP (<1%), INVALID_WYJUA (<1%), INVALID_WYKLM (<1%), INVALID_XDECL (<1%), INVALID_XJZSZ (<1%), INVALID_YGFAQ (<1%), INVALID_YUFJS (<1%), INVALID_ZACVZ (<1%), INVALID_ZENPV (<1%), INVALID_ZRCFV (<1%), INVALID_ZXTLF (<1%). "
+    }
+   ],
+   "records": 10250,
+   "present_fraction": {
+    "Latitude": 0.9948292682926829,
+    "Longitude": 0.996780487804878,
+    "Risk": 0.9947317073170732,
+    "Results": 0.9950243902439024,
+    "Facility_Type": 0.9942439024390244
+   },
+   "unexpected_fraction": {
+    "Risk": 0.007061592781482934,
+    "Results": 0.008334150406902637
+   },
+   "distance_previous": {
+    "Latitude": 0.0184564,
+    "Longitude": 0.00572667,
+    "Risk": 0.0175072,
+    "Results": 0.004826,
+    "Facility_Type": 0.00284929
+   },
+   "distance_warmup": {
+    "Latitude": 0.00936193,
+    "Longitude": 0.00720256,
+    "Risk": 0.0121655,
+    "Results": 0.00515829,
+    "Facility_Type": 0.0124576
+   }
+  },
+  {
+   "t": 19,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ADLTF (<1%), INVALID_AJIGW (<1%), INVALID_ALWBP (<1%), INVALID_AYFMJ (<1%), INVALID_BAQIU (<1%), INVALID_BGBJE (<1%), INVALID_BIBAZ (<1%), INVALID_BJLSK (<1%), INVALID_BUASK (<1%), INVALID_CHTLN (<1%), INVALID_CNSTF (<1%), INVALID_CUWCB (<1%), INVALID_CYTZX (<1%), INVALID_DFMWB (<1%), INVALID_DFYVG (<1%), INVALID_DNPRN (<1%), INVALID_DWUSJ (<1%), INVALID_EECFG (<1%), INVALID_EFWOF (<1%), INVALID_ETXBR (<1%), INVALID_FGPHB (<1%), INVALID_FGPUG (<1%), INVALID_FNFLH (<1%), INVALID_FQMQD (<1%), INVALID_FVJMB (<1%), INVALID_FZTKX (<1%), INVALID_GFZTN (<1%), INVALID_GHFRW (<1%), INVALID_GTGQL (<1%), INVALID_HIQKF (<1%), INVALID_HKGNE (<1%), INVALID_HSKIR (<1%), INVALID_HWVVA (<1%), INVALID_IYJOO (<1%), INVALID_JGQOW (<1%), INVALID_JMHVB (<1%), INVALID_JNIIW (<1%), INVALID_JNSYM (<1%), INVALID_JWSYM (<1%), INVALID_JZNUN (<1%), INVALID_KVQPH (<1%), INVALID_KYIOH (<1%), INVALID_LFNRJ (<1%), INVALID_LPQFS (<1%), INVALID_LQWLO (<1%), INVALID_MGUAM (<1%), INVALID_MIYXL (<1%), INVALID_MKFKD (<1%), INVALID_NBLTI (<1%), INVALID_NUKXD (<1%), INVALID_OLKDC (<1%), INVALID_ORKBZ (<1%), INVALID_OUCIQ (<1%), INVALID_OXDNS (<1%), INVALID_PPSPH (<1%), INVALID_PSJBR (<1%), INVALID_QGTPW (<1%), INVALID_QKLNF (<1%), INVALID_QRTPV (<1%), INVALID_QWBFB (<1%), INVALID_RDGLE (<1%), INVALID_REKAC (<1%), INVALID_RPJYN (<1%), INVALID_RTFJZ (<1%), INVALID_RVZTR (<1%), INVALID_RYPXT (<1%), INVALID_SETPW (<1%), INVALID_SFGCT (<1%), INVALID_SIWIC (<1%), INVALID_TIUDH (<1%), INVALID_TLGBN (<1%), INVALID_TSRCG (<1%), INVALID_TXSMZ (<1%), INVALID_UBMIK (<1%), INVALID_UCIQU (<1%), INVALID_UGRAG (<1%), INVALID_UIPFD (<1%), INVALID_URKCS (<1%), INVALID_UTUSO (<1%), INVALID_VHKFS (<1%), INVALID_VHZAB (<1%), INVALID_VMSGY (<1%), INVALID_VNZQH (<1%), INVALID_VQGPO (<1%), INVALID_VXZXM (<1%), INVALID_WKOEW (<1%), INVALID_WOEFN (<1%), INVALID_WXQYL (<1%), INVALID_XMKCA (<1%), INVALID_XXILF (<1%), INVALID_YJXHZ (<1%), INVALID_YLMKB (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_BDDBS (<1%), INVALID_BJLYO (<1%), INVALID_BKIRQ (<1%), INVALID_BLCNR (<1%), INVALID_BOLTN (<1%), INVALID_BTXAI (<1%), INVALID_BYPNF (<1%), INVALID_CCJGN (<1%), INVALID_CLRGF (<1%), INVALID_DOQJH (<1%), INVALID_EEYVD (<1%), INVALID_EGQHA (<1%), INVALID_EJNEL (<1%), INVALID_FIKSD (<1%), INVALID_FJKJW (<1%), INVALID_FOLVZ (<1%), INVALID_FTCHG (<1%), INVALID_FWEFK (<1%), INVALID_FWQEL (<1%), INVALID_FYDFJ (<1%), INVALID_GBDUH (<1%), INVALID_GRPPX (<1%), INVALID_GUJOG (<1%), INVALID_HVXGB (<1%), INVALID_HWTLN (<1%), INVALID_ICJTQ (<1%), INVALID_ILBEL (<1%), INVALID_IRHFQ (<1%), INVALID_JEQPK (<1%), INVALID_JINCK (<1%), INVALID_JQVCS (<1%), INVALID_JZGNI (<1%), INVALID_KBOTO (<1%), INVALID_KFHAN (<1%), INVALID_KHJNL (<1%), INVALID_KIZLR (<1%), INVALID_KYHHH (<1%), INVALID_KZKJB (<1%), INVALID_LGISR (<1%), INVALID_LLWNL (<1%), INVALID_LZRSA (<1%), INVALID_MOHUV (<1%), INVALID_MQMKF (<1%), INVALID_NHKHJ (<1%), INVALID_NPGTW (<1%), INVALID_NQRYG (<1%), INVALID_NSEWZ (<1%), INVALID_NTQZM (<1%), INVALID_OGYSR (<1%), INVALID_ONYOC (<1%), INVALID_OZAHD (<1%), INVALID_OZNLG (<1%), INVALID_PLAUI (<1%), INVALID_QABQE (<1%), INVALID_QADOZ (<1%), INVALID_QJOWF (<1%), INVALID_RESFW (<1%), INVALID_RKAUZ (<1%), INVALID_RZJXL (<1%), INVALID_SHNAV (<1%), INVALID_SPQON (<1%), INVALID_SQMWW (<1%), INVALID_TEHCY (<1%), INVALID_TILAL (<1%), INVALID_TNFJC (<1%), INVALID_UCHBK (<1%), INVALID_UCZML (<1%), INVALID_UIUFN (<1%), INVALID_ULBIM (<1%), INVALID_UQGQK (<1%), INVALID_UVMEF (<1%), INVALID_VHINN (<1%), INVALID_VKGQU (<1%), INVALID_VSJRQ (<1%), INVALID_VVYFP (<1%), INVALID_WAGYS (<1%), INVALID_WLWMX (<1%), INVALID_WTUQN (<1%), INVALID_WULZF (<1%), INVALID_WVLHX (<1%), INVALID_WXAAQ (<1%), INVALID_XOKDN (<1%), INVALID_YADVM (<1%), INVALID_YLSCZ (<1%), INVALID_YRNED (<1%), INVALID_ZLKNF (<1%), INVALID_ZPAHE (<1%). "
+    }
+   ],
+   "records": 10250,
+   "present_fraction": {
+    "Latitude": 0.995609756097561,
+    "Longitude": 0.9950243902439024,
+    "Risk": 0.9946341463414634,
+    "Results": 0.995609756097561,
+    "Facility_Type": 0.9947317073170732
+   },
+   "unexpected_fraction": {
+    "Risk": 0.00853359489946052,
+    "Results": 0.009015188633023028
+   },
+   "distance_previous": {
+    "Latitude": 0.00856835,
+    "Longitude": 0.0074661,
+    "Risk": 0.00194355,
+    "Results": 0.00430292,
+    "Facility_Type": 0.00206695
+   },
+   "distance_warmup": {
+    "Latitude": 0.00985758,
+    "Longitude": 0.0108455,
+    "Risk": 0.0113081,
+    "Results": 0.00571867,
+    "Facility_Type": 0.0119072
+   }
+  },
+  {
+   "t": 20,
+   "schema_anomalies": [
+    {
+     "feature": "Results",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_AIBGH (<1%), INVALID_BEZEC (<1%), INVALID_COVHI (<1%), INVALID_CTUWJ (<1%), INVALID_DCSPP (<1%), INVALID_DHMEP (<1%), INVALID_DSXYY (<1%), INVALID_DVCPD (<1%), INVALID_DVTPM (<1%), INVALID_EDPJQ (<1%), INVALID_EVOFC (<1%), INVALID_FDIEJ (<1%), INVALID_FDYLJ (<1%), INVALID_FMQCY (<1%), INVALID_FWYBK (<1%), INVALID_FYEKT (<1%), INVALID_GDAIO (<1%), INVALID_GHPFT (<1%), INVALID_GRYAD (<1%), INVALID_GTZMN (<1%), INVALID_GXAWP (<1%), INVALID_HYNDZ (<1%), INVALID_ICWCM (<1%), INVALID_ISAVV (<1%), INVALID_JHPIQ (<1%), INVALID_JHQFU (<1%), INVALID_JIRYA (<1%), INVALID_JJZVG (<1%), INVALID_KKKWT (<1%), INVALID_KVWLE (<1%), INVALID_KXHVR (<1%), INVALID_LTWDE (<1%), INVALID_LXEZT (<1%), INVALID_MIKQL (<1%), INVALID_MKXRS (<1%), INVALID_NBEQK (<1%), INVALID_NEAGS (<1%), INVALID_NIOBS (<1%), INVALID_NLNMW (<1%), INVALID_NRUWI (<1%), INVALID_NWAZQ (<1%), INVALID_NXVVD (<1%), INVALID_NYZBI (<1%), INVALID_OERMT (<1%), INVALID_OJJID (<1%), INVALID_OMWTL (<1%), INVALID_PNIGS (<1%), INVALID_QJWWX (<1%), INVALID_QWPXB (<1%), INVALID_RQAHR (<1%), INVALID_RZWZR (<1%), INVALID_SABWI (<1%), INVALID_SXIMA (<1%), INVALID_TQUNP (<1%), INVALID_TSJBY (<1%), INVALID_TZSOP (<1%), INVALID_VLGLX (<1%), INVALID_VLSZQ (<1%), INVALID_VMXGP (<1%), INVALID_VXWFZ (<1%), INVALID_WIOHE (<1%), INVALID_WRKES (<1%), INVALID_WSMQD (<1%), INVALID_WVKNA (<1%), INVALID_WZKSS (<1%), INVALID_XCJIH (<1%), INVALID_XRQDA (<1%), INVALID_XTVSZ (<1%), INVALID_XVKSO (<1%), INVALID_XYKFL (<1%), INVALID_XYQOL (<1%), INVALID_YQOYR (<1%), INVALID_YXFPV (<1%), INVALID_YXHOQ (<1%), INVALID_ZCSGF (<1%), INVALID_ZHVRP (<1%), INVALID_ZNBEA (<1%), INVALID_ZNZCV (<1%), INVALID_ZSSAB (<1%), INVALID_ZWGJR (<1%). "
+    },
+    {
+     "feature": "Risk",
+     "type": "ENUM_TYPE_UNEXPECTED_STRING_VALUES",
+     "short": "Unexpected string values",
+     "description": "Examples contain values missing from the schema: INVALID_ACLRX (<1%), INVALID_AEKTH (<1%), INVALID_AGKCH (<1%), INVALID_AOOBW (<1%), INVALID_AUBMA (<1%), INVALID_AVPOL (<1%), INVALID_BAJHC (<1%), INVALID_BKXWV (<1%), INVALID_BRGZS (<1%), INVALID_BXLYU (<1%), INVALID_CCZZL (<1%), INVALID_DORCT (<1%), INVALID_DRYUI (<1%), INVALID_DTGIX (<1%), INVALID_EBYGC (<1%), INVALID_EDEZF (<1%), INVALID_EDQVQ (<1%), INVALID_ESLKD (<1%), INVALID_GEOLU (<1%), INVALID_GPUVA (<1%), INVALID_HGMRD (<1%), INVALID_HHXNA (<1%), INVALID_HKTXI (<1%), INVALID_HYHQL (<1%), INVALID_HZQPX (<1%), INVALID_IXEQD (<1%), INVALID_JEMER (<1%), INVALID_JEXKC (<1%), INVALID_JJGGL (<1%), INVALID_JSRAO (<1%), INVALID_JZMWX (<1%), INVALID_KLNMF (<1%), INVALID_KRDLS (<1%), INVALID_KWZQO (<1%), INVALID_LKHPQ (<1%), INVALID_LSHGP (<1%), INVALID_LZXQR (<1%), INVALID_MBXJS (<1%), INVALID_MDOSF (<1%), INVALID_MEHIA (<1%), INVALID_MEVDB (<1%), INVALID_MTEIL (<1%), INVALID_NCDCG (<1%), INVALID_NIUME (<1%), INVALID_NVEHK (<1%), INVALID_OFLWJ (<1%), INVALID_OWOFU (<1%), INVALID_PDVMY (<1%), INVALID_PMFWA (<1%), INVALID_PTBBN (<1%), INVALID_QARCZ (<1%), INVALID_QVPAF (<1%), INVALID_QYYZA (<1%), INVALID_RBYPC (<1%), INVALID_RTUEK (<1%), INVALID_RWBWA (<1%), INVALID_SBWHY (<1%), INVALID_SFRNI (<1%), INVALID_SGYIT (<1%), INVALID_SUJKU (<1%), INVALID_UBYXH (<1%), INVALID_UJRIT (<1%), INVALID_ULDZZ (<1%), INVALID_UUGDT (<1%), INVALID_VFPCU (<1%), INVALID_WBCQS (<1%), INVALID_WMEIK (<1%), INVALID_WSGMK (<1%), INVALID_XLGDE (<1%), INVALID_XXWQI (<1%), INVALID_YDTBI (<1%), INVALID_YMUKN (<1%), INVALID_YSGQA (<1%), INVALID_YSPCT (<1%), INVALID_ZDSSN (<1%), INVALID_ZMJPI (<1%), INVALID_ZMSCU (<1%), INVALID_ZOWOT (<1%). "
+    }
+   ],
+   "records": 10250,
+   "present_fraction": {
+    "Latitude": 0.9957073170731707,
+    "Longitude": 0.9948292682926829,
+    "Risk": 0.9942439024390244,
+    "Results": 0.995219512195122,
+    "Facility_Type": 0.995609756097561
+   },
+   "unexpected_fraction": {
+    "Risk": 0.007653812187224021,
+    "Results": 0.007842368395255367
+   },
+   "distance_previous": {
+    "Latitude": 0.0208481,
+    "Longitude": 0.00839925,
+    "Risk": 0.0109871,
+    "Results": 0.00399557,
+    "Facility_Type": 0.00371366
+   },
+   "distance_warmup": {
+    "Latitude": 0.0319306,
+    "Longitude": 0.0127906,
+    "Risk": 0.00432803,
+    "Results": 0.00260035,
+    "Facility_Type": 0.0081935
+   }
+  }
+ ]
+}

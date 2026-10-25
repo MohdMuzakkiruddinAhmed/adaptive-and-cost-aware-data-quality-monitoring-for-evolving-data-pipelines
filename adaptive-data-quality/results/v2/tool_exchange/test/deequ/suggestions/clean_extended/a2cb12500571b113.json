@@ -1,0 +1,179 @@
+{
+ "dataset": "chicago_food",
+ "warm_hash": "a2cb12500571b113",
+ "variant": "clean_extended",
+ "warmup": "clean",
+ "rows": 50000,
+ "rule_set": "DEFAULT+STRING+COMMON",
+ "columns": {
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Risk": "Risk",
+  "Results": "Results",
+  "Facility_Type": "Facility Type"
+ },
+ "suggestions": [
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Latitude,None,None))",
+   "column_name": "Latitude",
+   "current_value": "Completeness: 1.0",
+   "description": "'Latitude' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Latitude\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Latitude' has no negative values,Latitude >= 0,None,List(Latitude),None))",
+   "column_name": "Latitude",
+   "current_value": "Minimum: 41.64467013219805",
+   "description": "'Latitude' has no negative values",
+   "suggesting_rule": "NonNegativeNumbersRule()",
+   "rule_description": "If we see only non-negative numbers in a column, we suggest a corresponding constraint",
+   "code_for_constraint": ".isNonNegative(\"Latitude\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Longitude,None,None))",
+   "column_name": "Longitude",
+   "current_value": "Completeness: 1.0",
+   "description": "'Longitude' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Longitude\")"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Results,None,None))",
+   "column_name": "Results",
+   "current_value": "Completeness: 1.0",
+   "description": "'Results' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Results\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business', 'No Entry', 'Not Ready', 'Business Not Located',`Results` IN ('Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business', 'No Entry', 'Not Ready', 'Business Not Located'),None,List(Results),None))",
+   "column_name": "Results",
+   "current_value": "Compliance: 1",
+   "description": "'Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business', 'No Entry', 'Not Ready', 'Business Not Located'",
+   "suggesting_rule": "CategoricalRangeRule(com.amazon.deequ.suggestions.rules.CategoricalRangeRule$$$Lambda$2068/0x0000008001b90000@7846b975)",
+   "rule_description": "If we see a categorical range for a column, we suggest an IS IN (...) constraint",
+   "code_for_constraint": ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\", \"No Entry\", \"Not Ready\", \"Business Not Located\"))"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business' for at least 93.0% of values,`Results` IN ('Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business'),None,List(Results),None))",
+   "column_name": "Results",
+   "current_value": "Compliance: 0.9401999999999999",
+   "description": "'Results' has value range 'Pass', 'Fail', 'Pass w/ Conditions', 'Out of Business' for at least 93.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2069/0x0000008001b90638@7e7e6b7b,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\"), _ >= 0.93, Some(\"It should be above 0.93!\"))"
+  },
+  {
+   "constraint_name": "MinLengthConstraint(MinLength(Results,None,None))",
+   "column_name": "Results",
+   "current_value": "MinLength: 4.0",
+   "description": "The length of 'Results' >= 4.0",
+   "suggesting_rule": "HasMinLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Minimum length constraint",
+   "code_for_constraint": ".hasMinLength(\"Results\", _ >= 4.0)"
+  },
+  {
+   "constraint_name": "MaxLengthConstraint(MaxLength(Results,None,None))",
+   "column_name": "Results",
+   "current_value": "MaxLength: 1.0",
+   "description": "The length of 'Results' <= 20.0",
+   "suggesting_rule": "HasMaxLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Maximum length constraint",
+   "code_for_constraint": ".hasMaxLength(\"Results\", _ <= 20.0)"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Facility_Type,None,None))",
+   "column_name": "Facility_Type",
+   "current_value": "Completeness: 1.0",
+   "description": "'Facility_Type' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Facility_Type\")"
+  },
+  {
+   "constraint_name": "MinLengthConstraint(MinLength(Facility_Type,None,None))",
+   "column_name": "Facility_Type",
+   "current_value": "MinLength: 3.0",
+   "description": "The length of 'Facility_Type' >= 3.0",
+   "suggesting_rule": "HasMinLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Minimum length constraint",
+   "code_for_constraint": ".hasMinLength(\"Facility_Type\", _ >= 3.0)"
+  },
+  {
+   "constraint_name": "MaxLengthConstraint(MaxLength(Facility_Type,None,None))",
+   "column_name": "Facility_Type",
+   "current_value": "MaxLength: 1.0",
+   "description": "The length of 'Facility_Type' <= 47.0",
+   "suggesting_rule": "HasMaxLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Maximum length constraint",
+   "code_for_constraint": ".hasMaxLength(\"Facility_Type\", _ <= 47.0)"
+  },
+  {
+   "constraint_name": "CompletenessConstraint(Completeness(Risk,None,None))",
+   "column_name": "Risk",
+   "current_value": "Completeness: 1.0",
+   "description": "'Risk' is not null",
+   "suggesting_rule": "CompleteIfCompleteRule()",
+   "rule_description": "If a column is complete in the sample, we suggest a NOT NULL constraint",
+   "code_for_constraint": ".isComplete(\"Risk\")"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Risk' has value range 'Risk 1 (High)', 'Risk 2 (Medium)', 'Risk 3 (Low)', 'All',`Risk` IN ('Risk 1 (High)', 'Risk 2 (Medium)', 'Risk 3 (Low)', 'All'),None,List(Risk),None))",
+   "column_name": "Risk",
+   "current_value": "Compliance: 1",
+   "description": "'Risk' has value range 'Risk 1 (High)', 'Risk 2 (Medium)', 'Risk 3 (Low)', 'All'",
+   "suggesting_rule": "CategoricalRangeRule(com.amazon.deequ.suggestions.rules.CategoricalRangeRule$$$Lambda$2068/0x0000008001b90000@7846b975)",
+   "rule_description": "If we see a categorical range for a column, we suggest an IS IN (...) constraint",
+   "code_for_constraint": ".isContainedIn(\"Risk\", Array(\"Risk 1 (High)\", \"Risk 2 (Medium)\", \"Risk 3 (Low)\", \"All\"))"
+  },
+  {
+   "constraint_name": "ComplianceConstraint(Compliance('Risk' has value range 'Risk 1 (High)', 'Risk 2 (Medium)' for at least 92.0% of values,`Risk` IN ('Risk 1 (High)', 'Risk 2 (Medium)'),None,List(Risk),None))",
+   "column_name": "Risk",
+   "current_value": "Compliance: 0.9322",
+   "description": "'Risk' has value range 'Risk 1 (High)', 'Risk 2 (Medium)' for at least 92.0% of values",
+   "suggesting_rule": "FractionalCategoricalRangeRule(0.9,com.amazon.deequ.suggestions.rules.FractionalCategoricalRangeRule$$$Lambda$2069/0x0000008001b90638@7e7e6b7b,WaldIntervalStrategy())",
+   "rule_description": "If we see a categorical range for most values in a column, we suggest an IS IN (...) constraint that should hold for most values",
+   "code_for_constraint": ".isContainedIn(\"Risk\", Array(\"Risk 1 (High)\", \"Risk 2 (Medium)\"), _ >= 0.92, Some(\"It should be above 0.92!\"))"
+  },
+  {
+   "constraint_name": "MinLengthConstraint(MinLength(Risk,None,None))",
+   "column_name": "Risk",
+   "current_value": "MinLength: 3.0",
+   "description": "The length of 'Risk' >= 3.0",
+   "suggesting_rule": "HasMinLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Minimum length constraint",
+   "code_for_constraint": ".hasMinLength(\"Risk\", _ >= 3.0)"
+  },
+  {
+   "constraint_name": "MaxLengthConstraint(MaxLength(Risk,None,None))",
+   "column_name": "Risk",
+   "current_value": "MaxLength: 1.0",
+   "description": "The length of 'Risk' <= 15.0",
+   "suggesting_rule": "HasMaxLength()",
+   "rule_description": "If we see a string column, we suggest a corresponding Maximum length constraint",
+   "code_for_constraint": ".hasMaxLength(\"Risk\", _ <= 15.0)"
+  }
+ ],
+ "constraints_verified": [
+  ".isComplete(\"Facility_Type\")",
+  ".hasMinLength(\"Facility_Type\", _ >= 3.0)",
+  ".hasMaxLength(\"Facility_Type\", _ <= 47.0)",
+  ".isComplete(\"Latitude\")",
+  ".isNonNegative(\"Latitude\")",
+  ".isComplete(\"Longitude\")",
+  ".isComplete(\"Results\")",
+  ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\", \"No Entry\", \"Not Ready\", \"Business Not Located\"))",
+  ".isContainedIn(\"Results\", Array(\"Pass\", \"Fail\", \"Pass w/ Conditions\", \"Out of Business\"), _ >= 0.93, Some(\"It should be above 0.93!\"))",
+  ".hasMinLength(\"Results\", _ >= 4.0)",
+  ".hasMaxLength(\"Results\", _ <= 20.0)",
+  ".isComplete(\"Risk\")",
+  ".isContainedIn(\"Risk\", Array(\"Risk 1 (High)\", \"Risk 2 (Medium)\", \"Risk 3 (Low)\", \"All\"))",
+  ".isContainedIn(\"Risk\", Array(\"Risk 1 (High)\", \"Risk 2 (Medium)\"), _ >= 0.92, Some(\"It should be above 0.92!\"))",
+  ".hasMinLength(\"Risk\", _ >= 3.0)",
+  ".hasMaxLength(\"Risk\", _ <= 15.0)"
+ ]
+}
